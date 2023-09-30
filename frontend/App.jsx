@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import bottomTab from './navigation/bottomTab';
+import Ionicons from '@expo/vector-icons/Ionicons';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -10,7 +11,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="BottomTab"
+          name="bottomTab"
           component={bottomTab}
           options={{ headerShown: false }}
         />

@@ -3,6 +3,9 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from '../screens/Users/HomeScreen';
 import SettingsScreen from '../screens/Users/SettingsScreen';
+import HistoryScreen from '../screens/Users/HistoryScreen';
+import { Ionicons } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 const Tab = createBottomTabNavigator();
 const screenOption = {
   tabBarShowLabel: false,
@@ -20,8 +23,51 @@ const screenOption = {
 const bottomTab = () => {
   return (
     <Tab.Navigator screenOptions={screenOption}>
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Settings" component={SettingsScreen} />
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          tabBarIcon: ({ focused }) => {
+            return (
+              <Ionicons
+                name={focused ? 'home' : 'home-outline'}
+                size={24}
+                color={focused ? '#F6D33C' : '#202020'}
+              />
+            );
+          },
+        }}
+      />
+      <Tab.Screen
+        name="History"
+        component={HistoryScreen}
+        options={{
+          tabBarIcon: ({ focused }) => {
+            return (
+              <MaterialIcons
+                name={'history'}
+                size={26}
+                color={focused ? '#F6D33C' : '#202020'}
+              />
+            );
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Settings"
+        component={SettingsScreen}
+        options={{
+          tabBarIcon: ({ focused }) => {
+            return (
+              <Ionicons
+                name={focused ? 'person' : 'person-outline'}
+                size={24}
+                color={focused ? '#F6D33C' : '#202020'}
+              />
+            );
+          },
+        }}
+s      />
     </Tab.Navigator>
   );
 };
