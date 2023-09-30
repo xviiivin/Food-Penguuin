@@ -10,11 +10,16 @@ const screenOption = {
   headerShown: false,
   tabBarStyle: {
     position: 'absolute',
+    bottom: 0,
+    right: 0,
+    left: 0,
+    elevation: 0,
+    height: 70,
   },
 };
 const bottomTab = () => {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator screenOptions={screenOption}>
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Settings" component={SettingsScreen} />
     </Tab.Navigator>
