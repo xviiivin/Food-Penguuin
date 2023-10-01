@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   SafeAreaView,
   View,
@@ -7,20 +7,22 @@ import {
   ScrollView,
   FlatList,
   Image,
-} from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import Carousel from '../../components/Home/Carousel';
-import { dummyData } from '../../data/Data';
+} from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import Carousel from "../../components/Home/Carousel";
+import CarouselCategory from "../../components/Home/CarouselCategory";
+import SearchBar from "../../components/Home/SearchBar";
+import dummyData from "../../data/Data";
 
 const HomeScreen = () => {
-  const greetings = ['สวัสดี,', 'สั่งอาหารโปรดของคุณที่นี่ !'];
+  const greetings = ["สวัสดี,", "สั่งอาหารโปรดของคุณที่นี่ !"];
   const grid = [
-    { id: '1', title: 'Item 1' },
-    { id: '2', title: 'Item 2' },
-    { id: '3', title: 'Item 3' },
-    { id: '4', title: 'Item 4' },
-    { id: '3', title: 'Item 3' },
-    { id: '4', title: 'Item 4' },
+    { id: "1", title: "Item 1" },
+    { id: "2", title: "Item 2" },
+    { id: "3", title: "Item 3" },
+    { id: "4", title: "Item 4" },
+    { id: "3", title: "Item 3" },
+    { id: "4", title: "Item 4" },
   ];
 
   return (
@@ -30,23 +32,27 @@ const HomeScreen = () => {
           <View style={styles.dis}>
             <Image
               style={styles.logo}
-              source={require('../../assets/Logo.png')}
+              source={require("../../assets/Logo.png")}
             />
             <Ionicons
-              name={'cart'}
+              name={"cart"}
               size={24}
-              color={'#202020'}
+              color={"#202020"}
               style={styles.icon}
             />
           </View>
           {greetings.map((greeting, index) => (
             <Text key={index} style={styles.textHeader}>
-              {greeting.id}
+              {greeting}
             </Text>
           ))}
-          <Text className="font-notom" style={styles.textcat}>ร้านมาใหม่ 🔥</Text>
-          <Carousel data={dummyData} />
+          <SearchBar />
+          <CarouselCategory />
 
+          <Text className="font-notom" style={styles.textcat}>
+            ร้านมาใหม่ 🔥
+          </Text>
+          <Carousel data={dummyData} />
           <Text style={styles.textcat}>ร้านอาหารทั้งหมด</Text>
           <View style={styles.gridContainer}>
             {grid.map((gridItem, index) => (
@@ -64,43 +70,44 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     padding: 20,
   },
   dis: {
-    flexDirection: 'row',
+    flexDirection: "row",
     marginTop: 30,
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    alignItems: "center",
+    justifyContent: "space-between",
     marginBottom: 20,
   },
   logo: {
-    alignSelf: 'center',
+    alignSelf: "center",
     marginLeft: 100,
   },
   icon: {
     marginRight: 10,
   },
   textHeader: {
-    fontSize: 20,
-    fontWeight: '400',
+    fontSize: 25,
+    fontWeight: "700",
+    marginBottom: 5,
   },
   textcat: {
     fontSize: 16,
-    fontWeight: '300',
+    fontWeight: "300",
   },
   gridContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
   },
   gridItem: {
-    width: '48%',
+    width: "48%",
     marginVertical: 10,
     padding: 20,
-    backgroundColor: '#f0f0f0',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#f0f0f0",
+    alignItems: "center",
+    justifyContent: "center",
     height: 150,
     borderRadius: 10,
   },
