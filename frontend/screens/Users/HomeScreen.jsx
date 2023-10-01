@@ -44,7 +44,7 @@ const HomeScreen = () => {
               {greeting.id}
             </Text>
           ))}
-          <Text style={styles.textcat}>ร้านมาใหม่ 🔥</Text>
+          <Text className="font-notom" style={styles.textcat}>ร้านมาใหม่ 🔥</Text>
           <Carousel data={dummyData} />
 
           <Text style={styles.textcat}>ร้านอาหารทั้งหมด</Text>

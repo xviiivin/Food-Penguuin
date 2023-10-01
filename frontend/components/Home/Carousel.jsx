@@ -6,22 +6,22 @@ import CarouselItem from './CarouselItem'
 const { width, heigth } = Dimensions.get('window')
 let flatList
 
-function infiniteScroll(dataList){
+function infiniteScroll(dataList) {
     const numberOfData = dataList.length
     let scrollValue = 0, scrolled = 0
 
-    setInterval(function() {
-        scrolled ++
-        if(scrolled < numberOfData)
-        scrollValue = scrollValue + width
+    setInterval(function () {
+        scrolled++
+        if (scrolled < numberOfData)
+            scrollValue = scrollValue + width
 
-        else{
+        else {
             scrollValue = 0
             scrolled = 0
         }
 
-        this.flatList.scrollToOffset({ animated: true, offset: scrollValue})
-        
+        this.flatList.scrollToOffset({ animated: true, offset: scrollValue })
+
     }, 3000)
 }
 
@@ -31,7 +31,7 @@ const Carousel = ({ data }) => {
     let position = Animated.divide(scrollX, width)
     const [dataList, setDataList] = useState(data)
 
-    useEffect(()=> {
+    useEffect(() => {
         setDataList(data)
         infiniteScroll(dataList)
     })
@@ -41,7 +41,7 @@ const Carousel = ({ data }) => {
         return (
             <View>
                 <FlatList data={data}
-                ref = {(flatList) => {this.flatList = flatList}}
+                    ref={(flatList) => { this.flatList = flatList }}
                     keyExtractor={(item, index) => 'key' + index}
                     horizontal
                     pagingEnabled
@@ -54,7 +54,8 @@ const Carousel = ({ data }) => {
                         return <CarouselItem item={item} />
                     }}
                     onScroll={Animated.event(
-                        [{ nativeEvent: { contentOffset: { x: scrollX } } }]
+                        [{ nativeEvent: { contentOffset: { x: scrollX } } }],
+                        { useNativeDriver: false }
                     )}
                 />
 

@@ -3,6 +3,8 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from '../screens/Users/HomeScreen';
 import SettingsScreen from '../screens/Users/SettingsScreen';
+
+import Login from '../screens/Login'
 import HistoryScreen from '../screens/Users/HistoryScreen';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -20,7 +22,7 @@ const screenOption = {
     height: 70,
   },
 };
-const bottomTab = () => {
+const BottomTab = () => {
   return (
     <Tab.Navigator screenOptions={screenOption}>
       <Tab.Screen
@@ -55,7 +57,7 @@ const bottomTab = () => {
       />
       <Tab.Screen
         name="Settings"
-        component={SettingsScreen}
+        component={Login}
         options={{
           tabBarIcon: ({ focused }) => {
             return (
@@ -72,4 +74,4 @@ s      />
   );
 };
 
-export default bottomTab;
+export default BottomTab;
