@@ -11,13 +11,11 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-       
-          <Stack.Screen
-            name="bottomTab"
-            component={bottomTab}
-            options={{ headerShown: false }}
-          />
-   
+        <Stack.Screen
+          name="bottomTab"
+          component={bottomTab}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

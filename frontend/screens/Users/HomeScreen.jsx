@@ -1,83 +1,82 @@
+import React from 'react';
 import {
   SafeAreaView,
   View,
   Text,
   StyleSheet,
-  FlatList,
-  ActivityIndicator,
   ScrollView,
+  FlatList,
   Image,
 } from 'react-native';
-import React from 'react';
-import Carousel from '../../components/Home/Carousel';
 import { Ionicons } from '@expo/vector-icons';
-import { dummyData } from '../../data/Data'
+import Carousel from '../../components/Home/Carousel';
+import { dummyData } from '../../data/Data';
 
 const HomeScreen = () => {
-  return (
-    <ScrollView>
-    <SafeAreaView style={styles.container}>
-        <View style={styles.dis}>
-          <Image
-            style={styles.Logo}
-            source={require('../../assets/Logo.png')}
-          />
-          <Ionicons
-            name={'cart'}
-            size={24}
-            color={'#202020'}
-            style={styles.icon}
-          />
-        </View>
-        <View>
-          <Text style={styles.textHeader}>สวัสดี,</Text>
-          <Text style={styles.textHeader}>สั่งอาหารโปรดของคุณที่นี่ !</Text>
+  const greetings = ['สวัสดี,', 'สั่งอาหารโปรดของคุณที่นี่ !'];
+  const grid = [
+    { id: '1', title: 'Item 1' },
+    { id: '2', title: 'Item 2' },
+    { id: '3', title: 'Item 3' },
+    { id: '4', title: 'Item 4' },
+    { id: '3', title: 'Item 3' },
+    { id: '4', title: 'Item 4' },
+  ];
 
+  return (
+    <SafeAreaView>
+      <ScrollView>
+        <View style={styles.container}>
+          <View style={styles.dis}>
+            <Image
+              style={styles.logo}
+              source={require('../../assets/Logo.png')}
+            />
+            <Ionicons
+              name={'cart'}
+              size={24}
+              color={'#202020'}
+              style={styles.icon}
+            />
+          </View>
+          {greetings.map((greeting, index) => (
+            <Text key={index} style={styles.textHeader}>
+              {greeting.id}
+            </Text>
+          ))}
+          <Text style={styles.textcat}>ร้านมาใหม่ 🔥</Text>
+          <Carousel data={dummyData} />
+
+          <Text style={styles.textcat}>ร้านอาหารทั้งหมด</Text>
+          <View style={styles.gridContainer}>
+            {grid.map((gridItem, index) => (
+              <View key={index} style={styles.gridItem}>
+                <Text>{gridItem.title}</Text>
+              </View>
+            ))}
+          </View>
         </View>
-        <ScrollView>
-          <Carousel data = {dummyData}/>
-        </ScrollView>
-        <Text style={styles.textHeader}>สวัสดี,</Text>
-          <Text style={styles.textHeader}>สั่งอาหารโปรดของคุณที่นี่ !</Text>
-          <Text style={styles.textHeader}>สวัสดี,</Text>
-          <Text style={styles.textHeader}>สั่งอาหารโปรดของคุณที่นี่ !</Text>
-          <Text style={styles.textHeader}>สวัสดี,</Text>
-          <Text style={styles.textHeader}>สั่งอาหารโปรดของคุณที่นี่ !</Text>
-          <Text style={styles.textHeader}>สวัสดี,</Text>
-          <Text style={styles.textHeader}>สั่งอาหารโปรดของคุณที่นี่ !</Text>
-          <Text style={styles.textHeader}>สวัสดี,</Text>
-          <Text style={styles.textHeader}>สั่งอาหารโปรดของคุณที่นี่ !</Text>
-          <Text style={styles.textHeader}>สวัสดี,</Text>
-          <Text style={styles.textHeader}>สั่งอาหารโปรดของคุณที่นี่ !</Text>
-          <Text style={styles.textHeader}>สวัสดี,</Text>
-          <Text style={styles.textHeader}>สั่งอาหารโปรดของคุณที่นี่ !</Text>
-          <Text style={styles.textHeader}>สวัสดี,</Text>
-          <Text style={styles.textHeader}>สั่งอาหารโปรดของคุณที่นี่ !</Text>
-          <Text style={styles.textHeader}>สวัสดี,</Text>
-          <Text style={styles.textHeader}>สั่งอาหารโปรดของคุณที่นี่ !</Text>
+      </ScrollView>
     </SafeAreaView>
-    </ScrollView>
   );
 };
-
-export default HomeScreen;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    padding: 10,
+    padding: 20,
   },
   dis: {
     flexDirection: 'row',
-    marginTop: 40,
+    marginTop: 30,
     alignItems: 'center',
     justifyContent: 'space-between',
     marginBottom: 20,
   },
-  Logo: {
+  logo: {
     alignSelf: 'center',
-    marginLeft: 106,
+    marginLeft: 100,
   },
   icon: {
     marginRight: 10,
@@ -86,4 +85,25 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '400',
   },
+  textcat: {
+    fontSize: 16,
+    fontWeight: '300',
+  },
+  gridContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+  },
+  gridItem: {
+    width: '48%',
+    marginVertical: 10,
+    padding: 20,
+    backgroundColor: '#f0f0f0',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 150,
+    borderRadius: 10,
+  },
 });
+
+export default HomeScreen;
