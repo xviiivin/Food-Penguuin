@@ -5,10 +5,10 @@ const { width, height } = Dimensions.get("window");
 
 const CarouselItem = ({ item }) => {
   return (
-    <View style={styles.cardView}>
+    <View style={styles.cardView} className="font-notom">
       <Image style={styles.image} source={{ uri: item.url }} />
-      <View style={styles.textView}>
-        <Text style={styles.itemTitle}> {item.title}</Text>
+      <View style={styles.textView} className="font-notom">
+        <Text className="font-notom"> {item.title}</Text>
       </View>
     </View>
   );
@@ -19,7 +19,6 @@ const styles = StyleSheet.create({
     flex: 1,
     width: width - 20,
     height: height / 4,
-    backgroundColor: "white",
     margin: 10,
     borderRadius: 10,
     shadowColor: "#000",
@@ -40,16 +39,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffffff",
     padding: 5,
     borderRadius: 10,
-    opacity: 0.9,
   },
-  itemTitle: {
-    color: "#000000",
-    fontSize: 16,
-    shadowColor: "#000",
-    shadowOpacity: 1,
-    shadowRadius: 3,
-    fontWeight: "bold",
-  },
+
 });
 
 export default CarouselItem;

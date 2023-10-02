@@ -5,17 +5,18 @@ module.exports = {
     "./screens/**/*.{js,jsx,ts,tsx}",
     "./screens/*.{js,jsx,ts,tsx}",
     "./components/*.{js,jsx,ts,tsx}",
+    "./navigation/**/*.{js,jsx,ts,tsx}",
+    "./components/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
     extend: {
       fontFamily: {
-        notor: ['NotoSansThai_400Regular'],
-        notom: ['NotoSansThai_500Medium'],
-        notoe: ['NotoSansThai_600SemiBold'],
-        notob: ['NotoSansThai_700Bold']
-      }
+        notor: ["NotoSansThai_400Regular"],
+        notom: ["NotoSansThai_500Medium"],
+        notoe: ["NotoSansThai_600SemiBold"],
+        notob: ["NotoSansThai_700Bold"],
+      },
     },
   },
   plugins: [],
-}
-
+};

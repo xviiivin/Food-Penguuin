@@ -42,7 +42,7 @@ const HomeScreen = () => {
             />
           </View>
           {greetings.map((greeting, index) => (
-            <Text key={index} style={styles.textHeader}>
+            <Text key={index} style={styles.textHeader} className='font-notob'>
               {greeting}
             </Text>
           ))}
@@ -53,7 +53,7 @@ const HomeScreen = () => {
             ร้านมาใหม่ 🔥
           </Text>
           <Carousel data={dummyData} />
-          <Text style={styles.textcat}>ร้านอาหารทั้งหมด</Text>
+          <Text style={styles.textcat} className="font-notom">ร้านอาหารทั้งหมด</Text>
           <View style={styles.gridContainer}>
             {grid.map((gridItem, index) => (
               <View key={index} style={styles.gridItem}>
@@ -89,7 +89,6 @@ const styles = StyleSheet.create({
   },
   textHeader: {
     fontSize: 25,
-    fontWeight: "700",
     marginBottom: 5,
   },
   textcat: {

@@ -10,29 +10,37 @@ import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 const Tab = createBottomTabNavigator();
 const screenOption = {
-  tabBarShowLabel: false,
   tabBarHideOnKeyboard: true,
   headerShown: false,
   tabBarStyle: {
-    position: 'absolute',
-    bottom: 0,
-    right: 0,
-    left: 0,
-    elevation: 0,
     height: 70,
+    paddingBottom: 8
   },
+  tabBarLabelStyle: {
+    fontSize: 13,
+  }
 };
+const tabLabelStyle = {
+  fontFamily: ['NotoSansThai_500Medium'],
+  fontSize: 13,
+};
+
 const BottomTab = () => {
   return (
-    <Tab.Navigator screenOptions={screenOption}>
+    <Tab.Navigator screenOptions={screenOption} >
       <Tab.Screen
         name="Home"
         component={HomeScreen}
         options={{
+          tabBarLabel: ({ focused }) => (
+            <Text style={[tabLabelStyle, { color: focused ? '#F6D33C' : '#202020' }]}>
+              หน้าหลัก
+            </Text>
+          ),
           tabBarIcon: ({ focused }) => {
             return (
               <Ionicons
-                name={focused ? 'home' : 'home-outline'}
+                name={'home'}
                 size={24}
                 color={focused ? '#F6D33C' : '#202020'}
               />
@@ -44,7 +52,11 @@ const BottomTab = () => {
         name="History"
         component={HistoryScreen}
         options={{
-          tabBarIcon: ({ focused }) => {
+          tabBarLabel: ({ focused }) => (
+            <Text style={[tabLabelStyle, { color: focused ? '#F6D33C' : '#202020' }]}>
+              ประวัติ
+            </Text>
+          ), tabBarIcon: ({ focused }) => {
             return (
               <MaterialIcons
                 name={'history'}
@@ -57,19 +69,23 @@ const BottomTab = () => {
       />
       <Tab.Screen
         name="Settings"
-        component={Login}
+        component={SettingsScreen}
         options={{
-          tabBarIcon: ({ focused }) => {
+          tabBarLabel: ({ focused }) => (
+            <Text style={[tabLabelStyle, { color: focused ? '#F6D33C' : '#202020' }]}>
+              ข้อมูลผู้ใช้
+            </Text>
+          ), tabBarIcon: ({ focused }) => {
             return (
               <Ionicons
-                name={focused ? 'person' : 'person-outline'}
+                name={'person'}
                 size={24}
                 color={focused ? '#F6D33C' : '#202020'}
               />
             );
           },
         }}
-s      />
+        s />
     </Tab.Navigator>
   );
 };

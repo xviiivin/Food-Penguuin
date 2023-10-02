@@ -17,14 +17,13 @@ const CarouselCatCard = ({ imgUrl, title }) => {
       <View style={styles.circle}>
         <Image source={{ uri: imgUrl }} style={styles.image} />
       </View>
-      <Text style={styles.font}>{title}</Text>
+      <Text className="font-notom mt-2 color-[#666666] text-[10]">{title}</Text>
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   image: { height: 40, width: 40, borderRadius: 10 },
-  font: { fontSize: 15, fontWeight: "normal", color: "#666666", marginTop: 5 },
   circle: {
     width: 62,
     height: 62,

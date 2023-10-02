@@ -10,7 +10,7 @@ const SearchBar = () => {
           source={require("../../assets/Search_alt.png")}
           style={styles.image}
         />
-        <TextInput placeholder="ค้นหาในแอปฯ Food penguin" style={styles.font} />
+        <TextInput placeholder="ค้นหาในแอปฯ Food penguin" style={styles.font} maxLength={30} className='overflow-hidden font-notom  text-ellipsis' />
       </View>
     </View>
   );
@@ -33,14 +33,14 @@ const styles = StyleSheet.create({
     elevation: 6,
     shadowRadius: 5,
     flexDirection: "row",
-    flexWrap: "wrap",
+
   },
   font: {
     fontSize: 14,
     fontWeight: "400",
     color: "#8D8B8B",
     paddingLeft: 10,
-    width: " 100",
+    width: " 150",
     marginTop: 5,
   },
   container: { marginTop: 15, marginBottom: 15 },
