@@ -4,6 +4,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import BottomTab from "./navigation/bottomTab";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import CartScreen from "../frontend/screens/Users/CartScreen";
+import Header from "../frontend/navigation/Header";
 
 import Ionicons from "@expo/vector-icons/Ionicons";
 
@@ -37,10 +39,11 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen
-            name="BottomTab"
+            name="BottomTabbb"
             component={BottomTab}
-            options={{ headerShown: false }}
+            options={{ headerShown: true, headerTitle: () => <Header /> }}
           />
+          <Stack.Screen name="CartScreen" component={CartScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </GestureHandlerRootView>

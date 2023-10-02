@@ -14,10 +14,14 @@ const { width, heigth } = Dimensions.get("window");
 const CarouselCatCard = ({ imgUrl, title }) => {
   return (
     <TouchableOpacity>
-      <View style={styles.circle}>
-        <Image source={{ uri: imgUrl }} style={styles.image} />
+      <View className="content-center text-center">
+        <View style={styles.circle}>
+          <Image source={{ uri: imgUrl }} style={styles.image} />
+        </View>
+        <Text className="font-notom mt-2 color-[#666666] text-[10]">
+          {title}
+        </Text>
       </View>
-      <Text className="font-notom mt-2 color-[#666666] text-[10]">{title}</Text>
     </TouchableOpacity>
   );
 };

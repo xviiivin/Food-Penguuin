@@ -14,7 +14,7 @@ import CarouselCategory from "../../components/Home/CarouselCategory";
 import SearchBar from "../../components/Home/SearchBar";
 import dummyData from "../../data/Data";
 
-const HomeScreen = ({ navigation }) => {
+const CategoryScreen = ({ navigation }) => {
   const greetings = ["สวัสดี,", "สั่งอาหารโปรดของคุณที่นี่ !"];
   const grid = [
     { id: "1", title: "Item 1" },
@@ -29,20 +29,8 @@ const HomeScreen = ({ navigation }) => {
     <SafeAreaView>
       <ScrollView>
         <View style={styles.container}>
-          {greetings.map((greeting, index) => (
-            <Text key={index} style={styles.textHeader} className="font-notob">
-              {greeting}
-            </Text>
-          ))}
-          <SearchBar />
-          <CarouselCategory />
-
           <Text className="font-notom" style={styles.textcat}>
             ร้านมาใหม่ 🔥
-          </Text>
-          <Carousel data={dummyData} />
-          <Text style={styles.textcat} className="font-notom">
-            ร้านอาหารทั้งหมด
           </Text>
           <View style={styles.gridContainer}>
             {grid.map((gridItem, index) => (
@@ -79,6 +67,7 @@ const styles = StyleSheet.create({
   },
   textHeader: {
     fontSize: 25,
+    fontWeight: "700",
     marginBottom: 5,
   },
   textcat: {
@@ -102,4 +91,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default CategoryScreen;
