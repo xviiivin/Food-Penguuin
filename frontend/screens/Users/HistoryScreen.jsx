@@ -9,7 +9,7 @@ const Tab = createMaterialTopTabNavigator();
 const HistoryScreen = () => {
   return (
     <>
-      <Tab.Navigator className="mt-10">
+      <Tab.Navigator>
         <Tab.Screen name="Receive" component={Receive} options={{
           tabBarLabel: () => (
             <Text style={[{ color: "#202020" }]}>

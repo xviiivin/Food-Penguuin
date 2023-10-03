@@ -7,7 +7,7 @@ import {
   ScrollView,
   Image,
   Button,
-  TouchableHighlight,
+  TouchableOpacity
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
@@ -16,19 +16,7 @@ const SettingsScreen = () => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <SafeAreaView>
-        <View style={styles.dis}>
-          <Image
-            style={styles.logo}
-            source={require('../../assets/Logo.png')}
-          />
-          <Ionicons
-            name={'cart'}
-            size={24}
-            color={'#202020'}
-            style={styles.icon}
-          />
-        </View>
-        <TouchableHighlight style={{ margin: 30 }} onPress={() => {}}>
+        <TouchableOpacity style={{ margin: 30 }} onPress={() => {}}>
           <View style={styles.dis1}>
             <View style={styles.dis2}>
               <AntDesign name="customerservice" size={24} color="black" />
@@ -36,9 +24,9 @@ const SettingsScreen = () => {
             </View>
             <AntDesign name="right" size={20} color="black" />
           </View>
-        </TouchableHighlight>
+        </TouchableOpacity>
 
-        <TouchableHighlight style={{ marginHorizontal: 30 }} onPress={() => {}}>
+        <TouchableOpacity style={{ marginHorizontal: 30 }} onPress={() => {}}>
           <View style={styles.dis1}>
             <View style={styles.dis2}>
               <AntDesign name="logout" size={20} color="#B11E1E" />
@@ -46,7 +34,7 @@ const SettingsScreen = () => {
             </View>
             <AntDesign name="right" size={20} color="black" />
           </View>
-        </TouchableHighlight>
+        </TouchableOpacity>
       </SafeAreaView>
     </ScrollView>
   );
