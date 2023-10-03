@@ -1,30 +1,27 @@
-import { StyleSheet, View, Text, Image } from 'react-native';
+import { StyleSheet, View, Text, Image, Pressable, TouchableOpacity, Platform } from 'react-native';
 import React from 'react';
 import SwitchSelector from 'react-native-switch-selector';
+import { SimpleLineIcons, MaterialCommunityIcons, AntDesign, Ionicons } from '@expo/vector-icons';
 
 const Login = () => {
   const options = [
     {
       label: 'สมาชิกทั่วไป',
-      value: '1',
-      testID: 'switch-one',
-      accessibilityLabel: 'switch-one',
+      value: 'user',
     },
     {
       label: 'ร้านค้า',
-      value: '1.5',
-      testID: 'switch-one-thirty',
-      accessibilityLabel: 'switch-one-thirty',
+      value: 'restarunt',
     },
   ];
 
   return (
     <View className="p-10" style={styles.container}>
-      <Image source={require('../assets/Logo.png')} />
+      <Image source={require('../assets/Logo.png')} className='w-3/4 h-[40px]' />
       <SwitchSelector
         selectedTextStyle={{ fontFamily: 'NotoSansThai_500Medium' }}
         textStyle={{ fontFamily: 'NotoSansThai_500Medium' }}
-        className="mt-5 font-notom"
+        className="mt-10 font-notom"
         options={options}
         selectedColor="#202020"
         buttonColor="#F6D33C"
@@ -33,6 +30,20 @@ const Login = () => {
         initial={0}
         onPress={(value) => console.log(`Call onPress with value: ${value}`)}
       />
+      <View className='flex flex-row  items-center mt-32'>
+        <MaterialCommunityIcons name='penguin' size={24} color={"#A1A1A1"} />
+        <Text className='font-notom color-[#A1A1A1]'>เข้าสู่ระบบด้วย อีเมลมหาลัยกันเลย !!!</Text>
+      </View>
+      <TouchableOpacity className='border border-[#A1A1A1] rounded-lg w-3/4 h-12 mt-4 items-center justify-center'>
+        <View className='flex flex-row  items-center'>
+          <Image
+            style={styles.stretch}
+            source={require('../assets/google-icon-2048x2048-czn3g8x8.png')}
+          />
+          <Text className='font-notom color-[#A1A1A1]'> Continue with Google</Text>
+        </View>
+      </TouchableOpacity>
+
     </View>
   );
 };
@@ -45,4 +56,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     fontFamily: 'NotoSansThai_500Medium',
   },
+  stretch: {
+    width: 25,
+    height: 25,
+    resizeMode: 'stretch',
+  },
+
 });
