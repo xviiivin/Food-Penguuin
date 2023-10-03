@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import BottomTab from "./navigation/bottomTab";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import CartScreen from "../frontend/screens/Users/CartScreen";
+import CategoryScreen from "../frontend/screens/Users/CategoryScreen";
 import Header from "../frontend/navigation/Header";
 import Login from "./screens/Login";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -35,19 +36,20 @@ export default function App() {
   }
 
   return (
-    // <GestureHandlerRootView style={{ flex: 1 }}>
-    //   <NavigationContainer>
-    //     <Stack.Navigator>
-    //       <Stack.Screen
-    //         name="BottomTabbb"
-    //         component={BottomTab}
-    //         options={{ headerShown: true, headerTitle: () => <Header /> }}
-    //       />
-    //       <Stack.Screen name="CartScreen" component={CartScreen} />
-    //     </Stack.Navigator>
-    //   </NavigationContainer>
-    // </GestureHandlerRootView>
-    <Login/>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="BottomTabbb"
+            component={BottomTab}
+            options={{ headerShown: true, headerTitle: () => <Header /> }}
+          />
+          <Stack.Screen name="CartScreen" component={CartScreen} />
+          <Stack.Screen name="CategoryScreen" component={CategoryScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </GestureHandlerRootView>
+    // <Login/>
   );
 }
 

@@ -7,13 +7,22 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
+import { useNavigation } from "@react-navigation/native";
 
 const { width, heigth } = Dimensions.get("window");
 
 const CarouselCatCard = ({ imgUrl, title }) => {
+  const pressDetail = (id) => {
+    alert(id);
+  };
+  const navigation = useNavigation();
   return (
-    <TouchableOpacity>
+    <TouchableOpacity
+      style={{}}
+      onPress={() => {
+        navigation.navigate("CategoryScreen");
+      }}
+    >
       <View className="content-center text-center">
         <View style={styles.circle}>
           <Image source={{ uri: imgUrl }} style={styles.image} />

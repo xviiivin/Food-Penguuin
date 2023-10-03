@@ -12,6 +12,7 @@ import { Ionicons } from "@expo/vector-icons";
 import Carousel from "../../components/Home/Carousel";
 import CarouselCategory from "../../components/Home/CarouselCategory";
 import SearchBar from "../../components/Home/SearchBar";
+import AllRestaurant from "../../components/Home/AllRestaurant";
 import dummyData from "../../data/Data";
 
 const HomeScreen = ({ navigation }) => {
@@ -44,13 +45,7 @@ const HomeScreen = ({ navigation }) => {
           <Text style={styles.textcat} className="font-notom">
             ร้านอาหารทั้งหมด
           </Text>
-          <View style={styles.gridContainer}>
-            {grid.map((gridItem, index) => (
-              <View key={index} style={styles.gridItem}>
-                <Text>{gridItem.title}</Text>
-              </View>
-            ))}
-          </View>
+          <AllRestaurant />
         </View>
       </ScrollView>
     </SafeAreaView>
