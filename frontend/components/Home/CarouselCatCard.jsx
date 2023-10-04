@@ -8,27 +8,27 @@ import {
   Image,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { useRoute } from "@react-navigation/native";
+import RestaurantData from "../../data/RestaurantData.json";
 
 const { width, heigth } = Dimensions.get("window");
 
-const CarouselCatCard = ({ imgUrl, title }) => {
-  const pressDetail = (id) => {
-    alert(id);
-  };
+const CarouselCatCard = ({ imgUrl, type }) => {
+  const [item, setItems] = useState([]);
   const navigation = useNavigation();
+
+  const onPressDetail = (type) => {
+    navigation.navigate("CategoryScreen", { type: type });
+  };
+
   return (
-    <TouchableOpacity
-      style={{}}
-      onPress={() => {
-        navigation.navigate("CategoryScreen");
-      }}
-    >
+    <TouchableOpacity onPress={() => onPressDetail(type)} key={type}>
       <View className="content-center text-center">
         <View style={styles.circle}>
           <Image source={{ uri: imgUrl }} style={styles.image} />
         </View>
         <Text className="font-notom mt-2 color-[#666666] text-[10]">
-          {title}
+          {type}
         </Text>
       </View>
     </TouchableOpacity>

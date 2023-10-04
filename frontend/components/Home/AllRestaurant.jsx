@@ -8,26 +8,42 @@ import {
   Animated,
   Image,
   ImageBackground,
+  TouchableOpacity,
 } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import CarouselCatCard from "./CarouselCatCard";
+import { useNavigation } from "@react-navigation/native";
 import RestaurantData from "../../data/RestaurantData.json";
 
 const { width, height } = Dimensions.get("window");
-const AllRestaurant = () => {
-  //   const grid = [
-  //     { id: "1", title: "Item 1" },
-  //     { id: "2", title: "Item 2" },
-  //     { id: "3", title: "Item 3" },
-  //     { id: "4", title: "Item 4" },
-  //     { id: "3", title: "Item 3" },
-  //     { id: "4", title: "Item 4" },
-  //   ];
-
+const AllRestaurant = ({ route }) => {
+  const navigation = useNavigation();
+  const onPressDetail = (id, name, pic, type, queue, food_court) => {
+    navigation.navigate("RestaurantDetail", {
+      id: id,
+      name: name,
+      type: type,
+      queue: queue,
+      pic: pic,
+      food_court: food_court,
+    });
+  };
   return (
     <View style={styles.gridContainer}>
       {RestaurantData.map((gridItem, index) => (
-        <View key={index} style={styles.gridItem}>
+        <TouchableOpacity
+          style={styles.gridItem}
+          key={index}
+          onPress={() =>
+            onPressDetail(
+              gridItem.id,
+              gridItem.name,
+              gridItem.pic,
+              gridItem.type,
+              gridItem.food_court,
+              gridItem.queue
+            )
+          }
+        >
           <View style={styles.picCover}>
             <Image style={styles.image} source={{ uri: gridItem.pic }} />
           </View>
@@ -35,7 +51,7 @@ const AllRestaurant = () => {
           <Text>
             {gridItem.type} • {gridItem.queue}
           </Text>
-        </View>
+        </TouchableOpacity>
       ))}
     </View>
   );
@@ -49,21 +65,10 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     marginBottom: 20,
   },
-  logo: {
-    alignSelf: "center",
-    marginLeft: 100,
-  },
-  icon: {
-    marginRight: 10,
-  },
-  textHeader: {
-    fontSize: 25,
-    fontWeight: "700",
-    marginBottom: 5,
-  },
   textTitle: {
     fontSize: 16,
     fontWeight: "bold",
+    marginBottom: 3,
   },
   gridContainer: {
     flexDirection: "row",
@@ -73,7 +78,7 @@ const styles = StyleSheet.create({
   gridItem: {
     width: "45%",
     marginVertical: 5,
-    height: 250,
+    height: 230,
     borderRadius: 10,
     overflow: "hidden",
   },

@@ -13,48 +13,18 @@ import CategoryGrid from "../../components/Category/CategoryGrid";
 import RestaurantData from "../../data/RestaurantData.json";
 import { useRoute } from "@react-navigation/native";
 
-const CategoryScreen = ({ navigation }) => {
-  const grid = [
-    { id: "1", title: "Item 1" },
-    { id: "2", title: "Item 2" },
-    { id: "3", title: "Item 3" },
-    { id: "4", title: "Item 4" },
-    { id: "3", title: "Item 3" },
-    { id: "4", title: "Item 4" },
-  ];
-  //   const gridItem = (itemData) => {
-  //     return (
-  //       <CategoryGrid
-  //         title={itemData.item.restaurant_name}
-  //         color={itemData.item.restaurant_pic}
-
-  //         onSelect={() => {
-  //           navigation.navigate("CartScreen", {
-  //             categoryId: itemData.item.id,
-  //             categoryTitle: itemData.item.restaurant_name,
-  //           });
-  //         }}
-  //       />
-  //     );
-  //   };
-
-  //   const {
-  //     params: { id, name, phone, type, pic, food_court },
-  //   } = useRoute();
-
+const CategoryScreen = ({ route }) => {
   return (
-    //     <FlatList data={RestaurantData} renderItem={gridItem} numColumns={2} />
-    //     <Text>{name}</Text>
     <SafeAreaView>
       <ScrollView>
         <View style={styles.container}>
           <Text className="font-notom" style={styles.textcat}>
-            ร้านมาใหม่ 🔥
+            {route.params.type}
           </Text>
           <View style={styles.gridContainer}>
-            {grid.map((gridItem, index) => (
-              <View key={index} style={styles.gridItem}>
-                <Text>{gridItem.title}</Text>
+            {RestaurantData.map((item, type) => (
+              <View key={type} style={styles.gridItem}>
+                <Text>{item.name}</Text>
               </View>
             ))}
           </View>

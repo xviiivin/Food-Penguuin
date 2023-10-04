@@ -6,6 +6,7 @@ import BottomTab from "./navigation/bottomTab";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import CartScreen from "../frontend/screens/Users/CartScreen";
 import CategoryScreen from "../frontend/screens/Users/CategoryScreen";
+import RestaurantDetail from "../frontend/screens/Users/RestaurantDetail";
 import Header from "../frontend/navigation/Header";
 import Login from "./screens/Login";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -46,6 +47,7 @@ export default function App() {
           />
           <Stack.Screen name="CartScreen" component={CartScreen} />
           <Stack.Screen name="CategoryScreen" component={CategoryScreen} />
+          <Stack.Screen name="RestaurantDetail" component={RestaurantDetail} />
         </Stack.Navigator>
       </NavigationContainer>
     </GestureHandlerRootView>
