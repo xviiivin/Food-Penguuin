@@ -7,16 +7,32 @@ import {
   ScrollView,
   Image,
   Button,
-  TouchableOpacity
+  TouchableOpacity, Pressable
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 import { SimpleLineIcons } from '@expo/vector-icons';
 const SettingsScreen = () => {
+  const navigation = useNavigation();
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <SafeAreaView>
-        <TouchableOpacity style={{ margin: 30 }} onPress={() => {}}>
+        <View className="flex flex-row justify-center items-center gap-4">
+          <Image style={styles.profileImage} className='' source={{ uri: 'https://img.freepik.com/free-vector/big-win-surprise-banner-comic-style_1017-17792.jpg' }} />
+          <View className='gap-y-1 w-1/2'>
+            <Text className='font-notob text-lg'>วิวรรธน์ เหลียงกอบกิจ</Text>
+            <Text className='font-notom color-[#A6A6A6] text-md'>64070232@kmitl.ac.th</Text>
+            <Pressable onPress={() => {
+              navigation.navigate("EditScreen");
+            }} className='border border-black items-center justify-center flex flex-row bg-[#F6D544] rounded-lg p-2 w-fit '>
+              <Text className='font-notom'>เเก้ไขบัญชี</Text>
+              <AntDesign name="edit" size={20} color="black" />
+            </Pressable>
+          </View>
+        </View>
+        <TouchableOpacity style={{ margin: 30 }} onPress={() => { }}>
           <View style={styles.dis1}>
             <View style={styles.dis2}>
               <AntDesign name="customerservice" size={24} color="black" />
@@ -26,7 +42,7 @@ const SettingsScreen = () => {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity style={{ marginHorizontal: 30 }} onPress={() => {}}>
+        <TouchableOpacity style={{ marginHorizontal: 30 }} onPress={() => { }}>
           <View style={styles.dis1}>
             <View style={styles.dis2}>
               <AntDesign name="logout" size={20} color="#B11E1E" />
@@ -68,6 +84,8 @@ const styles = StyleSheet.create({
   icon: {
     marginRight: 10,
   },
+  profileImage:
+    { width: 100, height: 100, backgroundColor: "#ED8085", borderRadius: 50, marginBottom: 10, },
 });
 
 export default SettingsScreen;

@@ -11,6 +11,7 @@ import Header from "../frontend/navigation/Header";
 import Login from "./screens/Login";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
+import EditScreen from './screens/Users/EditScreen'
 const Stack = createNativeStackNavigator();
 import {
   useFonts,
@@ -48,6 +49,25 @@ export default function App() {
           <Stack.Screen name="CartScreen" component={CartScreen} />
           <Stack.Screen name="CategoryScreen" component={CategoryScreen} />
           <Stack.Screen name="RestaurantDetail" component={RestaurantDetail} />
+          <Stack.Screen
+            name="EditScreen"
+            component={EditScreen}
+            options={{
+              headerTitle: () => (
+                <Text
+                  style={{
+                    flex: 1,
+                    textAlign: 'center',
+                    fontFamily: 'NotoSansThai_500Medium',
+                    fontSize: 20,
+                  }}
+                >
+                  แก้ไขข้อมูล
+                </Text>
+              ),
+            }}
+          />
+
         </Stack.Navigator>
       </NavigationContainer>
     </GestureHandlerRootView>
