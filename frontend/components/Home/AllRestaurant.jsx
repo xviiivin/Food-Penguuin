@@ -16,17 +16,18 @@ import RestaurantData from "../../data/RestaurantData.json";
 
 const AllRestaurant = ({ route }) => {
   const navigation = useNavigation();
-  const onPressDetail = (id, name, pic, type, queue, food_court, menu) => {
+  const onPressDetail = (id, name, pic, type, queue, food_court, menu, phone) => {
     navigation.navigate("RestaurantDetail", {
       id: id,
       name: name,
+      pic: pic,
       type: type,
       queue: queue,
-      pic: pic,
       food_court: food_court,
-      menu: menu
+      menu: menu,
+      phone: phone
     });
-    console.log("Menu:", menu); // Log the menu array
+    console.log(food_court) // Log the menu array
   };
   return (
     <View style={styles.gridContainer}>
@@ -40,9 +41,10 @@ const AllRestaurant = ({ route }) => {
               gridItem.name,
               gridItem.pic,
               gridItem.type,
-              gridItem.food_court,
               gridItem.queue,
-              gridItem.menu
+              gridItem.food_court,
+              gridItem.menu,
+              gridItem.phone
             )
           }
         >

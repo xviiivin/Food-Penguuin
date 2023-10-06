@@ -10,7 +10,8 @@ import {
   ImageBackground,
   TouchableOpacity,
 } from "react-native";
-
+import { Ionicons } from '@expo/vector-icons';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 const RestaurantDetail = ({ navigation, route }) => {
   const [id, setId] = useState(route.params?.id || "");
   const [name, setName] = useState(route.params?.name || "");
@@ -19,8 +20,8 @@ const RestaurantDetail = ({ navigation, route }) => {
   const [pic, setPic] = useState(route.params?.pic || "");
   const [food_court, setFood_court] = useState(route.params?.food_court || "");
   const [menu, setMenu] = useState(route.params?.menu || "");
-  console.log(route.params);
-  console.log(route.params?.menu || "");
+  const [phone, setPhone] = useState(route.params?.phone || "");
+
 
   return (
     <SafeAreaView style={styles.container}>
@@ -29,11 +30,23 @@ const RestaurantDetail = ({ navigation, route }) => {
           <Image style={styles.image} source={{ uri: route.params.pic }} />
         </View>
         <View className="my-10 mx-5">
-          <Text className="font-notom">{route.params.id}</Text>
-          <Text className="font-notom">{route.params.name}</Text>
-          <Text className="font-notom">{route.params.type}</Text>
-          <Text className="font-notom">{route.params.food_court}</Text>
-          <Text className="font-notom">{route.params.queue}</Text>
+          <View className="flex flex-row mb-2">
+            <Ionicons name="location" size={20} color="black" />
+            <Text className="font-notom ml-2">{route.params.food_court}</Text>
+          </View>
+          <View className="flex flex-row mb-2">
+            <Ionicons name="restaurant" className='ml-2' size={20} color="black" />
+            <Text className="font-notom ml-2">{route.params.type}</Text>
+          </View>
+          <View className='flex flex-row justify-between'>
+            <View className="flex flex-row mb-2">
+              <FontAwesome5 name="phone-alt" className='' size={19} color='F6D33C' />
+              <Text className="font-notom ml-2">{route.params.phone}</Text>
+            </View>
+            <View className='px-4 justify-center rounded-lg  bg-[#F6D544]'>
+              <Text className="font-notom ">{route.params.queue}</Text>
+            </View>
+          </View>
         </View>
 
         <View style={styles.line} />
@@ -43,9 +56,8 @@ const RestaurantDetail = ({ navigation, route }) => {
             <Text className="font-notom mb-3" style={styles.textcat}>
               เมนูขายดี 🔥
             </Text>
-
             <View style={styles.gridContainer}>
-              {menu.map((gridItem, index) => (
+              {menu.slice(0, 2).map((gridItem, index) => (
                 <TouchableOpacity
                   style={styles.gridItem}
                   key={index}
@@ -57,7 +69,7 @@ const RestaurantDetail = ({ navigation, route }) => {
                       source={{ uri: gridItem.menu_pic }}
                     />
                   </View>
-                  <View className="ml-3 ">
+                  <View className="ml-3">
                     <Text className="font-notom">{gridItem.name}</Text>
                     <Text className="font-notom">{gridItem.price}</Text>
                   </View>
