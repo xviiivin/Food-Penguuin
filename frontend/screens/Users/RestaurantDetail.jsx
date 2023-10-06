@@ -11,14 +11,23 @@ import {
 } from "react-native";
 
 const RestaurantDetail = ({ navigation, route }) => {
-  const grid = [
-    { id: "1", title: "Item 1" },
-    { id: "2", title: "Item 2" },
-    { id: "3", title: "Item 3" },
-    { id: "4", title: "Item 4" },
-    { id: "3", title: "Item 3" },
-    { id: "4", title: "Item 4" },
-  ];
+  const [id, setId] = useState(route.params?.id || "")
+  const [name, setName] = useState(route.params?.name || "")
+  const [type, setType] = useState(route.params?.type || "")
+  const [queue, setQueue] = useState(route.params?.queue || "")
+  const [pic, setPic] = useState(route.params?.pic || "")
+  const [food_court, setFood_court] = useState(route.params?.food_court || "")
+  const [menu, setMenu] = useState(route.params?.menu || "")
+  console.log(route.params)
+  console.log(route.params?.menu || "")
+  // id: id,
+  // name: name,
+  // type: type,
+  // queue: queue,
+  // pic: pic,
+  // food_court: food_court,
+  // menu: menu
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
@@ -40,9 +49,9 @@ const RestaurantDetail = ({ navigation, route }) => {
               เมนูขายดี 🔥
             </Text>
             <View style={styles.gridContainer}>
-              {grid.map((gridItem, index) => (
+              {menu.map((gridItem, index) => (
                 <View key={index} style={styles.gridItem}>
-                  <Text>{gridItem.title}</Text>
+                  <Text>{gridItem.name} {gridItem.price}</Text>
                 </View>
               ))}
             </View>

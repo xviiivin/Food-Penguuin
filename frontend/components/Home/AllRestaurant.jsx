@@ -14,10 +14,9 @@ import { ScrollView } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 import RestaurantData from "../../data/RestaurantData.json";
 
-const { width, height } = Dimensions.get("window");
 const AllRestaurant = ({ route }) => {
   const navigation = useNavigation();
-  const onPressDetail = (id, name, pic, type, queue, food_court) => {
+  const onPressDetail = (id, name, pic, type, queue, food_court, menu) => {
     navigation.navigate("RestaurantDetail", {
       id: id,
       name: name,
@@ -25,7 +24,9 @@ const AllRestaurant = ({ route }) => {
       queue: queue,
       pic: pic,
       food_court: food_court,
+      menu: menu
     });
+    console.log("Menu:", menu); // Log the menu array
   };
   return (
     <View style={styles.gridContainer}>
@@ -40,15 +41,16 @@ const AllRestaurant = ({ route }) => {
               gridItem.pic,
               gridItem.type,
               gridItem.food_court,
-              gridItem.queue
+              gridItem.queue,
+              gridItem.menu
             )
           }
         >
           <View style={styles.picCover}>
             <Image style={styles.image} source={{ uri: gridItem.pic }} />
           </View>
-          <Text style={styles.textTitle}>{gridItem.name}</Text>
-          <Text>
+          <Text className="font-notob mb-2 text-[16px]">{gridItem.name}</Text>
+          <Text className="font-notor">
             {gridItem.type} • {gridItem.queue}
           </Text>
         </TouchableOpacity>
@@ -65,11 +67,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     marginBottom: 20,
   },
-  textTitle: {
-    fontSize: 16,
-    fontWeight: "bold",
-    marginBottom: 3,
-  },
+
   gridContainer: {
     flexDirection: "row",
     flexWrap: "wrap",
