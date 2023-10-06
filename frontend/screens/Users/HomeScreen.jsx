@@ -33,7 +33,7 @@ const HomeScreen = ({ navigation }) => {
             ร้านมาใหม่ 🔥
           </Text>
           <Carousel data={dummyData} />
-          <Text style={styles.textcat} className="font-notom">
+          <Text style={styles.textcat} className="font-notom my-3">
             ร้านอาหารทั้งหมด
           </Text>
           <AllRestaurant />
