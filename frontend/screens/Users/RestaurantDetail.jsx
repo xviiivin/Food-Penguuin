@@ -11,6 +11,8 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
+
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 const RestaurantDetail = ({ navigation, route }) => {
   const [id, setId] = useState(route.params?.id || "");
@@ -56,7 +58,7 @@ const RestaurantDetail = ({ navigation, route }) => {
             <Text className="font-notom mb-3" style={styles.textcat}>
               เมนูขายดี 🔥
             </Text>
-            <View style={styles.gridContainer}>
+            <View style={styles.gridContainer} >
               {menu.slice(0, 2).map((gridItem, index) => (
                 <TouchableOpacity
                   style={styles.gridItem}
@@ -69,9 +71,14 @@ const RestaurantDetail = ({ navigation, route }) => {
                       source={{ uri: gridItem.menu_pic }}
                     />
                   </View>
-                  <View className="ml-3">
-                    <Text className="font-notom">{gridItem.name}</Text>
-                    <Text className="font-notom">{gridItem.price}</Text>
+                  <View className='flex flex-row justify-between'>
+                    <View className="ml-3">
+                      <Text className="font-notom">{gridItem.name}</Text>
+                      <Text className="font-notom">{gridItem.price}</Text>
+                    </View>
+                    <View className='justify-end'>
+                      <AntDesign name="pluscircle" className='' size={25} color='#F6D544' />
+                    </View>
                   </View>
                 </TouchableOpacity>
               ))}
@@ -97,10 +104,15 @@ const RestaurantDetail = ({ navigation, route }) => {
                     source={{ uri: gridItem.menu_pic }}
                   />
                 </View>
-                <View className="ml-3 space-y-1 mt-3">
-                  <Text className="font-notom ">{gridItem.name}</Text>
-                  <Text className="font-notom">{gridItem.description}</Text>
-                  <Text className="font-notom mt-2">{gridItem.price} ฿</Text>
+                <View className='flex flex-row justify-between'>
+                  <View className="ml-3 space-y-1 mt-3">
+                    <Text className="font-notom ">{gridItem.name}</Text>
+                    <Text className="font-notom">{gridItem.description}</Text>
+                    <Text className="font-notom mt-2">{gridItem.price} ฿</Text>
+                  </View>
+                  <View className='justify-end mb-5'>
+                    <AntDesign name="pluscircle" className='' size={23} color='#F6D544' />
+                  </View>
                 </View>
               </TouchableOpacity>
             ))}
@@ -145,7 +157,7 @@ const styles = StyleSheet.create({
 
   gridContainer1: {
     flexDirection: "column",
-    flexWrap: "wrap",
+    flexWrap: "",
     justifyContent: "space-between",
   },
   gridItem1: {
