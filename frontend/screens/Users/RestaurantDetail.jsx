@@ -33,16 +33,16 @@ const RestaurantDetail = ({ navigation, route }) => {
         </View>
         <View className="my-10 mx-5">
           <View className="flex flex-row mb-2">
-            <Ionicons name="location" size={20} color="black" />
+            <Ionicons name="location" size={20} color="#F6D544" />
             <Text className="font-notom ml-2">{route.params.food_court}</Text>
           </View>
           <View className="flex flex-row mb-2">
-            <Ionicons name="restaurant" className='ml-2' size={20} color="black" />
+            <Ionicons name="restaurant" className='ml-2' size={20} color="#F6D544" />
             <Text className="font-notom ml-2">{route.params.type}</Text>
           </View>
           <View className='flex flex-row justify-between'>
             <View className="flex flex-row mb-2">
-              <FontAwesome5 name="phone-alt" className='' size={19} color='F6D33C' />
+              <FontAwesome5 name="phone-alt" className='' size={19} color='#F6D544' />
               <Text className="font-notom ml-2">{route.params.phone}</Text>
             </View>
             <View className='px-4 justify-center rounded-lg  bg-[#F6D544]'>
