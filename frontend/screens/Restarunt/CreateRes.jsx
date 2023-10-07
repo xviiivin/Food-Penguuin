@@ -1,7 +1,6 @@
 // สร้างร้านอาหาร
 import { StyleSheet, Text, View, TextInput, ScrollView, Pressable, Button } from 'react-native';
 import React, { useState } from 'react';
-const countries = ['Egypt', 'Canada', 'Australia', 'Ireland'];
 
 import SelectDropdown from 'react-native-select-dropdown';
 import { SelectList } from 'react-native-dropdown-select-list'

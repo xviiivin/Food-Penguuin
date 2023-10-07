@@ -10,7 +10,8 @@ import RestaurantDetail from "../frontend/screens/Users/RestaurantDetail";
 import Header from "../frontend/navigation/Header";
 import Login from "./screens/Login";
 import Ionicons from "@expo/vector-icons/Ionicons";
-
+import EditRes from "./screens/Restarunt/EditRes";
+import Restaurant from "./screens/Restarunt/Restaurant";
 import EditScreen from './screens/Users/EditScreen'
 const Stack = createNativeStackNavigator();
 import {
@@ -25,6 +26,7 @@ import {
   NotoSansThai_800ExtraBold,
   NotoSansThai_900Black,
 } from "@expo-google-fonts/noto-sans-thai";
+
 export default function App() {
   const [fontsLoaded] = useFonts({
     NotoSansThai_500Medium, // <- equivalent to Inter_900Black: Inter_900Black
@@ -67,6 +69,8 @@ export default function App() {
               ),
             }}
           />
+          <Stack.Screen name="EditRes" component={EditRes} />
+          <Stack.Screen name="Restaurant" component={Restaurant} />
 
         </Stack.Navigator>
       </NavigationContainer>

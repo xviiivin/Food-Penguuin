@@ -1,0 +1,56 @@
+import { React, useState, useEffect } from "react";
+import {
+    SafeAreaView,
+    View,
+    Text,
+    StyleSheet,
+    ScrollView,
+    FlatList,
+    Image,
+    ImageBackground,
+    TouchableOpacity, Pressable
+} from "react-native";
+import { AntDesign } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import { useNavigation } from '@react-navigation/native';
+
+const Restarant = () => {
+    const navigation = useNavigation();
+
+    return (
+        <View className='flex-1 bg-white w-full'>
+            <View className="flex items-end  p-5">
+                <Pressable onPress={() => {
+                    navigation.navigate("EditRes");
+                }} className='items-center justify-center flex flex-row  '>
+                    <Text className='font-notom color-[#989696] underlinen mt-1'>เเก้ไขบัญชี</Text>
+                    <AntDesign name="edit" size={20} color="#989696" />
+                </Pressable>
+            </View>
+            <View>
+                <Image className='w-full h-[150]' source={{ uri: 'https://img.freepik.com/free-vector/big-win-surprise-banner-comic-style_1017-17792.jpg' }} />
+            </View>
+            <View className="my-10 mx-5">
+                <View className="flex flex-row mb-2">
+                    <Ionicons name="location" size={20} color="#F6D544" />
+                    <Text className="font-notom ml-2">โรงอาหารคณะเทคโนโลยีสารสนเทศ</Text>
+                </View>
+                <View className="flex flex-row mb-2">
+                    <Ionicons name="restaurant" className='ml-2' size={20} color="#F6D544" />
+                    <Text className="font-notom ml-2">อาหารไทย</Text>
+                </View>
+                <View className="flex flex-row mb-2">
+                    <FontAwesome5 name="phone-alt" className='' size={19} color='#F6D544' />
+                    <Text className="font-notom ml-2">0818262922</Text>
+                </View>
+            </View>
+        </View>
+    )
+}
+
+export default Restarant
+
+const styles = StyleSheet.create({
+    
+})

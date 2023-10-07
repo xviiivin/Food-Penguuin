@@ -3,12 +3,16 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../screens/Users/HomeScreen";
 import SettingsScreen from "../screens/Users/SettingsScreen";
+import SettingsScreenRes from "../screens/Restarunt/SettingScreen";
+
 import CreateRes from "../screens/Restarunt/CreateRes";
 import ResHomeScreen from "../screens/Restarunt/HomeScreen";
 import Login from "../screens/Login";
 import HistoryScreen from "../screens/Users/HistoryScreen";
 import { Ionicons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
+import Restaurant from "../screens/Restarunt/Restaurant";
+import EditRes from "../screens/Restarunt/EditRes";
 const Tab = createBottomTabNavigator();
 const screenOption = {
   tabBarHideOnKeyboard: true,
@@ -29,90 +33,10 @@ const tabLabelStyle = {
 const BottomTab = () => {
   return (
     // user
-    <Tab.Navigator screenOptions={screenOption}>
-      <Tab.Screen
-        name="UserHome"
-        component={HomeScreen}
-        options={{
-          tabBarLabel: ({ focused }) => (
-            <Text
-              style={[
-                tabLabelStyle,
-                { color: focused ? "#F6D33C" : "#202020" },
-              ]}
-            >
-              หน้าหลัก
-            </Text>
-          ),
-          tabBarIcon: ({ focused }) => {
-            return (
-              <Ionicons
-                name={"home"}
-                size={24}
-                color={focused ? "#F6D33C" : "#202020"}
-              />
-            );
-          },
-        }}
-      />
-      <Tab.Screen
-        name="UserHistory"
-        component={HistoryScreen}
-        options={{
-          tabBarLabel: ({ focused }) => (
-            <Text
-              style={[
-                tabLabelStyle,
-                { color: focused ? "#F6D33C" : "#202020" },
-              ]}
-            >
-              ประวัติ
-            </Text>
-          ),
-          tabBarIcon: ({ focused }) => {
-            return (
-              <MaterialIcons
-                name={"history"}
-                size={26}
-                color={focused ? "#F6D33C" : "#202020"}
-              />
-            );
-          },
-        }}
-      />
-      <Tab.Screen
-        name="UserSettings"
-        component={SettingsScreen}
-        options={{
-          tabBarLabel: ({ focused }) => (
-            <Text
-              style={[
-                tabLabelStyle,
-                { color: focused ? "#F6D33C" : "#202020" },
-              ]}
-            >
-              ข้อมูลผู้ใช้
-            </Text>
-          ),
-          tabBarIcon: ({ focused }) => {
-            return (
-              <Ionicons
-                name={"person"}
-                size={24}
-                color={focused ? "#F6D33C" : "#202020"}
-              />
-            );
-          },
-        }}
-        s
-      />
-    </Tab.Navigator>
-
-    // restarunt
-    //   <Tab.Navigator screenOptions={screenOption}>
+    // <Tab.Navigator screenOptions={screenOption}>
     //   <Tab.Screen
-    //     name="ResHome"
-    //     component={ResHomeScreen}
+    //     name="UserHome"
+    //     component={HomeScreen}
     //     options={{
     //       tabBarLabel: ({ focused }) => (
     //         <Text
@@ -121,13 +45,13 @@ const BottomTab = () => {
     //             { color: focused ? "#F6D33C" : "#202020" },
     //           ]}
     //         >
-    //           รายการอาหาร/คิว
+    //           หน้าหลัก
     //         </Text>
     //       ),
     //       tabBarIcon: ({ focused }) => {
     //         return (
     //           <Ionicons
-    //             name={"receipt"}
+    //             name={"home"}
     //             size={24}
     //             color={focused ? "#F6D33C" : "#202020"}
     //           />
@@ -136,8 +60,8 @@ const BottomTab = () => {
     //     }}
     //   />
     //   <Tab.Screen
-    //     name="History"
-    //     component={CreateRes}
+    //     name="UserHistory"
+    //     component={HistoryScreen}
     //     options={{
     //       tabBarLabel: ({ focused }) => (
     //         <Text
@@ -146,13 +70,13 @@ const BottomTab = () => {
     //             { color: focused ? "#F6D33C" : "#202020" },
     //           ]}
     //         >
-    //           จัดการร้านค้า
+    //           ประวัติ
     //         </Text>
     //       ),
     //       tabBarIcon: ({ focused }) => {
     //         return (
     //           <MaterialIcons
-    //             name={"storefront"}
+    //             name={"history"}
     //             size={26}
     //             color={focused ? "#F6D33C" : "#202020"}
     //           />
@@ -161,7 +85,7 @@ const BottomTab = () => {
     //     }}
     //   />
     //   <Tab.Screen
-    //     name="Settings"
+    //     name="UserSettings"
     //     component={SettingsScreen}
     //     options={{
     //       tabBarLabel: ({ focused }) => (
@@ -187,6 +111,87 @@ const BottomTab = () => {
     //     s
     //   />
     // </Tab.Navigator>
+
+    // restarunt
+    <Tab.Navigator screenOptions={screenOption}>
+      <Tab.Screen
+        name="ResHome"
+        component={ResHomeScreen}
+        options={{
+          headerShown: false,
+          tabBarLabel: ({ focused }) => (
+            <Text
+              style={[
+                tabLabelStyle,
+                { color: focused ? "#F6D33C" : "#202020" },
+              ]}
+            >
+              รายการอาหาร/คิว
+            </Text>
+          ),
+          tabBarIcon: ({ focused }) => {
+            return (
+              <Ionicons
+                name={"receipt"}
+                size={24}
+                color={focused ? "#F6D33C" : "#202020"}
+              />
+            );
+          },
+        }}
+      />
+      <Tab.Screen
+        name="History"
+        component={Restaurant}
+        options={{
+          tabBarLabel: ({ focused }) => (
+            <Text
+              style={[
+                tabLabelStyle,
+                { color: focused ? "#F6D33C" : "#202020" },
+              ]}
+            >
+              จัดการร้านค้า
+            </Text>
+          ),
+          tabBarIcon: ({ focused }) => {
+            return (
+              <MaterialIcons
+                name={"storefront"}
+                size={26}
+                color={focused ? "#F6D33C" : "#202020"}
+              />
+            );
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Settings"
+        component={SettingsScreenRes}
+        options={{
+          tabBarLabel: ({ focused }) => (
+            <Text
+              style={[
+                tabLabelStyle,
+                { color: focused ? "#F6D33C" : "#202020" },
+              ]}
+            >
+              ข้อมูลผู้ใช้
+            </Text>
+          ),
+          tabBarIcon: ({ focused }) => {
+            return (
+              <Ionicons
+                name={"person"}
+                size={24}
+                color={focused ? "#F6D33C" : "#202020"}
+              />
+            );
+          },
+        }}
+        s
+      />
+    </Tab.Navigator>
   );
 };
 
