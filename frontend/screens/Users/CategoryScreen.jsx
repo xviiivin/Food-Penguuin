@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   SafeAreaView,
   View,
@@ -14,6 +14,14 @@ import RestaurantData from "../../data/RestaurantData.json";
 import { useRoute } from "@react-navigation/native";
 
 const CategoryScreen = ({ route }) => {
+
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    const result = RestaurantData.filter((item) => route.params.type === item.type)
+    setData(result)
+  }, [])
+
   return (
     <SafeAreaView>
       <ScrollView>
@@ -22,7 +30,7 @@ const CategoryScreen = ({ route }) => {
             {route.params.type}
           </Text>
           <View style={styles.gridContainer}>
-            {RestaurantData.map((item, type) => (
+            {data.map((item, type) => (
               <View key={type} style={styles.gridItem}>
                 <Text>{item.name}</Text>
               </View>
