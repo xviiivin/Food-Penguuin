@@ -1,0 +1,43 @@
+[{
+    "menu": [{
+            "id": 1,
+            "name": "ผัดไทย",
+            "description": "ผัดไทยกุ้งสดใส่ถั่วงอก",
+            "price": 50,
+            "est_time": "3 min",
+            "menu_pic": "https://cdn.discordapp.com/attachments/913654082386948096/1158835852462534756/c4lw-hero.jpeg?ex=651db17d&is=651c5ffd&hm=d668f3a92d5431388313f20442a2c5941a9729a252e13e003d6285c9f66de374&"
+        },
+        {
+            "id": 2,
+            "name": "ส้มตำ",
+            "description": "ส้มตำสดใส่ปลาหมึกทอด",
+            "price": 40,
+            "est_time": "3 min",
+            "menu_pic": "https://cdn.discordapp.com/attachments/913654082386948096/1158835852462534756/c4lw-hero.jpeg?ex=651db17d&is=651c5ffd&hm=d668f3a92d5431388313f20442a2c5941a9729a252e13e003d6285c9f66de374&"
+        },
+        {
+            "id": 3,
+            "name": "ข้าวผัด",
+            "description": "ข้าวผัดรวมมิตร",
+            "price": 60,
+            "est_time": "3 min",
+            "menu_pic": "https://cdn.discordapp.com/attachments/913654082386948096/1158835852462534756/c4lw-hero.jpeg?ex=651db17d&is=651c5ffd&hm=d668f3a92d5431388313f20442a2c5941a9729a252e13e003d6285c9f66de374&"
+        },
+        {
+            "id": 4,
+            "name": "ต้มยำ",
+            "description": "ต้มยำทะเลรสเด็ด",
+            "price": 50,
+            "est_time": "3 min",
+            "menu_pic": "https://cdn.discordapp.com/attachments/913654082386948096/1158835852462534756/c4lw-hero.jpeg?ex=651db17d&is=651c5ffd&hm=d668f3a92d5431388313f20442a2c5941a9729a252e13e003d6285c9f66de374&"
+        },
+        {
+            "id": 5,
+            "name": "ไก่ทอด",
+            "description": "ไก่ทอดกรอบ",
+            "price": 45,
+            "est_time": "3 min",
+            "menu_pic": "https://cdn.discordapp.com/attachments/913654082386948096/1158835852462534756/c4lw-hero.jpeg?ex=651db17d&is=651c5ffd&hm=d668f3a92d5431388313f20442a2c5941a9729a252e13e003d6285c9f66de374&"
+        }
+    ]
+}]
