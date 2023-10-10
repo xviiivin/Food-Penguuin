@@ -1,176 +1,201 @@
-[
-  {
-    "id": "1",
-    "name": "ร้านพี่ช้าง",
-    "phone": "0855164923",
-    "type": "อาหารไทย",
-    "pic": "https://cdn.discordapp.com/attachments/913654082386948096/1158835852462534756/c4lw-hero.jpeg?ex=651db17d&is=651c5ffd&hm=d668f3a92d5431388313f20442a2c5941a9729a252e13e003d6285c9f66de374&",
-    "food_court": "โรงอาหารคณะ IT",
-    "queue": "20 คิว",
-    "menu": [
-      {
-        "id": 1,
-        "name": "ผัดไทย",
-        "description": "ผัดไทยกุ้งสดใส่ถั่วงอก",
-        "price": 50,
-        "est_time": "3 min",
-        "menu_pic": "https://cdn.discordapp.com/attachments/913654082386948096/1158835852462534756/c4lw-hero.jpeg?ex=651db17d&is=651c5ffd&hm=d668f3a92d5431388313f20442a2c5941a9729a252e13e003d6285c9f66de374&"
-      },
-      {
-        "id": 2,
-        "name": "ส้มตำ",
-        "description": "ส้มตำสดใส่ปลาหมึกทอด",
-        "price": 40,
-        "est_time": "3 min",
-        "menu_pic": "https://cdn.discordapp.com/attachments/913654082386948096/1158835852462534756/c4lw-hero.jpeg?ex=651db17d&is=651c5ffd&hm=d668f3a92d5431388313f20442a2c5941a9729a252e13e003d6285c9f66de374&"
-      },
-      {
-        "id": 3,
-        "name": "ข้าวผัด",
-        "description": "ข้าวผัดรวมมิตร",
-        "price": 60,
-        "est_time": "3 min",
-        "menu_pic": "https://cdn.discordapp.com/attachments/913654082386948096/1158835852462534756/c4lw-hero.jpeg?ex=651db17d&is=651c5ffd&hm=d668f3a92d5431388313f20442a2c5941a9729a252e13e003d6285c9f66de374&"
-      },
-      {
-        "id": 4,
-        "name": "ต้มยำ",
-        "description": "ต้มยำทะเลรสเด็ด",
-        "price": 50,
-        "est_time": "3 min",
-        "menu_pic": "https://cdn.discordapp.com/attachments/913654082386948096/1158835852462534756/c4lw-hero.jpeg?ex=651db17d&is=651c5ffd&hm=d668f3a92d5431388313f20442a2c5941a9729a252e13e003d6285c9f66de374&"
-      },
-      {
-        "id": 5,
-        "name": "ไก่ทอด",
-        "description": "ไก่ทอดกรอบ",
-        "price": 45,
-        "est_time": "3 min",
-        "menu_pic": "https://cdn.discordapp.com/attachments/913654082386948096/1158835852462534756/c4lw-hero.jpeg?ex=651db17d&is=651c5ffd&hm=d668f3a92d5431388313f20442a2c5941a9729a252e13e003d6285c9f66de374&"
-      }
-    ]
-  },
-  {
-    "id": "2",
-    "name": "ร้านป้านกเล็ก",
-    "phone": "0855164923",
-    "type": "อาหารไทย",
-    "pic": "https://cdn.discordapp.com/attachments/913654082386948096/1158835852970033204/9-thai-restaurant-take-away-by-ozzythai-3.jpeg?ex=651e5a3d&is=651d08bd&hm=b55567834fbaa3c59a558bfc1ebfde6a5a52b48544972ebb76bdbe84d8f29433&",
-    "food_court": "โรงอาหารคณะ IT",
-    "queue": "20 คิว",
-    "menu": [
-      {
-        "id": 1,
-        "name": "แกงกะหรี่",
-        "description": "แกงกะหรี่ไก่ทอด แปถมน้ำซุปสาหร่ายนิฮงจิน",
-        "price": 120
-      },
-      {
-        "id": 2,
-        "name": "ผัดกะเพราไก่",
-        "description": "ผัดกะเพราไก่ร้อนๆ เสิร์ฟพร้อมข้าวสวย",
-        "price": 90
-      },
-      {
-        "id": 3,
-        "name": "ไก่ทอด",
-        "description": "ไก่ทอดกรอบ",
-        "price": 80
-      },
-      {
-        "id": 4,
-        "name": "ราดหน้า",
-        "description": "ราดหน้าหมี่กรอบเค็มๆเด็ด",
-        "price": 40
-      },
-      {
-        "id": 5,
-        "name": "สลัด",
-        "description": "สลัดผักสด",
-        "price": 100
-      }
-    ]
-  },
-  {
-    "id": "3",
-    "name": "ร้านป้าเฉื่อย",
-    "phone": "0855164923",
-    "type": "ก๋วยเตี๋ยว",
-    "pic": "https://cdn.discordapp.com/attachments/913654082386948096/1158835853653717192/pexels-photo-2664216.jpeg?ex=651e5a3d&is=651d08bd&hm=a39441639aa596fcbcff391ac86a03df7e547355aef75dcc5d3733fd08b7f078&",
-    "food_court": "โรงอาหารคณะ IT",
-    "queue": "20 คิว",
-    "menu": [
-      {
-        "id": 1,
-        "name": "แกงกะหรี่",
-        "description": "แกงกะหรี่ไก่ทอด แถมน้ำซุปสาหร่ายนิฮงจิน",
-        "price": 120
-      },
-      {
-        "id": 2,
-        "name": "ผัดกะเพราไก่",
-        "description": "ผัดกะเพราไก่ร้อนๆ เสิร์ฟพร้อมข้าวสวย",
-        "price": 90
-      },
-      {
-        "id": 3,
-        "name": "ไก่ทอด",
-        "description": "ไก่ทอดกรอบ",
-        "price": 80
-      },
-      {
-        "id": 4,
-        "name": "ราดหน้า",
-        "description": "ราดหน้าหมี่กรอบเค็มๆเด็ด",
-        "price": 40
-      },
-      {
-        "id": 5,
-        "name": "สลัด",
-        "description": "สลัดผักสด",
-        "price": 100
-      }
-    ]
-  },
-  {
-    "id": "4",
-    "name": "เครื่องดื่ม",
-    "phone": "0855164923",
-    "type": "beverage",
-    "pic": "https://cdn.discordapp.com/attachments/913654082386948096/1159192503602384946/download.jpeg?ex=651efda5&is=651dac25&hm=6e91693d56e305f8ee3dea0de8c460957d8db7a4fdf4425c09e94fb22fca8a71&",
-    "food_court": "โรงอาหารคณะ IT",
-    "queue": "20 คิว",
-    "menu": [
-      {
-        "id": 1,
-        "name": "ชาเขียว",
-        "description": "-",
-        "price": 40
-      },
-      {
-        "id": 2,
-        "name": "โค้ก",
-        "description": "-",
-        "price": 20
-      },
-      {
-        "id": 3,
-        "name": "ไก่ทอด",
-        "description": "-",
-        "price": 30
-      },
-      {
-        "id": 4,
-        "name": "ชานมไข่มุก",
-        "description": "-",
-        "price": 40
-      },
-      {
-        "id": 5,
-        "name": "ชาเย็น",
-        "description": "-",
-        "price": 35
-      }
-    ]
-  }
+[{
+        "id": "1",
+        "name": "ร้านพี่ช้าง",
+        "phone": "0855164923",
+        "type": "อาหารไทย",
+        "pic": "https://cdn.discordapp.com/attachments/913654082386948096/1158835852462534756/c4lw-hero.jpeg?ex=651db17d&is=651c5ffd&hm=d668f3a92d5431388313f20442a2c5941a9729a252e13e003d6285c9f66de374&",
+        "food_court": "โรงอาหารคณะ IT",
+        "queue": "20 คิว",
+        "menu": [{
+                "id": 1,
+                "name": "ผัดไทย",
+                "description": "ผัดไทยกุ้งสดใส่ถั่วงอก",
+                "price": 50,
+                "est_time": "3 min",
+                "menu_pic": "https://cdn.discordapp.com/attachments/913654082386948096/1158835852462534756/c4lw-hero.jpeg?ex=651db17d&is=651c5ffd&hm=d668f3a92d5431388313f20442a2c5941a9729a252e13e003d6285c9f66de374&"
+            },
+            {
+                "id": 2,
+                "name": "ส้มตำ",
+                "description": "ส้มตำสดใส่ปลาหมึกทอด",
+                "price": 40,
+                "est_time": "3 min",
+                "menu_pic": "https://cdn.discordapp.com/attachments/913654082386948096/1158835852462534756/c4lw-hero.jpeg?ex=651db17d&is=651c5ffd&hm=d668f3a92d5431388313f20442a2c5941a9729a252e13e003d6285c9f66de374&"
+            },
+            {
+                "id": 3,
+                "name": "ข้าวผัด",
+                "description": "ข้าวผัดรวมมิตร",
+                "price": 60,
+                "est_time": "3 min",
+                "menu_pic": "https://cdn.discordapp.com/attachments/913654082386948096/1158835852462534756/c4lw-hero.jpeg?ex=651db17d&is=651c5ffd&hm=d668f3a92d5431388313f20442a2c5941a9729a252e13e003d6285c9f66de374&"
+            },
+            {
+                "id": 4,
+                "name": "ต้มยำ",
+                "description": "ต้มยำทะเลรสเด็ด",
+                "price": 50,
+                "est_time": "3 min",
+                "menu_pic": "https://cdn.discordapp.com/attachments/913654082386948096/1158835852462534756/c4lw-hero.jpeg?ex=651db17d&is=651c5ffd&hm=d668f3a92d5431388313f20442a2c5941a9729a252e13e003d6285c9f66de374&"
+            },
+            {
+                "id": 5,
+                "name": "ไก่ทอด",
+                "description": "ไก่ทอดกรอบ",
+                "price": 45,
+                "est_time": "3 min",
+                "menu_pic": "https://cdn.discordapp.com/attachments/913654082386948096/1158835852462534756/c4lw-hero.jpeg?ex=651db17d&is=651c5ffd&hm=d668f3a92d5431388313f20442a2c5941a9729a252e13e003d6285c9f66de374&"
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "name": "ร้านป้านกเล็ก",
+        "phone": "0855164923",
+        "type": "อาหารไทย",
+        "pic": "https://cdn.discordapp.com/attachments/913654082386948096/1158835852970033204/9-thai-restaurant-take-away-by-ozzythai-3.jpeg?ex=651e5a3d&is=651d08bd&hm=b55567834fbaa3c59a558bfc1ebfde6a5a52b48544972ebb76bdbe84d8f29433&",
+        "food_court": "โรงอาหารคณะ IT",
+        "queue": "20 คิว",
+        "menu": [{
+                "id": 1,
+                "name": "แกงกะหรี่",
+                "description": "แกงกะหรี่ไก่ทอด แปถมน้ำซุปสาหร่ายนิฮงจิน",
+                "price": 120,
+                "est_time": "3 min",
+                "menu_pic": "https://cdn.discordapp.com/attachments/913654082386948096/1158835852462534756/c4lw-hero.jpeg?ex=651db17d&is=651c5ffd&hm=d668f3a92d5431388313f20442a2c5941a9729a252e13e003d6285c9f66de374&"
+            },
+            {
+                "id": 2,
+                "name": "ผัดกะเพราไก่",
+                "description": "ผัดกะเพราไก่ร้อนๆ เสิร์ฟพร้อมข้าวสวย",
+                "price": 90,
+                "est_time": "3 min",
+                "menu_pic": "https://cdn.discordapp.com/attachments/913654082386948096/1158835852462534756/c4lw-hero.jpeg?ex=651db17d&is=651c5ffd&hm=d668f3a92d5431388313f20442a2c5941a9729a252e13e003d6285c9f66de374&"
+            },
+            {
+                "id": 3,
+                "name": "ไก่ทอด",
+                "description": "ไก่ทอดกรอบ",
+                "price": 80,
+                "est_time": "3 min",
+                "menu_pic": "https://cdn.discordapp.com/attachments/913654082386948096/1158835852462534756/c4lw-hero.jpeg?ex=651db17d&is=651c5ffd&hm=d668f3a92d5431388313f20442a2c5941a9729a252e13e003d6285c9f66de374&"
+            },
+            {
+                "id": 4,
+                "name": "ราดหน้า",
+                "description": "ราดหน้าหมี่กรอบเค็มๆเด็ด",
+                "price": 40,
+                "est_time": "3 min",
+                "menu_pic": "https://cdn.discordapp.com/attachments/913654082386948096/1158835852462534756/c4lw-hero.jpeg?ex=651db17d&is=651c5ffd&hm=d668f3a92d5431388313f20442a2c5941a9729a252e13e003d6285c9f66de374&"
+            },
+            {
+                "id": 5,
+                "name": "สลัด",
+                "description": "สลัดผักสด",
+                "price": 100,
+                "est_time": "3 min",
+                "menu_pic": "https://cdn.discordapp.com/attachments/913654082386948096/1158835852462534756/c4lw-hero.jpeg?ex=651db17d&is=651c5ffd&hm=d668f3a92d5431388313f20442a2c5941a9729a252e13e003d6285c9f66de374&"
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "name": "ร้านป้าเฉื่อย",
+        "phone": "0855164923",
+        "type": "ก๋วยเตี๋ยว",
+        "pic": "https://cdn.discordapp.com/attachments/913654082386948096/1158835853653717192/pexels-photo-2664216.jpeg?ex=651e5a3d&is=651d08bd&hm=a39441639aa596fcbcff391ac86a03df7e547355aef75dcc5d3733fd08b7f078&",
+        "food_court": "โรงอาหารคณะ IT",
+        "queue": "20 คิว",
+        "menu": [{
+                "id": 1,
+                "name": "แกงกะหรี่",
+                "description": "แกงกะหรี่ไก่ทอด แถมน้ำซุปสาหร่ายนิฮงจิน",
+                "price": 120,
+                "est_time": "3 min",
+                "menu_pic": "https://cdn.discordapp.com/attachments/913654082386948096/1158835852462534756/c4lw-hero.jpeg?ex=651db17d&is=651c5ffd&hm=d668f3a92d5431388313f20442a2c5941a9729a252e13e003d6285c9f66de374&"
+            },
+            {
+                "id": 2,
+                "name": "ผัดกะเพราไก่",
+                "description": "ผัดกะเพราไก่ร้อนๆ เสิร์ฟพร้อมข้าวสวย",
+                "price": 90,
+                "est_time": "3 min",
+                "menu_pic": "https://cdn.discordapp.com/attachments/913654082386948096/1158835852462534756/c4lw-hero.jpeg?ex=651db17d&is=651c5ffd&hm=d668f3a92d5431388313f20442a2c5941a9729a252e13e003d6285c9f66de374&"
+            },
+            {
+                "id": 3,
+                "name": "ไก่ทอด",
+                "description": "ไก่ทอดกรอบ",
+                "price": 80,
+                "est_time": "3 min",
+                "menu_pic": "https://cdn.discordapp.com/attachments/913654082386948096/1158835852462534756/c4lw-hero.jpeg?ex=651db17d&is=651c5ffd&hm=d668f3a92d5431388313f20442a2c5941a9729a252e13e003d6285c9f66de374&"
+            },
+            {
+                "id": 4,
+                "name": "ราดหน้า",
+                "description": "ราดหน้าหมี่กรอบเค็มๆเด็ด",
+                "price": 40,
+                "est_time": "3 min",
+                "menu_pic": "https://cdn.discordapp.com/attachments/913654082386948096/1158835852462534756/c4lw-hero.jpeg?ex=651db17d&is=651c5ffd&hm=d668f3a92d5431388313f20442a2c5941a9729a252e13e003d6285c9f66de374&"
+            },
+            {
+                "id": 5,
+                "name": "สลัด",
+                "description": "สลัดผักสด",
+                "price": 100,
+                "est_time": "3 min",
+                "menu_pic": "https://cdn.discordapp.com/attachments/913654082386948096/1158835852462534756/c4lw-hero.jpeg?ex=651db17d&is=651c5ffd&hm=d668f3a92d5431388313f20442a2c5941a9729a252e13e003d6285c9f66de374&"
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "name": "เครื่องดื่ม",
+        "phone": "0855164923",
+        "type": "beverage",
+        "pic": "https://cdn.discordapp.com/attachments/913654082386948096/1159192503602384946/download.jpeg?ex=651efda5&is=651dac25&hm=6e91693d56e305f8ee3dea0de8c460957d8db7a4fdf4425c09e94fb22fca8a71&",
+        "food_court": "โรงอาหารคณะ IT",
+        "queue": "20 คิว",
+        "menu": [{
+                "id": 1,
+                "name": "ชาเขียว",
+                "description": "-",
+                "price": 40,
+                "est_time": "3 min",
+                "menu_pic": "https://cdn.discordapp.com/attachments/913654082386948096/1158835852462534756/c4lw-hero.jpeg?ex=651db17d&is=651c5ffd&hm=d668f3a92d5431388313f20442a2c5941a9729a252e13e003d6285c9f66de374&"
+            },
+            {
+                "id": 2,
+                "name": "โค้ก",
+                "description": "-",
+                "price": 20,
+                "est_time": "3 min",
+                "menu_pic": "https://cdn.discordapp.com/attachments/913654082386948096/1158835852462534756/c4lw-hero.jpeg?ex=651db17d&is=651c5ffd&hm=d668f3a92d5431388313f20442a2c5941a9729a252e13e003d6285c9f66de374&"
+            },
+            {
+                "id": 3,
+                "name": "ไก่ทอด",
+                "description": "-",
+                "price": 30,
+                "est_time": "3 min",
+                "menu_pic": "https://cdn.discordapp.com/attachments/913654082386948096/1158835852462534756/c4lw-hero.jpeg?ex=651db17d&is=651c5ffd&hm=d668f3a92d5431388313f20442a2c5941a9729a252e13e003d6285c9f66de374&"
+            },
+            {
+                "id": 4,
+                "name": "ชานมไข่มุก",
+                "description": "-",
+                "price": 40,
+                "est_time": "3 min",
+                "menu_pic": "https://cdn.discordapp.com/attachments/913654082386948096/1158835852462534756/c4lw-hero.jpeg?ex=651db17d&is=651c5ffd&hm=d668f3a92d5431388313f20442a2c5941a9729a252e13e003d6285c9f66de374&"
+            },
+            {
+                "id": 5,
+                "name": "ชาเย็น",
+                "description": "-",
+                "price": 35,
+                "est_time": "3 min",
+                "menu_pic": "https://cdn.discordapp.com/attachments/913654082386948096/1158835852462534756/c4lw-hero.jpeg?ex=651db17d&is=651c5ffd&hm=d668f3a92d5431388313f20442a2c5941a9729a252e13e003d6285c9f66de374&"
+            }
+        ]
+    }
 ]
