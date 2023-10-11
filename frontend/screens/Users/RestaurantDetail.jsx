@@ -10,10 +10,10 @@ import {
   ImageBackground,
   TouchableOpacity,
 } from "react-native";
-import { Ionicons } from '@expo/vector-icons';
-import { AntDesign } from '@expo/vector-icons';
+import { Ionicons } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
 
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 const RestaurantDetail = ({ navigation, route }) => {
   const [id, setId] = useState(route.params?.id || "");
   const [name, setName] = useState(route.params?.name || "");
@@ -24,6 +24,25 @@ const RestaurantDetail = ({ navigation, route }) => {
   const [menu, setMenu] = useState(route.params?.menu || "");
   const [phone, setPhone] = useState(route.params?.phone || "");
 
+  const onPressDetail = (
+    id,
+    name,
+    description,
+    price,
+    type,
+    est_time,
+    menu_pic
+  ) => {
+    navigation.navigate("OrderScreen", {
+      id: id,
+      name: name,
+      description: description,
+      price: price,
+      type: type,
+      est_time: est_time,
+      menu_pic: menu_pic,
+    });
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -37,15 +56,25 @@ const RestaurantDetail = ({ navigation, route }) => {
             <Text className="font-notom ml-2">{route.params.food_court}</Text>
           </View>
           <View className="flex flex-row mb-2">
-            <Ionicons name="restaurant" className='ml-2' size={20} color="#F6D544" />
+            <Ionicons
+              name="restaurant"
+              className="ml-2"
+              size={20}
+              color="#F6D544"
+            />
             <Text className="font-notom ml-2">{route.params.type}</Text>
           </View>
-          <View className='flex flex-row justify-between'>
+          <View className="flex flex-row justify-between">
             <View className="flex flex-row mb-2">
-              <FontAwesome5 name="phone-alt" className='' size={19} color='#F6D544' />
+              <FontAwesome5
+                name="phone-alt"
+                className=""
+                size={19}
+                color="#F6D544"
+              />
               <Text className="font-notom ml-2">{route.params.phone}</Text>
             </View>
-            <View className='px-4 justify-center rounded-lg  bg-[#F6D544]'>
+            <View className="px-4 justify-center rounded-lg  bg-[#F6D544]">
               <Text className="font-notom ">{route.params.queue}</Text>
             </View>
           </View>
@@ -58,12 +87,22 @@ const RestaurantDetail = ({ navigation, route }) => {
             <Text className="font-notom mb-3" style={styles.textcat}>
               เมนูขายดี 🔥
             </Text>
-            <View style={styles.gridContainer} >
+            <View style={styles.gridContainer}>
               {menu.slice(0, 2).map((gridItem, index) => (
                 <TouchableOpacity
                   style={styles.gridItem}
                   key={index}
-                  onPress={() => onPressDetail()}
+                  onPress={() =>
+                    onPressDetail(
+                      gridItem.id,
+                      gridItem.name,
+                      gridItem.description,
+                      gridItem.price,
+                      gridItem.type,
+                      gridItem.est_time,
+                      gridItem.menu_pic
+                    )
+                  }
                 >
                   <View style={styles.picCover}>
                     <Image
@@ -71,13 +110,18 @@ const RestaurantDetail = ({ navigation, route }) => {
                       source={{ uri: gridItem.menu_pic }}
                     />
                   </View>
-                  <View className='flex flex-row justify-between'>
+                  <View className="flex flex-row justify-between">
                     <View className="ml-3">
                       <Text className="font-notom">{gridItem.name}</Text>
                       <Text className="font-notom">{gridItem.price}</Text>
                     </View>
-                    <View className='justify-end'>
-                      <AntDesign name="pluscircle" className='' size={25} color='#F6D544' />
+                    <View className="justify-end">
+                      <AntDesign
+                        name="pluscircle"
+                        className=""
+                        size={25}
+                        color="#F6D544"
+                      />
                     </View>
                   </View>
                 </TouchableOpacity>
@@ -96,7 +140,17 @@ const RestaurantDetail = ({ navigation, route }) => {
               <TouchableOpacity
                 style={styles.gridItem1}
                 key={index}
-                onPress={() => onPressDetail()}
+                onPress={() =>
+                  onPressDetail(
+                    gridItem.id,
+                    gridItem.name,
+                    gridItem.description,
+                    gridItem.price,
+                    gridItem.type,
+                    gridItem.est_time,
+                    gridItem.menu_pic
+                  )
+                }
               >
                 <View style={styles.picCover1}>
                   <Image
@@ -104,14 +158,19 @@ const RestaurantDetail = ({ navigation, route }) => {
                     source={{ uri: gridItem.menu_pic }}
                   />
                 </View>
-                <View className='flex flex-row justify-between'>
+                <View className="flex flex-row justify-between">
                   <View className="ml-3 space-y-1 mt-3">
                     <Text className="font-notom ">{gridItem.name}</Text>
                     <Text className="font-notom">{gridItem.description}</Text>
                     <Text className="font-notom mt-2">{gridItem.price} ฿</Text>
                   </View>
-                  <View className='justify-end mb-5'>
-                    <AntDesign name="pluscircle" className='' size={23} color='#F6D544' />
+                  <View className="justify-end mb-5">
+                    <AntDesign
+                      name="pluscircle"
+                      className=""
+                      size={23}
+                      color="#F6D544"
+                    />
                   </View>
                 </View>
               </TouchableOpacity>

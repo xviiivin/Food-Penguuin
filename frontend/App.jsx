@@ -12,7 +12,8 @@ import Login from "./screens/Login";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import EditRes from "./screens/Restarunt/EditRes";
 import Restaurant from "./screens/Restarunt/Restaurant";
-import EditScreen from './screens/Users/EditScreen'
+import EditScreen from "./screens/Users/EditScreen";
+import OrderScreen from "./screens/Users/OrderScreen";
 const Stack = createNativeStackNavigator();
 import {
   useFonts,
@@ -27,6 +28,7 @@ import {
   NotoSansThai_900Black,
 } from "@expo-google-fonts/noto-sans-thai";
 import Contact from "./screens/Users/Contact";
+import Order from "./components/History/Order";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -60,8 +62,8 @@ export default function App() {
                 <Text
                   style={{
                     flex: 1,
-                    textAlign: 'center',
-                    fontFamily: 'NotoSansThai_500Medium',
+                    textAlign: "center",
+                    fontFamily: "NotoSansThai_500Medium",
                     fontSize: 20,
                   }}
                 >
@@ -73,7 +75,7 @@ export default function App() {
           <Stack.Screen name="EditRes" component={EditRes} />
           <Stack.Screen name="Restaurant" component={Restaurant} />
           <Stack.Screen name="Contact" component={Contact} />
-
+          <Stack.Screen name="OrderScreen" component={OrderScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </GestureHandlerRootView>
