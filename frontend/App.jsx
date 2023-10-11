@@ -26,6 +26,7 @@ import {
   NotoSansThai_800ExtraBold,
   NotoSansThai_900Black,
 } from "@expo-google-fonts/noto-sans-thai";
+import Contact from "./screens/Users/Contact";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -71,6 +72,7 @@ export default function App() {
           />
           <Stack.Screen name="EditRes" component={EditRes} />
           <Stack.Screen name="Restaurant" component={Restaurant} />
+          <Stack.Screen name="Contact" component={Contact} />
 
         </Stack.Navigator>
       </NavigationContainer>

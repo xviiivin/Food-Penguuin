@@ -32,7 +32,7 @@ const SettingsScreen = () => {
             </Pressable>
           </View>
         </View>
-        <TouchableOpacity style={{ margin: 30 }} onPress={() => { }}>
+        <TouchableOpacity style={{ margin: 30 }} onPress={() => {  navigation.navigate("Contact")}}>
           <View style={styles.dis1}>
             <View style={styles.dis2}>
               <AntDesign name="customerservice" size={24} color="black" />

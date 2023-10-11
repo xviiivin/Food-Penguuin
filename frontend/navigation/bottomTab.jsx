@@ -35,84 +35,84 @@ const tabLabelStyle = {
 const BottomTab = () => {
   return (
     // user
-    // <Tab.Navigator screenOptions={screenOption}>
-    //   <Tab.Screen
-    //     name="UserHome"
-    //     component={HomeScreen}
-    //     options={{
-    //       tabBarLabel: ({ focused }) => (
-    //         <Text
-    //           style={[
-    //             tabLabelStyle,
-    //             { color: focused ? "#F6D33C" : "#202020" },
-    //           ]}
-    //         >
-    //           หน้าหลัก
-    //         </Text>
-    //       ),
-    //       tabBarIcon: ({ focused }) => {
-    //         return (
-    //           <Ionicons
-    //             name={"home"}
-    //             size={24}
-    //             color={focused ? "#F6D33C" : "#202020"}
-    //           />
-    //         );
-    //       },
-    //     }}
-    //   />
-    //   <Tab.Screen
-    //     name="UserHistory"
-    //     component={HistoryScreen}
-    //     options={{
-    //       tabBarLabel: ({ focused }) => (
-    //         <Text
-    //           style={[
-    //             tabLabelStyle,
-    //             { color: focused ? "#F6D33C" : "#202020" },
-    //           ]}
-    //         >
-    //           ประวัติ
-    //         </Text>
-    //       ),
-    //       tabBarIcon: ({ focused }) => {
-    //         return (
-    //           <MaterialIcons
-    //             name={"history"}
-    //             size={26}
-    //             color={focused ? "#F6D33C" : "#202020"}
-    //           />
-    //         );
-    //       },
-    //     }}
-    //   />
-    //   <Tab.Screen
-    //     name="UserSettings"
-    //     component={SettingsScreen}
-    //     options={{
-    //       tabBarLabel: ({ focused }) => (
-    //         <Text
-    //           style={[
-    //             tabLabelStyle,
-    //             { color: focused ? "#F6D33C" : "#202020" },
-    //           ]}
-    //         >
-    //           ข้อมูลผู้ใช้
-    //         </Text>
-    //       ),
-    //       tabBarIcon: ({ focused }) => {
-    //         return (
-    //           <Ionicons
-    //             name={"person"}
-    //             size={24}
-    //             color={focused ? "#F6D33C" : "#202020"}
-    //           />
-    //         );
-    //       },
-    //     }}
-    //     s
-    //   />
-    // </Tab.Navigator>
+    <Tab.Navigator screenOptions={screenOption}>
+      <Tab.Screen
+        name="UserHome"
+        component={HomeScreen}
+        options={{
+          tabBarLabel: ({ focused }) => (
+            <Text
+              style={[
+                tabLabelStyle,
+                { color: focused ? "#F6D33C" : "#202020" },
+              ]}
+            >
+              หน้าหลัก
+            </Text>
+          ),
+          tabBarIcon: ({ focused }) => {
+            return (
+              <Ionicons
+                name={"home"}
+                size={24}
+                color={focused ? "#F6D33C" : "#202020"}
+              />
+            );
+          },
+        }}
+      />
+      <Tab.Screen
+        name="UserHistory"
+        component={HistoryScreen}
+        options={{
+          tabBarLabel: ({ focused }) => (
+            <Text
+              style={[
+                tabLabelStyle,
+                { color: focused ? "#F6D33C" : "#202020" },
+              ]}
+            >
+              ประวัติ
+            </Text>
+          ),
+          tabBarIcon: ({ focused }) => {
+            return (
+              <MaterialIcons
+                name={"history"}
+                size={26}
+                color={focused ? "#F6D33C" : "#202020"}
+              />
+            );
+          },
+        }}
+      />
+      <Tab.Screen
+        name="UserSettings"
+        component={SettingsScreen}
+        options={{
+          tabBarLabel: ({ focused }) => (
+            <Text
+              style={[
+                tabLabelStyle,
+                { color: focused ? "#F6D33C" : "#202020" },
+              ]}
+            >
+              ข้อมูลผู้ใช้
+            </Text>
+          ),
+          tabBarIcon: ({ focused }) => {
+            return (
+              <Ionicons
+                name={"person"}
+                size={24}
+                color={focused ? "#F6D33C" : "#202020"}
+              />
+            );
+          },
+        }}
+        s
+      />
+    </Tab.Navigator>
 
     // restarunt
     // <Tab.Navigator screenOptions={screenOption}>
@@ -197,59 +197,59 @@ const BottomTab = () => {
 
     // admin
 
-    <Tab.Navigator screenOptions={screenOption}>
-      <Tab.Screen
-        name="AdminHome"
-        component={AdminHome}
-        options={{
-          tabBarLabel: ({ focused }) => (
-            <Text
-              style={[
-                tabLabelStyle,
-                { color: focused ? "#F6D33C" : "#202020" },
-              ]}
-            >
-              หน้าหลัก
-            </Text>
-          ),
-          tabBarIcon: ({ focused }) => {
-            return (
-              <Ionicons
-                name={"home"}
-                size={24}
-                color={focused ? "#F6D33C" : "#202020"}
-              />
-            );
-          },
-        }}
-      />
-      <Tab.Screen
-        name="UserSettings"
-        component={AdminSetting}
-        options={{
-          tabBarLabel: ({ focused }) => (
-            <Text
-              style={[
-                tabLabelStyle,
-                { color: focused ? "#F6D33C" : "#202020" },
-              ]}
-            >
-              ข้อมูลผู้ใช้
-            </Text>
-          ),
-          tabBarIcon: ({ focused }) => {
-            return (
-              <Ionicons
-                name={"person"}
-                size={24}
-                color={focused ? "#F6D33C" : "#202020"}
-              />
-            );
-          },
-        }}
-        s
-      />
-    </Tab.Navigator>
+    // <Tab.Navigator screenOptions={screenOption}>
+    //   <Tab.Screen
+    //     name="AdminHome"
+    //     component={AdminHome}
+    //     options={{
+    //       tabBarLabel: ({ focused }) => (
+    //         <Text
+    //           style={[
+    //             tabLabelStyle,
+    //             { color: focused ? "#F6D33C" : "#202020" },
+    //           ]}
+    //         >
+    //           หน้าหลัก
+    //         </Text>
+    //       ),
+    //       tabBarIcon: ({ focused }) => {
+    //         return (
+    //           <Ionicons
+    //             name={"home"}
+    //             size={24}
+    //             color={focused ? "#F6D33C" : "#202020"}
+    //           />
+    //         );
+    //       },
+    //     }}
+    //   />
+    //   <Tab.Screen
+    //     name="UserSettings"
+    //     component={AdminSetting}
+    //     options={{
+    //       tabBarLabel: ({ focused }) => (
+    //         <Text
+    //           style={[
+    //             tabLabelStyle,
+    //             { color: focused ? "#F6D33C" : "#202020" },
+    //           ]}
+    //         >
+    //           ข้อมูลผู้ใช้
+    //         </Text>
+    //       ),
+    //       tabBarIcon: ({ focused }) => {
+    //         return (
+    //           <Ionicons
+    //             name={"person"}
+    //             size={24}
+    //             color={focused ? "#F6D33C" : "#202020"}
+    //           />
+    //         );
+    //       },
+    //     }}
+    //     s
+    //   />
+    // </Tab.Navigator>
   );
 };
 
