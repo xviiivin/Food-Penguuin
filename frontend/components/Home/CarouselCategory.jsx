@@ -26,7 +26,11 @@ const CarouselCategory = () => {
 };
 
 const styles = StyleSheet.create({
-  contentContainer: { paddingHorizontal: 5, paddingTop: 10, marginBottom: 30 },
+  contentContainer: {
+    paddingHorizontal: 5,
+    paddingTop: 10,
+    marginBottom: 30,
+  },
 });
 
 export default CarouselCategory;

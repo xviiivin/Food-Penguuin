@@ -22,14 +22,20 @@ const CarouselCatCard = ({ imgUrl, type }) => {
   };
 
   return (
-    <TouchableOpacity onPress={() => onPressDetail(type)} key={type}>
+    <TouchableOpacity
+      style={styles.touch}
+      onPress={() => onPressDetail(type)}
+      key={type}
+    >
       <View className="content-center text-center">
         <View style={styles.circle}>
           <Image source={{ uri: imgUrl }} style={styles.image} />
         </View>
-        <Text className="font-notom mt-2 color-[#666666] text-[10]">
-          {type}
-        </Text>
+        <View>
+          <Text className="font-notom mt-2 color-[#666666] text-[10]">
+            {type}
+          </Text>
+        </View>
       </View>
     </TouchableOpacity>
   );
@@ -52,7 +58,12 @@ const styles = StyleSheet.create({
     },
     shadowRadius: 3,
     elevation: 6,
-    shadowRadius: 5,
+    overflow: "hidden",
+  },
+  touch: {
+    justifyContent: "center",
+    alignContent: "center",
+    alignItems: "center",
   },
 });
 
