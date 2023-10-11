@@ -7,20 +7,48 @@ import {
   ScrollView,
   FlatList,
   Image,
+  TouchableOpacity,
 } from "react-native";
 import { useState } from "react";
 import CategoryGrid from "../../components/Category/CategoryGrid";
 import RestaurantData from "../../data/RestaurantData.json";
 import { useRoute } from "@react-navigation/native";
 
-const CategoryScreen = ({ route }) => {
+const CategoryScreen = ({ navigation, route }) => {
+  const [data, setData] = useState([]);
 
-  const [data, setData] = useState([])
+  const onPressDetail = (
+    // id,
+    // name,
+    // pic,
+    // type,
+    // queue,
+    // food_court,
+    // menu,
+    // phone
+    data
+  ) => {
+    navigation.navigate("RestaurantDetail", {
+      // id: id,
+      // name: name,
+      // pic: pic,
+      // type: type,
+      // queue: queue,
+      // food_court: food_court,
+      // menu: menu,
+      // phone: phone,
+      data: data,
+    });
+  };
 
   useEffect(() => {
-    const result = RestaurantData.filter((item) => route.params.type === item.type)
-    setData(result)
-  }, [])
+    const result = RestaurantData.filter(
+      (item) => route.params.type === item.type
+    );
+    setData(result);
+  }, []);
+
+  console.log(data);
 
   return (
     <SafeAreaView>
@@ -31,9 +59,36 @@ const CategoryScreen = ({ route }) => {
           </Text>
           <View style={styles.gridContainer}>
             {data.map((item, type) => (
-              <View key={type} style={styles.gridItem}>
-                <Text>{item.name}</Text>
-              </View>
+              <TouchableOpacity
+                style={styles.gridItem}
+                key={type}
+                onPress={
+                  () =>
+                    onPressDetail(
+                      item.id,
+                      item.name,
+                      item.description,
+                      item.price,
+                      item.type,
+                      item.est_time,
+                      item.menu_pic
+                      // data
+                    )
+                  // item.id, item.name, item.pic, item.type, item.queue, item.food_court, item.menu, item.phone
+                }
+              >
+                <View style={styles.picCover}>
+                  <Image style={styles.image} source={{ uri: item.pic }} />
+                </View>
+                <View>
+                  <Text className="font-notob mb-2 text-[16px]">
+                    {item.name}
+                  </Text>
+                  <Text className="font-notor">
+                    {item.type} • {item.queue}
+                  </Text>
+                </View>
+              </TouchableOpacity>
             ))}
           </View>
         </View>
@@ -77,37 +132,23 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   gridItem: {
-    width: "48%",
-    marginVertical: 10,
-    padding: 20,
-    backgroundColor: "#f0f0f0",
-    alignItems: "center",
-    justifyContent: "center",
-    height: 150,
+    width: "45%",
+    marginVertical: 5,
+    height: 230,
+    borderRadius: 10,
+    overflow: "hidden",
+  },
+  image: {
+    width: "100%",
+    height: "100%",
     borderRadius: 10,
   },
-  //   gridItem: {
-  //     flex: 1,
-  //     margin: 15,
-  //     height: 150,
-  //   },
-  //   container: {
-  //     flex: 1,
-  //     borderRadius: 10,
-  //     shadowColor: "black",
-  //     shadowOpacity: 0.26,
-  //     shadowOffset: { width: 0, height: 2 },
-  //     shadowRadius: 10,
-  //     elevation: 3,
-  //     padding: 15,
-  //     justifyContent: "flex-end",
-  //     alignItems: "flex-end",
-  //   },
-  //   title: {
-  //     fontSize: 22,
-  //     fontWeight: "bold",
-  //     textAlign: "right",
-  //   },
+  picCover: {
+    width: "100%",
+    height: 150,
+    marginTop: 0,
+    marginBottom: 15,
+  },
 });
 
 export default CategoryScreen;
