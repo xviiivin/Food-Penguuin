@@ -8,15 +8,14 @@ import {
   FlatList,
   Image,
   TextInput,
-  Button,
 } from "react-native";
-// import { RadioButton } from "react-native-paper";
-import RadioGroup from "react-native-radio-buttons-group";
+import { Button, ButtonGroup, withTheme } from "@rneui/themed";
+import { AntDesign } from "@expo/vector-icons";
+import { RadioButton } from "react-native-paper";
 import { useMemo, useState } from "react";
-import CategoryGrid from "../../components/Category/CategoryGrid";
-import RestaurantData from "../../data/RestaurantData.json";
 import { useRoute } from "@react-navigation/native";
 import RestaurantDetail from "./RestaurantDetail";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const OrderScreen = ({ navigation, route }) => {
   const [id, setId] = useState(route.params?.id || "");
@@ -28,27 +27,47 @@ const OrderScreen = ({ navigation, route }) => {
   const [type, setType] = useState(route.params?.type || "");
   const [est_time, setTime] = useState(route.params?.est_time || "");
   const [menu_pic, setPic] = useState(route.params?.menu_pic || "");
+  const [amount, setAmount] = useState(0);
 
-  // const [checked, setChecked] = React.useState("first");
-  const [selectedId, setSelectedId] = useState();
+  // const amount = 1;
+  const handleIncrement = () => {
+    setAmount(amount + 1);
+    console.log(amount);
+  };
 
-  const radioButtons = useMemo(
+  const handleDecrement = () => {
+    setAmount(amount > 0 ? amount - 1 : 0);
+    console.log(amount);
+  };
+
+  const [value, setValue] = React.useState("plate");
+  const radioValue = useMemo(
     () => [
-      {
-        id: "1",
-        label: "ใส่จาน  ",
-        value: "plate",
-        style: styles.radio,
-      },
-      {
-        id: "2",
-        label: "ใส่กล่อง",
-        value: "box",
-        style: styles.radio,
-      },
+      { value: "plate", label: "ใส่จาน" },
+      { value: "box", label: "ใส่กล่อง" },
     ],
     []
   );
+  const onPressDetail = (
+    id,
+    name,
+    description,
+    price,
+    type,
+    est_time,
+    menu_pic
+  ) => {
+    navigation.navigate("CartScreen", {
+      id: id,
+      name: name,
+      description: description,
+      price: price,
+      type: type,
+      est_time: est_time,
+      menu_pic: menu_pic,
+    });
+  };
+
   return (
     <SafeAreaView>
       <ScrollView className="bg-[#FFFFFF] h-full">
@@ -59,41 +78,55 @@ const OrderScreen = ({ navigation, route }) => {
         <View className="mx-5 mt-5 space-y-3">
           <View className="flex flex-row justify-between">
             <View className="space-y-2">
-              <Text className="font-notom">{name}</Text>
-              <Text className="font-notom ml-5 text-[#A3A3A3]">
+              <Text className="font-notob text-[16px]">{name}</Text>
+              <Text className="font-notoe ml-5 text-[#A3A3A3]">
                 {description}
               </Text>
             </View>
             <View className="justify-end space-y-2">
-              <Text className="font-notom">฿ {price + "   "} </Text>
-              <Text className="font-notom text-[#A3A3A3] ">~ {est_time}</Text>
+              <Text className="font-notob text-[16px]">฿ {price + "   "} </Text>
+              <Text className="font-notoe text-[#A3A3A3] ">~ {est_time}</Text>
             </View>
           </View>
 
           <View style={styles.line} />
 
-          <View className="space-y-3">
-            <Text className="font-notom">
+          <View className="space-y-2 mb-5 ">
+            <Text className="font-notob text-[14px] mt-3">
               ภาชนะใส่อาหาร{"   "}{" "}
               <Text className="text-[#A3A3A3]">(เลือก 1)</Text>
             </Text>
             <View className="mx-5 flex flex-row justify-between ">
               <View>
-                {/* <Text className="font-notom">ใส่จาน</Text>
-                <Text className="font-notom">ใส่กล่อง</Text> */}
-
-                <RadioGroup
-                  radioButtons={radioButtons}
-                  onPress={setSelectedId}
-                  selectedId={selectedId}
-                />
+                <RadioButton.Group
+                  onValueChange={(value) => setValue(value)}
+                  value={value}
+                >
+                  <View>
+                    {radioValue.map((gridItem, index) => (
+                      <View
+                        key={index}
+                        className="flex flex-row flex-wrap items-center bg-pink "
+                      >
+                        <RadioButton
+                          value={gridItem.label}
+                          color="#F6D544"
+                          uncheckedColor="#A3A3A3"
+                        />
+                        <Text className="font-notom text-[14px]">
+                          {gridItem.label}
+                        </Text>
+                      </View>
+                    ))}
+                  </View>
+                </RadioButton.Group>
               </View>
-              <View>
-                <Text className="font-notom text-[#A3A3A3]">+ 0 บาท</Text>
+              <View className="space-y-3">
+                <Text className="font-notom text-[#A3A3A3] mt-3">+ 0 บาท</Text>
                 <Text className="font-notom text-[#A3A3A3]">+ 5 บาท</Text>
               </View>
             </View>
-            <Text className="font-notom">
+            <Text className="font-notob text-[14px]">
               รายละเอียดเพิ่มเติม{"   "}
               <Text className="text-[#A3A3A3]">(optional)</Text>
             </Text>
@@ -107,14 +140,51 @@ const OrderScreen = ({ navigation, route }) => {
             </View>
           </View>
 
-          <View className="bg-[#F6D544]">
-            <View></View>
+          <View className="flex-row items-center justify-center space-x-4 ">
+            <TouchableOpacity
+              className="p-2 rounded-full bg-[#D9D9D9]"
+              onPress={() => handleDecrement(id)}
+            >
+              <AntDesign name="minus" size={15} color="black" />
+            </TouchableOpacity>
+            <Text className="font-notoe text-[18px]">{amount}</Text>
+            <TouchableOpacity
+              className="p-2 rounded-full bg-[#F6D544]"
+              onPress={() => handleIncrement(id)}
+            >
+              <AntDesign name="plus" size={15} color="black" />
+            </TouchableOpacity>
+          </View>
+
+          <View className="flex  items-center justify-center">
             <Button
-              // onPress={RestaurantDetail}
               title="เพิ่มลงตะกร้า"
-              color="#F6D544"
-              className="rounde text-[#000000]"
-              // accessibilityLabel="Learn more about this purple button"
+              buttonStyle={{
+                backgroundColor: "#F6D544",
+                borderWidth: 2,
+                borderColor: "white",
+                borderRadius: 30,
+              }}
+              containerStyle={{
+                width: 200,
+                marginHorizontal: 50,
+                marginVertical: 10,
+              }}
+              titleStyle={{
+                fontWeight: "bold",
+                color: "black",
+              }}
+              onPress={() =>
+                onPressDetail(
+                  id,
+                  name,
+                  description,
+                  price,
+                  type,
+                  est_time,
+                  menu_pic
+                )
+              }
             />
           </View>
         </View>
@@ -170,7 +240,7 @@ const styles = StyleSheet.create({
   line: {
     borderBottomColor: "#E4E4E4",
     borderBottomWidth: 1,
-    marginHorizontal: 20,
+    marginHorizontal: 0,
   },
   bar: {
     height: 45,

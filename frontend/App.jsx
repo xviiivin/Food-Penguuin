@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, ScrollView } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -8,8 +7,6 @@ import CartScreen from "../frontend/screens/Users/CartScreen";
 import CategoryScreen from "../frontend/screens/Users/CategoryScreen";
 import RestaurantDetail from "../frontend/screens/Users/RestaurantDetail";
 import Header from "../frontend/navigation/Header";
-import Login from "./screens/Login";
-import Ionicons from "@expo/vector-icons/Ionicons";
 import EditRes from "./screens/Restarunt/EditRes";
 import Restaurant from "./screens/Restarunt/Restaurant";
 import EditScreen from "./screens/Users/EditScreen";

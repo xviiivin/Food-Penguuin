@@ -50,10 +50,10 @@ const RestaurantDetail = ({ navigation, route }) => {
         <View style={styles.imageCon}>
           <Image style={styles.image} source={{ uri: route.params.pic }} />
         </View>
-        <View className="my-10 mx-5">
+        <View className="my-5 mx-5">
           <View className="flex flex-row mb-2">
             <Ionicons name="location" size={20} color="#F6D544" />
-            <Text className="font-notom ml-2">{route.params.food_court}</Text>
+            <Text className="font-notoe ml-2">{route.params.food_court}</Text>
           </View>
           <View className="flex flex-row mb-2">
             <Ionicons
@@ -62,7 +62,7 @@ const RestaurantDetail = ({ navigation, route }) => {
               size={20}
               color="#F6D544"
             />
-            <Text className="font-notom ml-2">{route.params.type}</Text>
+            <Text className="font-notoe ml-2">{route.params.type}</Text>
           </View>
           <View className="flex flex-row justify-between">
             <View className="flex flex-row mb-2">
@@ -72,10 +72,10 @@ const RestaurantDetail = ({ navigation, route }) => {
                 size={19}
                 color="#F6D544"
               />
-              <Text className="font-notom ml-2">{route.params.phone}</Text>
+              <Text className="font-notoe ml-2">{route.params.phone}</Text>
             </View>
             <View className="px-4 justify-center rounded-lg  bg-[#F6D544]">
-              <Text className="font-notom ">{route.params.queue}</Text>
+              <Text className="font-notoe ">{route.params.queue}</Text>
             </View>
           </View>
         </View>
@@ -84,13 +84,11 @@ const RestaurantDetail = ({ navigation, route }) => {
 
         <View className="mx-5 mt-3">
           <View style={styles.container}>
-            <Text className="font-notom mb-3" style={styles.textcat}>
-              เมนูขายดี 🔥
-            </Text>
+            <Text className="font-notoe text-[16px] mb-3 ">เมนูขายดี 🔥</Text>
             <View style={styles.gridContainer}>
               {menu.slice(0, 2).map((gridItem, index) => (
                 <TouchableOpacity
-                  style={styles.gridItem}
+                  style={styles.gridItemCon}
                   key={index}
                   onPress={() =>
                     onPressDetail(
@@ -112,8 +110,12 @@ const RestaurantDetail = ({ navigation, route }) => {
                   </View>
                   <View className="flex flex-row justify-between">
                     <View className="ml-3">
-                      <Text className="font-notom">{gridItem.name}</Text>
-                      <Text className="font-notom">{gridItem.price}</Text>
+                      <Text className="font-notoe text-[15px]">
+                        {gridItem.name}
+                      </Text>
+                      <Text className="font-notoe color-[#A3A3A3]">
+                        ฿ {gridItem.price}
+                      </Text>
                     </View>
                     <View className="justify-end">
                       <AntDesign
@@ -132,9 +134,7 @@ const RestaurantDetail = ({ navigation, route }) => {
         <View style={styles.line} />
 
         <View className="mx-5">
-          <Text className="font-notom my-3" style={styles.textcat}>
-            เมนูทั้งหมด
-          </Text>
+          <Text className="font-notoe text-[16px] my-3">เมนูทั้งหมด</Text>
           <View style={styles.gridContainer1}>
             {menu.map((gridItem, index) => (
               <TouchableOpacity
@@ -158,20 +158,24 @@ const RestaurantDetail = ({ navigation, route }) => {
                     source={{ uri: gridItem.menu_pic }}
                   />
                 </View>
-                <View className="flex flex-row justify-between">
+                <View>
                   <View className="ml-3 space-y-1 mt-3">
-                    <Text className="font-notom ">{gridItem.name}</Text>
-                    <Text className="font-notom">{gridItem.description}</Text>
+                    <Text className="font-notoe text-[15px]">
+                      {gridItem.name}
+                    </Text>
+                    <Text className="font-notom color-[#A3A3A3]">
+                      {gridItem.description}
+                    </Text>
                     <Text className="font-notom mt-2">{gridItem.price} ฿</Text>
                   </View>
-                  <View className="justify-end mb-5">
-                    <AntDesign
-                      name="pluscircle"
-                      className=""
-                      size={23}
-                      color="#F6D544"
-                    />
-                  </View>
+                </View>
+                <View className="bottom-0 right-0  absolute mb-5 ">
+                  <AntDesign
+                    name="pluscircle"
+                    className=""
+                    size={23}
+                    color="#F6D544"
+                  />
                 </View>
               </TouchableOpacity>
             ))}
@@ -189,7 +193,7 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     justifyContent: "space-between",
   },
-  gridItem: {
+  gridItemCon: {
     width: "48%",
     marginVertical: 5,
     height: 230,
@@ -198,7 +202,7 @@ const styles = StyleSheet.create({
   },
   picCover: {
     width: "100%",
-    height: 150,
+    height: 162,
     marginTop: 0,
     marginBottom: 15,
     borderRadius: 10,
@@ -206,7 +210,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: "100%",
-    height: 150,
+    height: 162,
   },
   line: {
     borderBottomColor: "#E4E4E4",

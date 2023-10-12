@@ -16,7 +16,16 @@ import RestaurantData from "../../data/RestaurantData.json";
 
 const AllRestaurant = ({ route }) => {
   const navigation = useNavigation();
-  const onPressDetail = (id, name, pic, type, queue, food_court, menu, phone) => {
+  const onPressDetail = (
+    id,
+    name,
+    pic,
+    type,
+    queue,
+    food_court,
+    menu,
+    phone
+  ) => {
     navigation.navigate("RestaurantDetail", {
       id: id,
       name: name,
@@ -25,9 +34,9 @@ const AllRestaurant = ({ route }) => {
       queue: queue,
       food_court: food_court,
       menu: menu,
-      phone: phone
+      phone: phone,
     });
-    console.log(food_court) // Log the menu array
+    console.log(food_court); // Log the menu array
   };
   return (
     <View style={styles.gridContainer}>
