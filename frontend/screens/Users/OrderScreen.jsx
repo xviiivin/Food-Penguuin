@@ -93,7 +93,7 @@ const OrderScreen = ({ navigation, route }) => {
 
           <View className="space-y-2 mb-5 ">
             <Text className="font-notob text-[14px] mt-3">
-              ภาชนะใส่อาหาร{"   "}{" "}
+              ภาชนะใส่อาหาร
               <Text className="text-[#A3A3A3]">(เลือก 1)</Text>
             </Text>
             <View className="mx-5 flex flex-row justify-between ">
@@ -127,7 +127,7 @@ const OrderScreen = ({ navigation, route }) => {
               </View>
             </View>
             <Text className="font-notob text-[14px]">
-              รายละเอียดเพิ่มเติม{"   "}
+              รายละเอียดเพิ่มเติม
               <Text className="text-[#A3A3A3]">(optional)</Text>
             </Text>
             <View style={styles.bar}>

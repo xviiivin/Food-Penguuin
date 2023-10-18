@@ -59,7 +59,6 @@ export default function App() {
                 <Text
                   style={{
                     flex: 1,
-                    textAlign: "center",
                     fontFamily: "NotoSansThai_500Medium",
                     fontSize: 20,
                   }}

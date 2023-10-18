@@ -196,7 +196,6 @@ const BottomTab = () => {
     // </Tab.Navigator>
 
     // admin
-
     // <Tab.Navigator screenOptions={screenOption}>
     //   <Tab.Screen
     //     name="AdminHome"

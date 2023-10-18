@@ -26,9 +26,10 @@ const CategoryScreen = ({ navigation, route }) => {
     // food_court,
     // menu,
     // phone
-    data
+    // data
+    index
   ) => {
-    navigation.navigate("RestaurantDetail", {
+    navigation.navigate("RestaurantDetail",
       // id: id,
       // name: name,
       // pic: pic,
@@ -37,8 +38,8 @@ const CategoryScreen = ({ navigation, route }) => {
       // food_court: food_court,
       // menu: menu,
       // phone: phone,
-      data: data,
-    });
+      data[index]
+    );
   };
 
   useEffect(() => {
@@ -49,6 +50,7 @@ const CategoryScreen = ({ navigation, route }) => {
   }, []);
 
   console.log(data);
+
 
   return (
     <SafeAreaView className='bg-white w-full flex-1'>
@@ -65,17 +67,18 @@ const CategoryScreen = ({ navigation, route }) => {
                 onPress={
                   () =>
                     onPressDetail(
-                      item.id,
-                      item.name,
-                      item.description,
-                      item.price,
-                      item.type,
-                      item.est_time,
-                      item.menu_pic
+                      // item.id,
+                      // item.name,
+                      // item.description,
+                      // item.price,
+                      // item.type,
+                      // item.est_time,
+                      // item.menu_pic
+                      index
                       // data
                     )
                   // item.id, item.name, item.pic, item.type, item.queue, item.food_court, item.menu, item.phone
-                  
+
                 }
               >
                 <View style={styles.picCover}>

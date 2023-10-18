@@ -87,7 +87,7 @@ const EditRes = () => {
 
           <View className='flex flex-row w-full items-center justify-center gap-4'>
             <Pressable onPress={() => {
-              navigation.navigate("Restaurant");
+              navigation.goBack();
             }} className='border border-[#F3F3F3] w-1/3 bg-[#F3F3F3] px-4 py-2 rounded-lg justify-center items-center '>
               <Text className='font-notob'>ยกเลิก</Text>
             </Pressable>

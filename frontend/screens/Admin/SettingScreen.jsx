@@ -7,7 +7,8 @@ import {
     ScrollView,
     Image,
     Button,
-    TouchableOpacity, Pressable
+    TouchableOpacity,
+    Pressable
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';

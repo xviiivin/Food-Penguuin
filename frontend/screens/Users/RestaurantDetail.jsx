@@ -43,6 +43,7 @@ const RestaurantDetail = ({ navigation, route }) => {
       menu_pic: menu_pic,
     });
   };
+  console.log(route.params);
 
   return (
     <SafeAreaView style={styles.container}>
