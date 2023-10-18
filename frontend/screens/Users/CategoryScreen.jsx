@@ -51,17 +51,17 @@ const CategoryScreen = ({ navigation, route }) => {
   console.log(data);
 
   return (
-    <SafeAreaView>
+    <SafeAreaView className='bg-white w-full flex-1'>
       <ScrollView>
         <View style={styles.container}>
           <Text className="font-notom" style={styles.textcat}>
-            {route.params.type}
+            ร้าน{route.params.type}ทั้งหมด
           </Text>
           <View style={styles.gridContainer}>
-            {data.map((item, type) => (
+            {data.map((item, index) => (
               <TouchableOpacity
                 style={styles.gridItem}
-                key={type}
+                key={index}
                 onPress={
                   () =>
                     onPressDetail(
@@ -75,6 +75,7 @@ const CategoryScreen = ({ navigation, route }) => {
                       // data
                     )
                   // item.id, item.name, item.pic, item.type, item.queue, item.food_court, item.menu, item.phone
+                  
                 }
               >
                 <View style={styles.picCover}>

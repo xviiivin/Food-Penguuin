@@ -26,7 +26,7 @@ const CategoryScreen = ({ navigation }) => {
   ];
 
   return (
-    <SafeAreaView>
+    <SafeAreaView className='w-full bg-white flex-1'>
       <ScrollView>
         <View style={styles.container}>
           <Text className="font-notom" style={styles.textcat}>
