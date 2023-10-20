@@ -40,29 +40,29 @@ const AllRestaurant = ({ route }) => {
   };
   return (
     <View style={styles.gridContainer}>
-      {RestaurantData.map((gridItem, index) => (
+      {RestaurantData.map((item, index) => (
         <TouchableOpacity
           style={styles.gridItem}
           key={index}
           onPress={() =>
             onPressDetail(
-              gridItem.id,
-              gridItem.name,
-              gridItem.pic,
-              gridItem.type,
-              gridItem.queue,
-              gridItem.food_court,
-              gridItem.menu,
-              gridItem.phone
+              item.id,
+              item.name,
+              item.pic,
+              item.type,
+              item.queue,
+              item.food_court,
+              item.menu,
+              item.phone
             )
           }
         >
           <View style={styles.picCover}>
-            <Image style={styles.image} source={{ uri: gridItem.pic }} />
+            <Image style={styles.image} source={{ uri: item.pic }} />
           </View>
-          <Text className="font-notob mb-2 text-[16px]">{gridItem.name}</Text>
+          <Text className="font-notob mb-2 text-[16px]">{item.name}</Text>
           <Text className="font-notor">
-            {gridItem.type} • {gridItem.queue}
+            {item.type} • {item.queue}
           </Text>
         </TouchableOpacity>
       ))}

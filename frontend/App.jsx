@@ -11,6 +11,9 @@ import EditRes from "./screens/Restarunt/EditRes";
 import Restaurant from "./screens/Restarunt/Restaurant";
 import EditScreen from "./screens/Users/EditScreen";
 import OrderScreen from "./screens/Users/OrderScreen";
+import { Provider } from "react-redux";
+import { createStore } from "redux"; // เพิ่มนี้
+
 const Stack = createNativeStackNavigator();
 import {
   useFonts,
@@ -26,6 +29,7 @@ import {
 } from "@expo-google-fonts/noto-sans-thai";
 import Contact from "./screens/Users/Contact";
 import Order from "./components/History/Order";
+import Store from "./ReduxControl/Store";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -40,42 +44,47 @@ export default function App() {
   }
 
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen
-            name="BottomTabbb"
-            component={BottomTab}
-            options={{ headerShown: true, headerTitle: () => <Header /> }}
-          />
-          <Stack.Screen name="CartScreen" component={CartScreen} />
-          <Stack.Screen name="CategoryScreen" component={CategoryScreen} />
-          <Stack.Screen name="RestaurantDetail" component={RestaurantDetail} />
-          <Stack.Screen
-            name="EditScreen"
-            component={EditScreen}
-            options={{
-              headerTitle: () => (
-                <Text
-                  style={{
-                    flex: 1,
-                    fontFamily: "NotoSansThai_500Medium",
-                    fontSize: 20,
-                  }}
-                >
-                  แก้ไขข้อมูล
-                </Text>
-              ),
-            }}
-          />
-          <Stack.Screen name="EditRes" component={EditRes} />
-          <Stack.Screen name="Restaurant" component={Restaurant} />
-          <Stack.Screen name="Contact" component={Contact} />
-          <Stack.Screen name="OrderScreen" component={OrderScreen} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </GestureHandlerRootView>
-    // <Login/>
+    <Provider store={Store}>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen
+              name="BottomTabbb"
+              component={BottomTab}
+              options={{ headerShown: true, headerTitle: () => <Header /> }}
+            />
+            <Stack.Screen name="CartScreen" component={CartScreen} />
+            <Stack.Screen name="CategoryScreen" component={CategoryScreen} />
+            <Stack.Screen
+              name="RestaurantDetail"
+              component={RestaurantDetail}
+            />
+            <Stack.Screen
+              name="EditScreen"
+              component={EditScreen}
+              options={{
+                headerTitle: () => (
+                  <Text
+                    style={{
+                      flex: 1,
+                      fontFamily: "NotoSansThai_500Medium",
+                      fontSize: 20,
+                    }}
+                  >
+                    แก้ไขข้อมูล
+                  </Text>
+                ),
+              }}
+            />
+            <Stack.Screen name="EditRes" component={EditRes} />
+            <Stack.Screen name="Restaurant" component={Restaurant} />
+            <Stack.Screen name="Contact" component={Contact} />
+            <Stack.Screen name="OrderScreen" component={OrderScreen} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </GestureHandlerRootView>
+      {/* <Login /> */}
+    </Provider>
   );
 }
 

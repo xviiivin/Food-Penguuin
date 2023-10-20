@@ -16,6 +16,7 @@ import { useMemo, useState } from "react";
 import { useRoute } from "@react-navigation/native";
 import RestaurantDetail from "./RestaurantDetail";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { useDispatch, useSelector } from "react-redux";
 
 const OrderScreen = ({ navigation, route }) => {
   const [id, setId] = useState(route.params?.id || "");
@@ -29,7 +30,14 @@ const OrderScreen = ({ navigation, route }) => {
   const [menu_pic, setPic] = useState(route.params?.menu_pic || "");
   const [amount, setAmount] = useState(0);
 
-  // const amount = 1;
+  const cart = useSelector((state) => state.cart.cart);
+  console.log(cart);
+
+  const dispatch = useDispatch();
+  const addItemTocart = (item) => {
+    dispatch(addItemTocart(item));
+  };
+
   const handleIncrement = () => {
     setAmount(amount + 1);
     console.log(amount);
@@ -103,18 +111,18 @@ const OrderScreen = ({ navigation, route }) => {
                   value={value}
                 >
                   <View>
-                    {radioValue.map((gridItem, index) => (
+                    {radioValue.map((item, index) => (
                       <View
                         key={index}
                         className="flex flex-row flex-wrap items-center bg-pink "
                       >
                         <RadioButton
-                          value={gridItem.label}
+                          value={item.label}
                           color="#F6D544"
                           uncheckedColor="#A3A3A3"
                         />
                         <Text className="font-notom text-[14px]">
-                          {gridItem.label}
+                          {item.label}
                         </Text>
                       </View>
                     ))}
@@ -128,7 +136,7 @@ const OrderScreen = ({ navigation, route }) => {
             </View>
             <Text className="font-notob text-[14px]">
               รายละเอียดเพิ่มเติม
-              <Text className="text-[#A3A3A3]">(optional)</Text>
+              <Text className="text-[#A3A3A3]"> (optional)</Text>
             </Text>
             <View style={styles.bar}>
               <TextInput
@@ -174,16 +182,19 @@ const OrderScreen = ({ navigation, route }) => {
                 fontWeight: "bold",
                 color: "black",
               }}
-              onPress={() =>
-                onPressDetail(
-                  id,
-                  name,
-                  description,
-                  price,
-                  type,
-                  est_time,
-                  menu_pic
-                )
+              onPress={
+                () => addItemTocart(item)
+                // onPressDetail(
+                //   // id,
+                //   // name,
+                //   // description,
+                //   // price,
+                //   // type,
+                //   // est_time,
+                //   // menu_pic
+                //   addItemTocart(item)
+
+                // )
               }
             />
           </View>

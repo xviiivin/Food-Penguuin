@@ -17,29 +17,8 @@ import { useRoute } from "@react-navigation/native";
 const CategoryScreen = ({ navigation, route }) => {
   const [data, setData] = useState([]);
 
-  const onPressDetail = (
-    // id,
-    // name,
-    // pic,
-    // type,
-    // queue,
-    // food_court,
-    // menu,
-    // phone
-    // data
-    index
-  ) => {
-    navigation.navigate("RestaurantDetail",
-      // id: id,
-      // name: name,
-      // pic: pic,
-      // type: type,
-      // queue: queue,
-      // food_court: food_court,
-      // menu: menu,
-      // phone: phone,
-      data[index]
-    );
+  const onPressDetail = (index) => {
+    navigation.navigate("RestaurantDetail", data[index]);
   };
 
   useEffect(() => {
@@ -51,9 +30,8 @@ const CategoryScreen = ({ navigation, route }) => {
 
   console.log(data);
 
-
   return (
-    <SafeAreaView className='bg-white w-full flex-1'>
+    <SafeAreaView className="bg-white w-full flex-1">
       <ScrollView>
         <View style={styles.container}>
           <Text className="font-notom" style={styles.textcat}>
@@ -64,22 +42,7 @@ const CategoryScreen = ({ navigation, route }) => {
               <TouchableOpacity
                 style={styles.gridItem}
                 key={index}
-                onPress={
-                  () =>
-                    onPressDetail(
-                      // item.id,
-                      // item.name,
-                      // item.description,
-                      // item.price,
-                      // item.type,
-                      // item.est_time,
-                      // item.menu_pic
-                      index
-                      // data
-                    )
-                  // item.id, item.name, item.pic, item.type, item.queue, item.food_court, item.menu, item.phone
-
-                }
+                onPress={() => onPressDetail(index)}
               >
                 <View style={styles.picCover}>
                   <Image style={styles.image} source={{ uri: item.pic }} />

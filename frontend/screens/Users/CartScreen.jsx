@@ -26,16 +26,16 @@ const CategoryScreen = ({ navigation }) => {
   ];
 
   return (
-    <SafeAreaView className='w-full bg-white flex-1'>
+    <SafeAreaView className="w-full bg-white flex-1">
       <ScrollView>
         <View style={styles.container}>
           <Text className="font-notom" style={styles.textcat}>
             ร้านมาใหม่ 🔥
           </Text>
           <View style={styles.gridContainer}>
-            {grid.map((gridItem, index) => (
+            {grid.map((item, index) => (
               <View key={index} style={styles.gridItem}>
-                <Text>{gridItem.title}</Text>
+                <Text>{item.title}</Text>
               </View>
             ))}
           </View>
