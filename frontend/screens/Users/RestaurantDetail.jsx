@@ -24,6 +24,17 @@ const RestaurantDetail = ({ navigation, route }) => {
   const [menu, setMenu] = useState(route.params?.menu || "");
   const [phone, setPhone] = useState(route.params?.phone || "");
 
+  const [data, setData] = useState({
+    id: route.params?.id || "",
+    name: route.params?.name || "",
+    type: route.params?.type || "",
+    queue: route.params?.queue || "",
+    pic: route.params?.pic || "",
+    food_court: route.params?.food_court || "",
+    menu: route.params?.menu || "",
+    phone: route.params?.phone || "",
+  });
+
   const onPressDetail = (
     id,
     name,
@@ -43,7 +54,6 @@ const RestaurantDetail = ({ navigation, route }) => {
       menu_pic: menu_pic,
     });
   };
-  console.log(route.params);
 
   return (
     <SafeAreaView style={styles.container}>

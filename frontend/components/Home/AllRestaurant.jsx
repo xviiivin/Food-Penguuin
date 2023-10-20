@@ -60,8 +60,8 @@ const AllRestaurant = ({ route }) => {
           <View style={styles.picCover}>
             <Image style={styles.image} source={{ uri: item.pic }} />
           </View>
-          <Text className="font-notob mb-2 text-[16px]">{item.name}</Text>
-          <Text className="font-notor">
+          <Text className="font-notob  text-[16px]">{item.name}</Text>
+          <Text className="font-notor color-[#A3A3A3]">
             {item.type} • {item.queue}
           </Text>
         </TouchableOpacity>

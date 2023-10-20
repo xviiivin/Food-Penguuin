@@ -51,13 +51,35 @@ export default function App() {
             <Stack.Screen
               name="BottomTabbb"
               component={BottomTab}
-              options={{ headerShown: true, headerTitle: () => <Header /> }}
+              options={{
+                headerTitle: () => <Header />,
+                headerTitleAlign: "center",
+              }}
             />
             <Stack.Screen name="CartScreen" component={CartScreen} />
-            <Stack.Screen name="CategoryScreen" component={CategoryScreen} />
+            <Stack.Screen
+              name="CategoryScreen"
+              component={CategoryScreen}
+              options={({ route }) => ({
+                headerTitle: route.params?.type,
+                headerTitleStyle: {
+                  fontFamily: "NotoSansThai_500Medium",
+                  fontSize: 20,
+                },
+                headerTitleAlign: "center",
+              })}
+            />
             <Stack.Screen
               name="RestaurantDetail"
               component={RestaurantDetail}
+              options={({ route }) => ({
+                headerTitle: route.params?.name,
+                headerTitleStyle: {
+                  fontFamily: "NotoSansThai_500Medium",
+                  fontSize: 20,
+                },
+                headerTitleAlign: "center",
+              })}
             />
             <Stack.Screen
               name="EditScreen"
@@ -79,7 +101,18 @@ export default function App() {
             <Stack.Screen name="EditRes" component={EditRes} />
             <Stack.Screen name="Restaurant" component={Restaurant} />
             <Stack.Screen name="Contact" component={Contact} />
-            <Stack.Screen name="OrderScreen" component={OrderScreen} />
+            <Stack.Screen
+              name="OrderScreen"
+              component={OrderScreen}
+              options={({ route }) => ({
+                headerTitle: route.params?.name,
+                headerTitleStyle: {
+                  fontFamily: "NotoSansThai_500Medium",
+                  fontSize: 20,
+                },
+                headerTitleAlign: "center",
+              })}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       </GestureHandlerRootView>
@@ -94,5 +127,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+  },
+  header: {
+    flex: 1,
+    fontFamily: "NotoSansThai_500Medium",
+    fontSize: 20,
   },
 });

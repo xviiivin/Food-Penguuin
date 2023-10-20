@@ -13,39 +13,43 @@ import { Button, ButtonGroup, withTheme } from "@rneui/themed";
 import { AntDesign } from "@expo/vector-icons";
 import { RadioButton } from "react-native-paper";
 import { useMemo, useState } from "react";
-import { useRoute } from "@react-navigation/native";
-import RestaurantDetail from "./RestaurantDetail";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useDispatch, useSelector } from "react-redux";
+import {
+  addToCart,
+  removeFromCart,
+  incrementQuantity,
+  decrementQuantity,
+} from "../../ReduxControl/CartReducer";
 
 const OrderScreen = ({ navigation, route }) => {
-  const [id, setId] = useState(route.params?.id || "");
-  const [name, setName] = useState(route.params?.name || "");
-  const [description, setDescription] = useState(
-    route.params?.description || ""
-  );
-  const [price, setPrice] = useState(route.params?.price || "");
-  const [type, setType] = useState(route.params?.type || "");
-  const [est_time, setTime] = useState(route.params?.est_time || "");
-  const [menu_pic, setPic] = useState(route.params?.menu_pic || "");
-  const [amount, setAmount] = useState(0);
+  const [data, setData] = useState({
+    id: route.params?.id || "",
+    name: route.params?.name || "",
+    description: route.params?.description || "",
+    price: route.params?.price || "",
+    type: route.params?.type || "",
+    est_time: route.params?.est_time || "",
+    menu_pic: route.params?.menu_pic || "",
+    amount: 0,
+  });
 
   const cart = useSelector((state) => state.cart.cart);
   console.log(cart);
 
   const dispatch = useDispatch();
-  const addItemTocart = (item) => {
-    dispatch(addItemTocart(item));
+  const addToCart = (data) => {
+    dispatch(addToCart(data));
   };
 
   const handleIncrement = () => {
-    setAmount(amount + 1);
-    console.log(amount);
+    setData({ ...data, amount: data.amount + 1 });
+    console.log(data.amount);
   };
 
   const handleDecrement = () => {
-    setAmount(amount > 0 ? amount - 1 : 0);
-    console.log(amount);
+    setData({ ...data, amount: data.amount > 0 ? data.amount - 1 : 0 });
+    console.log(data.amount);
   };
 
   const [value, setValue] = React.useState("plate");
@@ -56,44 +60,29 @@ const OrderScreen = ({ navigation, route }) => {
     ],
     []
   );
-  const onPressDetail = (
-    id,
-    name,
-    description,
-    price,
-    type,
-    est_time,
-    menu_pic
-  ) => {
-    navigation.navigate("CartScreen", {
-      id: id,
-      name: name,
-      description: description,
-      price: price,
-      type: type,
-      est_time: est_time,
-      menu_pic: menu_pic,
-    });
-  };
 
   return (
     <SafeAreaView>
       <ScrollView className="bg-[#FFFFFF] h-full">
         <View style={styles.imageCon}>
-          <Image className="w-full h-[200px]" source={{ uri: menu_pic }} />
+          <Image className="w-full h-[200px]" source={{ uri: data.menu_pic }} />
         </View>
 
         <View className="mx-5 mt-5 space-y-3">
           <View className="flex flex-row justify-between">
             <View className="space-y-2">
-              <Text className="font-notob text-[16px]">{name}</Text>
-              <Text className="font-notoe ml-5 text-[#A3A3A3]">
-                {description}
+              <Text className="font-notob text-[16px]">{data.name}</Text>
+              <Text className="font-notoe ml-3 text-[#A3A3A3]">
+                {data.description}
               </Text>
             </View>
             <View className="justify-end space-y-2">
-              <Text className="font-notob text-[16px]">฿ {price + "   "} </Text>
-              <Text className="font-notoe text-[#A3A3A3] ">~ {est_time}</Text>
+              <Text className="font-notob text-[16px] ml-4">
+                ฿ {data.price}
+              </Text>
+              <Text className="font-notoe text-[#A3A3A3] ">
+                ~ {data.est_time}
+              </Text>
             </View>
           </View>
 
@@ -151,14 +140,14 @@ const OrderScreen = ({ navigation, route }) => {
           <View className="flex-row items-center justify-center space-x-4 ">
             <TouchableOpacity
               className="p-2 rounded-full bg-[#D9D9D9]"
-              onPress={() => handleDecrement(id)}
+              onPress={() => handleDecrement(data.id)}
             >
               <AntDesign name="minus" size={15} color="black" />
             </TouchableOpacity>
-            <Text className="font-notoe text-[18px]">{amount}</Text>
+            <Text className="font-notoe text-[18px]">{data.amount}</Text>
             <TouchableOpacity
               className="p-2 rounded-full bg-[#F6D544]"
-              onPress={() => handleIncrement(id)}
+              onPress={() => handleIncrement(data.id)}
             >
               <AntDesign name="plus" size={15} color="black" />
             </TouchableOpacity>
@@ -182,20 +171,7 @@ const OrderScreen = ({ navigation, route }) => {
                 fontWeight: "bold",
                 color: "black",
               }}
-              onPress={
-                () => addItemTocart(item)
-                // onPressDetail(
-                //   // id,
-                //   // name,
-                //   // description,
-                //   // price,
-                //   // type,
-                //   // est_time,
-                //   // menu_pic
-                //   addItemTocart(item)
-
-                // )
-              }
+              onPress={() => addToCart(data)}
             />
           </View>
         </View>
