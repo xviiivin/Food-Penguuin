@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -9,12 +9,12 @@ import {
   Image,
   ImageBackground,
   TouchableOpacity,
-} from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
-import { useNavigation } from "@react-navigation/native";
-import RestaurantData from "../../data/RestaurantData.json";
+} from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native';
+import RestaurantData from '../../data/RestaurantData.json';
 
-const AllRestaurant = ({ route }) => {
+const AllRestaurant = ({ route, searchText }) => {
   const navigation = useNavigation();
   const onPressDetail = (
     id,
@@ -24,9 +24,9 @@ const AllRestaurant = ({ route }) => {
     queue,
     food_court,
     menu,
-    phone
+    phone,
   ) => {
-    navigation.navigate("RestaurantDetail", {
+    navigation.navigate('RestaurantDetail', {
       id: id,
       name: name,
       pic: pic,
@@ -38,9 +38,23 @@ const AllRestaurant = ({ route }) => {
     });
     console.log(food_court); // Log the menu array
   };
+  
+  
+  const [filteredData, setFilteredData] = useState(RestaurantData);
+
+  const handleSearch = () => {
+  
+  };
+
+  useEffect(() => {
+    console.log(searchText);
+    const filteredItems = filteredData.filter(item => item.name.includes(searchText));
+    setFilteredData(filteredItems);
+  }, [searchText])
+
   return (
     <View style={styles.gridContainer}>
-      {RestaurantData.map((item, index) => (
+      {filteredData.map((item, index) => (
         <TouchableOpacity
           style={styles.gridItem}
           key={index}
@@ -53,7 +67,7 @@ const AllRestaurant = ({ route }) => {
               item.queue,
               item.food_court,
               item.menu,
-              item.phone
+              item.phone,
             )
           }
         >
@@ -72,32 +86,32 @@ const AllRestaurant = ({ route }) => {
 
 const styles = StyleSheet.create({
   dis: {
-    flexDirection: "row",
+    flexDirection: 'row',
     marginTop: 30,
-    alignItems: "center",
-    justifyContent: "space-between",
+    alignItems: 'center',
+    justifyContent: 'space-between',
     marginBottom: 20,
   },
 
   gridContainer: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
   },
   gridItem: {
-    width: "45%",
+    width: '45%',
     marginVertical: 5,
     height: 230,
     borderRadius: 10,
-    overflow: "hidden",
+    overflow: 'hidden',
   },
   image: {
-    width: "100%",
-    height: "100%",
+    width: '100%',
+    height: '100%',
     borderRadius: 10,
   },
   picCover: {
-    width: "100%",
+    width: '100%',
     height: 150,
     marginTop: 0,
     marginBottom: 15,

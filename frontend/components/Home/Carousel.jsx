@@ -4,7 +4,6 @@ import CarouselItem from './CarouselItem'
 
 
 const { width, heigth } = Dimensions.get('window')
-let flatList
 
 function infiniteScroll(dataList) {
     const numberOfData = dataList.length

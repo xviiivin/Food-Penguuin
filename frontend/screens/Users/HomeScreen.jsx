@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect } from 'react';
 import {
   SafeAreaView,
   View,
@@ -7,16 +7,17 @@ import {
   ScrollView,
   FlatList,
   Image,
-} from "react-native";
-import { Ionicons } from "@expo/vector-icons";
-import Carousel from "../../components/Home/Carousel";
-import CarouselCategory from "../../components/Home/CarouselCategory";
-import SearchBar from "../../components/Home/SearchBar";
-import AllRestaurant from "../../components/Home/AllRestaurant";
-import dummyData from "../../data/Data";
+} from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import Carousel from '../../components/Home/Carousel';
+import CarouselCategory from '../../components/Home/CarouselCategory';
+import SearchBar from '../../components/Home/SearchBar';
+import AllRestaurant from '../../components/Home/AllRestaurant';
+import dummyData from '../../data/Data';
 
 const HomeScreen = ({ navigation }) => {
-  const greetings = ["สวัสดี,", "สั่งอาหารโปรดของคุณที่นี่ !"];
+  const greetings = ['สวัสดี,', 'สั่งอาหารโปรดของคุณที่นี่ !'];
+  const [searchText, setSearchText] = useState('');
   return (
     <SafeAreaView>
       <ScrollView>
@@ -26,17 +27,19 @@ const HomeScreen = ({ navigation }) => {
               {greeting}
             </Text>
           ))}
-          <SearchBar />
-          <CarouselCategory />
+          <SearchBar searchText={searchText} setSearchText={setSearchText} />
 
-          <Text className="font-notom" style={styles.textcat}>
-            ร้านมาใหม่ 🔥
-          </Text>
-          <Carousel data={dummyData} />
-          <Text style={styles.textcat} className="font-notom my-3">
-            ร้านอาหารทั้งหมด
-          </Text>
-          <AllRestaurant />
+          <View>
+            <CarouselCategory />
+            <Text className="font-notom" style={styles.textcat}>
+              ร้านมาใหม่ 🔥
+            </Text>
+            <Carousel data={dummyData} />
+            <Text style={styles.textcat} className="font-notom my-3">
+              ร้านอาหารทั้งหมด
+            </Text>
+            <AllRestaurant  searchText={searchText} setSearchText={setSearchText}/>
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -46,18 +49,18 @@ const HomeScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     padding: 20,
   },
   dis: {
-    flexDirection: "row",
+    flexDirection: 'row',
     marginTop: 30,
-    alignItems: "center",
-    justifyContent: "space-between",
+    alignItems: 'center',
+    justifyContent: 'space-between',
     marginBottom: 20,
   },
   logo: {
-    alignSelf: "center",
+    alignSelf: 'center',
     marginLeft: 100,
   },
   icon: {
@@ -69,20 +72,20 @@ const styles = StyleSheet.create({
   },
   textcat: {
     fontSize: 16,
-    fontWeight: "300",
+    fontWeight: '300',
   },
   gridContainer: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
   },
   gridItem: {
-    width: "48%",
+    width: '48%',
     marginVertical: 10,
     padding: 20,
-    backgroundColor: "#f0f0f0",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: '#f0f0f0',
+    alignItems: 'center',
+    justifyContent: 'center',
     height: 150,
     borderRadius: 10,
   },
