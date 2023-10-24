@@ -31,6 +31,7 @@ export const cartSlice = createSlice({
       );
       state.cart = removeFromCart;
     },
+
     incrementQuantity: (state, action) => {
       const itemInCart = state.cart.find(
         (data) => data.id == action.payload.id

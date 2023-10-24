@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, ScrollView } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import BottomTab from "./navigation/bottomTab";
@@ -12,31 +12,27 @@ import Restaurant from "./screens/Restarunt/Restaurant";
 import EditScreen from "./screens/Users/EditScreen";
 import OrderScreen from "./screens/Users/OrderScreen";
 import { Provider } from "react-redux";
-import { createStore } from "redux"; // เพิ่มนี้
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import CustomHeaderButton from "../frontend/navigation/CustomHeaderButton";
+import { useNavigation } from "@react-navigation/native";
 
 const Stack = createNativeStackNavigator();
 import {
   useFonts,
-  NotoSansThai_100Thin,
-  NotoSansThai_200ExtraLight,
-  NotoSansThai_300Light,
-  NotoSansThai_400Regular,
   NotoSansThai_500Medium,
+  NotoSansThai_400Regular,
   NotoSansThai_600SemiBold,
   NotoSansThai_700Bold,
-  NotoSansThai_800ExtraBold,
-  NotoSansThai_900Black,
 } from "@expo-google-fonts/noto-sans-thai";
 import Contact from "./screens/Users/Contact";
-import Order from "./components/History/Order";
 import Store from "./ReduxControl/Store";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
-    NotoSansThai_500Medium, // <- equivalent to Inter_900Black: Inter_900Black
-    NotoSansThai_400Regular, // <- equivalent to Inter_900Black: Inter_900Black
-    NotoSansThai_600SemiBold, // <- equivalent to Inter_900Black: Inter_900Black
-    NotoSansThai_700Bold, // <- equivalent to Inter_900Black: Inter_900Black
+    NotoSansThai_500Medium,
+    NotoSansThai_400Regular,
+    NotoSansThai_600SemiBold,
+    NotoSansThai_700Bold,
   });
 
   if (!fontsLoaded) {
@@ -61,12 +57,25 @@ export default function App() {
               name="CategoryScreen"
               component={CategoryScreen}
               options={({ route }) => ({
+                headerTitleAlign: "center",
                 headerTitle: route.params?.type,
                 headerTitleStyle: {
                   fontFamily: "NotoSansThai_500Medium",
                   fontSize: 20,
                 },
+
                 headerTitleAlign: "center",
+                headerRight: () => (
+                  <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+                    <Item
+                      title="Categ"
+                      iconName="cart"
+                      onPress={() => {
+                        useNavigation().navigate("CartScreen");
+                      }}
+                    />
+                  </HeaderButtons>
+                ),
               })}
             />
             <Stack.Screen
@@ -79,6 +88,17 @@ export default function App() {
                   fontSize: 20,
                 },
                 headerTitleAlign: "center",
+                headerRight: () => (
+                  <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+                    <Item
+                      title="resDe"
+                      iconName="cart"
+                      onPress={() => {
+                        // useNavigation().navigate("CartScreen"); // Use useNavigation here
+                      }}
+                    />
+                  </HeaderButtons>
+                ),
               })}
             />
             <Stack.Screen
@@ -111,6 +131,17 @@ export default function App() {
                   fontSize: 20,
                 },
                 headerTitleAlign: "center",
+                headerRight: () => (
+                  <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+                    <Item
+                      title="OrScreen"
+                      iconName="cart"
+                      onPress={() => {
+                        // useNavigation().navigate("CartScreen"); // Use useNavigation here
+                      }}
+                    />
+                  </HeaderButtons>
+                ),
               })}
             />
           </Stack.Navigator>

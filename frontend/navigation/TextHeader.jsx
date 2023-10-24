@@ -12,12 +12,13 @@ import CartScreen from "../screens/Users/CartScreen";
 import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-const Header = () => {
+const TextHeader = (route) => {
   const navigation = useNavigation();
-
+  const name = route.params?.name || "";
   return (
     <View style={styles.container}>
-      <Image style={styles.logo} source={require("../assets/Logo.png")} />
+      <Text>{name}</Text>
+      {/* <Image style={styles.logo} source={require("../assets/Logo.png")} /> */}
       <TouchableOpacity
         style={{}}
         onPress={() => {
@@ -65,4 +66,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Header;
+export default TextHeader;

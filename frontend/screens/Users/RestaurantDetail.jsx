@@ -160,6 +160,7 @@ const RestaurantDetail = ({ navigation, route }) => {
                 key={index}
                 onPress={() =>
                   onPressDetail(
+                    restaurantName,
                     item.id,
                     item.name,
                     item.description,

@@ -9,16 +9,24 @@ import {
   Touchable,
   Pressable,
 } from "react-native";
-import { useSelector } from "react-redux";
+import { Button, ButtonGroup, withTheme } from "@rneui/themed";
+import { useDispatch, useSelector } from "react-redux";
 import {
   PanGestureHandler,
   TouchableOpacity,
 } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
 
+import { removeFromCart } from "../../ReduxControl/CartReducer";
+
 const CategoryScreen = ({ navigation, route }) => {
   const cart = useSelector((state) => state.cart.cart);
   console.log(cart);
+
+  const dispatch = useDispatch();
+  const removeItemFromcart = (item) => {
+    dispatch(removeFromCart(item));
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -51,13 +59,45 @@ const CategoryScreen = ({ navigation, route }) => {
                 <View className="top-0 right-0 mt-3 absolute mb-5 mr-3  h-full ">
                   <Text className="font-notom ">{item.price}</Text>
                   <Pressable className="absolute bottom-5 ">
-                    <Ionicons name="trash-bin-outline" size={18} color="red" />
+                    <Ionicons
+                      name="trash-bin-outline"
+                      size={18}
+                      color="red"
+                      onPress={() => removeItemFromcart(item)}
+                    />
                   </Pressable>
                 </View>
+                <View style={styles.line} />
               </View>
             </View>
           </View>
         ))}
+
+        <View className="flex-row items-center w-full mt-10 justify-center space-x-[280px] ">
+          <Text className="font-notom ">ราคา</Text>
+          <Text className="font-notom ">บาท</Text>
+        </View>
+        <View className="flex items-center justify-center">
+          <Button
+            title="เพิ่มลงตะกร้า"
+            buttonStyle={{
+              backgroundColor: "#F6D544",
+              borderWidth: 2,
+              borderColor: "white",
+              borderRadius: 30,
+            }}
+            containerStyle={{
+              width: 200,
+              marginHorizontal: 50,
+              marginVertical: 10,
+            }}
+            titleStyle={{
+              fontWeight: "bold",
+              color: "black",
+            }}
+            // onPress={() => }
+          />
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -95,6 +135,11 @@ const styles = StyleSheet.create({
     height: 92,
     borderRadius: 10,
     overflow: "hidden",
+  },
+  line: {
+    borderBottomColor: "#E4E4E4",
+    borderBottomWidth: 1,
+    marginHorizontal: 0,
   },
 });
 
