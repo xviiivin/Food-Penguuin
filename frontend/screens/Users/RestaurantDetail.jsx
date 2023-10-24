@@ -16,7 +16,9 @@ import { AntDesign } from "@expo/vector-icons";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 const RestaurantDetail = ({ navigation, route }) => {
   const [id, setId] = useState(route.params?.id || "");
-  const [name, setName] = useState(route.params?.name || "");
+  const [restaurantName, setRestaurantName] = useState(
+    route.params?.name || ""
+  );
   const [type, setType] = useState(route.params?.type || "");
   const [queue, setQueue] = useState(route.params?.queue || "");
   const [pic, setPic] = useState(route.params?.pic || "");
@@ -26,7 +28,7 @@ const RestaurantDetail = ({ navigation, route }) => {
 
   const [data, setData] = useState({
     id: route.params?.id || "",
-    name: route.params?.name || "",
+    restaurantName: route.params?.name || "",
     type: route.params?.type || "",
     queue: route.params?.queue || "",
     pic: route.params?.pic || "",
@@ -36,6 +38,7 @@ const RestaurantDetail = ({ navigation, route }) => {
   });
 
   const onPressDetail = (
+    restaurantName,
     id,
     name,
     description,
@@ -45,6 +48,7 @@ const RestaurantDetail = ({ navigation, route }) => {
     menu_pic
   ) => {
     navigation.navigate("OrderScreen", {
+      restaurantName: restaurantName, // เพิ่ม restaurantName ที่นี่
       id: id,
       name: name,
       description: description,
@@ -104,6 +108,7 @@ const RestaurantDetail = ({ navigation, route }) => {
                   key={index}
                   onPress={() =>
                     onPressDetail(
+                      restaurantName,
                       item.id,
                       item.name,
                       item.description,

@@ -32,23 +32,6 @@ const CategoryGrid = ({ props }) => {
         </Text>
       </View>
     </TouchableOpacity>
-
-    //     <SafeAreaView>
-    //       <ScrollView>
-    //         <View style={styles.container}>
-    //           <Text className="font-notom" style={styles.textcat}>
-    //             ร้านมาใหม่ 🔥
-    //           </Text>
-    //           <View style={styles.gridContainer}>
-    //             {grid.map((gridItem, index) => (
-    //               <View key={index} style={styles.gridItem}>
-    //                 <Text>{gridItem.title}</Text>
-    //               </View>
-    //             ))}
-    //           </View>
-    //         </View>
-    //       </ScrollView>
-    //     </SafeAreaView>
   );
 };
 

@@ -24,6 +24,7 @@ import {
 
 const OrderScreen = ({ navigation, route }) => {
   const [data, setData] = useState({
+    restaurantName: route.params?.restaurantName || "",
     id: route.params?.id || "",
     name: route.params?.name || "",
     description: route.params?.description || "",

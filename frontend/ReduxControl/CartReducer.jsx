@@ -15,6 +15,7 @@ export const cartSlice = createSlice({
         itemInCart.amount += action.payload.amount;
       } else {
         state.cart.push({
+          restaurantName: action.payload.restaurantName,
           id: action.payload.id,
           name: action.payload.name,
           description: action.payload.description,
