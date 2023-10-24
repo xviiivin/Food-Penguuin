@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   SafeAreaView,
   View,
@@ -7,36 +7,48 @@ import {
   ScrollView,
   FlatList,
   Image,
+  TouchableOpacity,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import Carousel from "../../components/Home/Carousel";
-import CarouselCategory from "../../components/Home/CarouselCategory";
-import SearchBar from "../../components/Home/SearchBar";
-import dummyData from "../../data/Data";
+import { useSelector } from "react-redux";
 
-const CategoryScreen = ({ navigation }) => {
-  const greetings = ["สวัสดี,", "สั่งอาหารโปรดของคุณที่นี่ !"];
-  const grid = [
-    { id: "1", title: "Item 1" },
-    { id: "2", title: "Item 2" },
-    { id: "3", title: "Item 3" },
-    { id: "4", title: "Item 4" },
-    { id: "3", title: "Item 3" },
-    { id: "4", title: "Item 4" },
-  ];
+const CategoryScreen = ({ navigation, route }) => {
+  const cart = useSelector((state) => state.cart.cart);
+  console.log(cart);
 
   return (
     <SafeAreaView className="w-full bg-white flex-1">
       <ScrollView>
         <View style={styles.container}>
           <Text className="font-notom" style={styles.textcat}>
-            ร้านมาใหม่ 🔥
+            รายการที่สั่ง 🔥
           </Text>
-          <View style={styles.gridContainer}>
-            {grid.map((item, index) => (
-              <View key={index} style={styles.gridItem}>
-                <Text>{item.title}</Text>
-              </View>
+
+          <View className="border-b-[1px] border-[#D9D9D9] mb-2">
+            {cart.map((item) => (
+              <TouchableOpacity key={item.id} style={styles.gridItem1}>
+                <View style={styles.picCover1}>
+                  <Image
+                    className="w-full h-[150px]"
+                    source={{
+                      uri: item.menu_pic,
+                    }}
+                  />
+                </View>
+                <View className="">
+                  <View className="ml-3 space-y-1 mt-3">
+                    <Text className="font-notoe text-[15px]">
+                      {item.name} x{item.amount}
+                    </Text>
+                    <Text className="font-notom color-[#A3A3A3]">
+                      {item.description}
+                    </Text>
+                  </View>
+                </View>
+                <View className="top-0 right-0 mt-1 absolute mb-5 ">
+                  <Text className="font-notom mt-2">{item.price}</Text>
+                </View>
+              </TouchableOpacity>
             ))}
           </View>
         </View>
@@ -50,6 +62,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     padding: 20,
+  },
+  gridItem1: {
+    width: "100%",
+    marginVertical: 5,
+    height: 110,
+    overflow: "hidden",
+    flexDirection: "row",
   },
   dis: {
     flexDirection: "row",
@@ -88,6 +107,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     height: 150,
     borderRadius: 10,
+  },
+  picCover1: {
+    width: 92,
+    height: 92,
+    marginTop: 0,
+    marginBottom: 15,
+    borderRadius: 10,
+    overflow: "hidden",
   },
 });
 

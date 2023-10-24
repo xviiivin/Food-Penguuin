@@ -8,12 +8,20 @@ export const cartSlice = createSlice({
   reducers: {
     addToCart: (state, action) => {
       const itemInCart = state.cart.find(
-        (data) => data.id == action.payload.id
+        (data) => data.id === action.payload.id
       );
+      console.log(itemInCart);
       if (itemInCart) {
-        itemInCart.quantity++;
+        itemInCart.amount += action.payload.amount;
       } else {
-        state.cart.push({ ...action.payload.quantity });
+        state.cart.push({
+          id: action.payload.id,
+          name: action.payload.name,
+          description: action.payload.description,
+          price: action.payload.price,
+          menu_pic: action.payload.menu_pic,
+          amount: action.payload.amount,
+        });
       }
     },
     removeFromCart: (state, action) => {
@@ -26,19 +34,19 @@ export const cartSlice = createSlice({
       const itemInCart = state.cart.find(
         (data) => data.id == action.payload.id
       );
-      itemInCart.quantity++;
+      itemInCart.amount++;
     },
     decrementQuantity: (state, action) => {
       const itemInCart = state.cart.find(
         (data) => data.id == action.payload.id
       );
-      if (itemInCart.quantity == 1) {
+      if (itemInCart.amount == 1) {
         const removeFromCart = state.cart.filter(
           (data) => data.id != action.payload.id
         );
         state.cart = removeFromCart;
       } else {
-        itemInCart.quantity--;
+        itemInCart.amount--;
       }
     },
   },

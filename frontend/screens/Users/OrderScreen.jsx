@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 import {
   SafeAreaView,
   View,
@@ -8,37 +8,37 @@ import {
   FlatList,
   Image,
   TextInput,
-} from 'react-native';
-import { Button, ButtonGroup, withTheme } from '@rneui/themed';
-import { AntDesign } from '@expo/vector-icons';
-import { RadioButton } from 'react-native-paper';
-import { useMemo, useState } from 'react';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { useDispatch, useSelector } from 'react-redux';
+} from "react-native";
+import { Button, ButtonGroup, withTheme } from "@rneui/themed";
+import { AntDesign } from "@expo/vector-icons";
+import { RadioButton } from "react-native-paper";
+import { useMemo, useState } from "react";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { useDispatch, useSelector } from "react-redux";
 import {
   addToCart,
   removeFromCart,
   incrementQuantity,
   decrementQuantity,
-} from '../../ReduxControl/CartReducer';
+} from "../../ReduxControl/CartReducer";
 
 const OrderScreen = ({ navigation, route }) => {
   const [data, setData] = useState({
-    id: route.params?.id || '',
-    name: route.params?.name || '',
-    description: route.params?.description || '',
-    price: route.params?.price || '',
-    type: route.params?.type || '',
-    est_time: route.params?.est_time || '',
-    menu_pic: route.params?.menu_pic || '',
-    amount: 0,
+    id: route.params?.id || "",
+    name: route.params?.name || "",
+    description: route.params?.description || "",
+    price: route.params?.price || "",
+    type: route.params?.type || "",
+    est_time: route.params?.est_time || "",
+    menu_pic: route.params?.menu_pic || "",
+    amount: 1,
   });
 
   const cart = useSelector((state) => state.cart.cart);
-  console.log(cart);
 
   const dispatch = useDispatch();
-  const addToCart = (data) => {
+
+  const addDataToCart = (data) => {
     dispatch(addToCart(data));
   };
 
@@ -52,13 +52,13 @@ const OrderScreen = ({ navigation, route }) => {
     console.log(data.amount);
   };
 
-  const [value, setValue] = React.useState('plate');
+  const [value, setValue] = React.useState("plate");
   const radioValue = useMemo(
     () => [
-      { value: 'plate', label: 'ใส่จาน' },
-      { value: 'box', label: 'ใส่กล่อง' },
+      { value: "plate", label: "ใส่จาน" },
+      { value: "box", label: "ใส่กล่อง" },
     ],
-    [],
+    []
   );
 
   return (
@@ -127,7 +127,7 @@ const OrderScreen = ({ navigation, route }) => {
               รายละเอียดเพิ่มเติม
               <Text className="text-[#A3A3A3]"> (optional)</Text>
             </Text>
-            <View className='mx-4'>
+            <View className="mx-4">
               <View style={styles.bar}>
                 <TextInput
                   placeholder="เช่น ไม่ใส่ผัก"
@@ -158,9 +158,9 @@ const OrderScreen = ({ navigation, route }) => {
             <Button
               title="เพิ่มลงตะกร้า"
               buttonStyle={{
-                backgroundColor: '#F6D544',
+                backgroundColor: "#F6D544",
                 borderWidth: 2,
-                borderColor: 'white',
+                borderColor: "white",
                 borderRadius: 30,
               }}
               containerStyle={{
@@ -169,10 +169,10 @@ const OrderScreen = ({ navigation, route }) => {
                 marginVertical: 10,
               }}
               titleStyle={{
-                fontWeight: 'bold',
-                color: 'black',
+                fontWeight: "bold",
+                color: "black",
               }}
-              onPress={() => addToCart(data)}
+              onPress={() => addDataToCart(data)}
             />
           </View>
         </View>
@@ -184,18 +184,18 @@ const OrderScreen = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: "#FFFFFF",
     padding: 20,
   },
   dis: {
-    flexDirection: 'row',
+    flexDirection: "row",
     marginTop: 30,
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    alignItems: "center",
+    justifyContent: "space-between",
     marginBottom: 20,
   },
   logo: {
-    alignSelf: 'center',
+    alignSelf: "center",
     marginLeft: 100,
   },
   icon: {
@@ -203,30 +203,30 @@ const styles = StyleSheet.create({
   },
   textHeader: {
     fontSize: 25,
-    fontWeight: '700',
+    fontWeight: "700",
     marginBottom: 5,
   },
   textcat: {
     fontSize: 16,
-    fontWeight: '300',
+    fontWeight: "300",
   },
   gridContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
   },
   gridItem: {
-    width: '48%',
+    width: "48%",
     marginVertical: 10,
     padding: 20,
-    backgroundColor: '#f0f0f0',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#f0f0f0",
+    alignItems: "center",
+    justifyContent: "center",
     height: 150,
     borderRadius: 10,
   },
   line: {
-    borderBottomColor: '#E4E4E4',
+    borderBottomColor: "#E4E4E4",
     borderBottomWidth: 1,
     marginHorizontal: 0,
   },
@@ -234,16 +234,16 @@ const styles = StyleSheet.create({
     height: 45,
 
     borderRadius: 15,
-    backgroundColor: 'white',
-    borderColor: '#D9D9D9',
+    backgroundColor: "white",
+    borderColor: "#D9D9D9",
     borderWidth: 1,
-    shadowColor: '#000',
-    flexDirection: 'row',
+    shadowColor: "#000",
+    flexDirection: "row",
   },
   radio: {
     height: 2,
     width: 2,
-    borderColor: '#F6D544',
+    borderColor: "#F6D544",
   },
 });
 
