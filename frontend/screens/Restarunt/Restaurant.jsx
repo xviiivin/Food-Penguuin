@@ -31,6 +31,7 @@ const Restarant = () => {
 
         const test = await getResWithUID(data.uid)
         let da1 = test[0];
+        console.log(da1);
 
         setData1(da1)
     }

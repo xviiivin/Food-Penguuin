@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInput, Image, ScrollView, Pressable, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Image, ScrollView, Pressable, Button, Alert } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import * as ImagePicker from 'expo-image-picker';
 
@@ -12,6 +12,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { useNavigation } from '@react-navigation/native';
 import { getUser } from '../../database/user';
 import { getResWithUID } from '../../database/restaurant';
+import firebase from '../../database/firebase';
 const EditRes = () => {
   const navigation = useNavigation();
   const [nameres, setNameres] = useState("");
@@ -20,6 +21,7 @@ const EditRes = () => {
   const [selectedcate, setSelectedcate] = React.useState("");
   const [image, setImage] = useState(null);
   const [data1, setData1] = useState(null)
+  const [data2, setData2] = useState(null)
 
   useEffect(() => {
     getdata()
@@ -32,13 +34,14 @@ const EditRes = () => {
 
     const test = await getResWithUID(data.uid)
     let da1 = test[0];
-
+    setData2(da1)
     console.log(da1);
 
     setNameres(da1["name"])
     setPhoneres(da1["phone"])
     setSelectedres(da1["food_court"])
     setSelectedcate(da1["type"])
+    setImage(da1["pic"])
   }
 
   const pickImage = async () => {
@@ -55,6 +58,45 @@ const EditRes = () => {
       setImage(result.assets[0].uri);
     }
   };
+
+
+  const changeres = async () => {
+    console.log(nameres);
+    console.log(phoneres);
+    console.log(selectedres);
+    console.log(selectedcate);
+
+    const datexx = new Date().getTime().toString() + ".jpg";
+    const response = await fetch(image);
+    const blob = await response.blob();
+
+    await firebase.storage().ref(`${datexx}`).put(blob);
+
+
+
+    const test = await firebase
+      .firestore()
+      .collection("restaurant")
+      .doc(data2.id)
+      .set({
+        useruid: data1.uid,
+        name: nameres,
+        phone: phoneres,
+        food_court: selectedres,
+        type: selectedcate,
+        menu: data2.menu ? data2.menu : [],
+        status: data2.status ? data2.status : false,
+        pic: `https://firebasestorage.googleapis.com/v0/b/fewlnwza007-92ae7.appspot.com/o/${datexx}?alt=media`
+      });
+
+
+    Alert.alert('แจ้งเตือน', "แก้ไขร้านค้าเรียบร้อย", [
+      { text: 'ตกลง', onPress: () => console.log('ตกลง') },
+    ]);
+
+    navigation.navigate("Restaurant");
+  }
+
   const res = [
     { key: '1', value: 'โรงอาหาร A ส่วนที่ 2 (บริเวณด้านบนฝั่งตึก A)' },
     { key: '2', value: 'โรงอาหาร C ชั้น 1' },
@@ -72,7 +114,7 @@ const EditRes = () => {
     { key: '7', value: 'ขนมหวาน' },
     { key: '8', value: 'ผลไม้' },
   ]
-  return (
+  return selectedres && (
     <ScrollView className="bg-white">
       <View className='flex-1 w-full'>
         <View className="flex items-start pt-5 pl-10 ">
@@ -81,7 +123,7 @@ const EditRes = () => {
           </Pressable>
         </View>
         <View>
-          <Image className='w-full h-[150]' source={{ uri: 'https://img.freepik.com/free-vector/big-win-surprise-banner-comic-style_1017-17792.jpg' }} />
+          <Image className='w-full h-[150]' source={{ uri: image }} />
         </View>
         <View className='p-10 gap-4'>
           <View>
@@ -96,7 +138,7 @@ const EditRes = () => {
           <View>
             <Text className='font-notoe color-[#8C8C8C]'>โรงอาหาร</Text>
             <SelectList
-              placeholder=' '
+              placeholder={selectedres}
               setSelected={(val) => setSelectedres(val)}
               data={res}
               save="value"
@@ -105,13 +147,11 @@ const EditRes = () => {
           </View>
           <View>
             <View>
-              <Text className='font-notoe color-[#8C8C8C]'>ประเภทของอาหาร</Text>
+              <Text className='font-notoe color-[#8C8C8C]'>ประเภทของอาหาร ({selectedcate}) </Text>
               <SelectList
-                placeholder=' '
+                placeholder={selectedcate}
                 setSelected={(val) => setSelectedcate(val)}
                 data={cat}
-                defaultValue='อาหารไทย'
-
                 save="value"
                 boxStyles={{ backgroundColor: '#F3F3F3', borderColor: '#F3F3F3' }}
               />
@@ -138,7 +178,7 @@ const EditRes = () => {
             }} className='border border-[#F3F3F3] w-1/3 bg-[#F3F3F3] px-4 py-2 rounded-lg justify-center items-center '>
               <Text className='font-notob'>ยกเลิก</Text>
             </Pressable>
-            <Pressable className='border border-[#F6D544] w-1/3 bg-[#F6D544] px-4 py-2 rounded-lg justify-center items-center'>
+            <Pressable onPress={() => changeres()} className='border border-[#F6D544] w-1/3 bg-[#F6D544] px-4 py-2 rounded-lg justify-center items-center'>
               <Text className='font-notob'>ยืนยัน</Text>
             </Pressable>
           </View>
