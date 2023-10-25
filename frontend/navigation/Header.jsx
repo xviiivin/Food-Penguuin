@@ -5,32 +5,55 @@ import {
   Image,
   TouchableHighlight,
 } from "react-native";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import CartScreen from "../screens/Users/CartScreen";
 import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { getUser, getUserInfo } from "../database/user";
 
 const Header = () => {
   const navigation = useNavigation();
 
-  return (
+
+  const [data1, setData1] = useState(null)
+
+  useEffect(() => {
+    getdata()
+
+  }, [])
+
+  const getdata = async () => {
+    const data = await getUser()
+    const test = await getUserInfo(data.uid)
+    setData1(test)
+  }
+
+
+
+  return data1 && (
     <View style={styles.container}>
       <Image style={styles.logo} source={require("../assets/Logo.png")} />
-      <TouchableOpacity
-        style={{}}
-        onPress={() => {
-          navigation.navigate("CartScreen");
-        }}
-      >
-        <Ionicons
-          name={"cart"}
-          size={24}
-          color={"#202020"}
-          style={styles.icon}
-        />
-      </TouchableOpacity>
+      {data1.role === "user" ? (
+        <TouchableOpacity
+          style={{}}
+          onPress={() => {
+            navigation.navigate("CartScreen");
+          }}
+        >
+          <Ionicons
+            name={"cart"}
+            size={24}
+            color={"#202020"}
+            style={styles.icon}
+          />
+        </TouchableOpacity>
+      ) : (
+        <View>
+        </View>
+      )}
+
       {/* </View> */}
     </View>
   );
