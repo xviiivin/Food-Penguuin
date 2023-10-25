@@ -78,7 +78,7 @@ export default function App() {
             />
 
             <Stack.Screen
-              name="BottomTabbb"
+              name=" "
               component={BottomTab}
               options={{
                 headerLeft: null,
@@ -87,7 +87,24 @@ export default function App() {
                 headerTitleAlign: "center",
               }}
             />
-            <Stack.Screen name="CartScreen" component={CartScreen} />
+            <Stack.Screen
+              name="CartScreen"
+              component={CartScreen}
+              options={{
+                headerTitle: () => (
+                  <Text
+                    style={{
+                      flex: 1,
+                      fontFamily: "NotoSansThai_500Medium",
+                      fontSize: 20,
+                    }}
+                  >
+                    รายการสั่งซื้อ 🧑‍🍳
+                  </Text>
+                ),
+                headerTitleAlign: "center",
+              }}
+            />
             <Stack.Screen
               name="CategoryScreen"
               component={CategoryScreen}

@@ -53,7 +53,7 @@ const CategoryScreen = ({ navigation, route }) => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
-        <Text className=" font-notoe text-[17px] ">รายการที่สั่ง 🧑‍🍳</Text>
+        {/* <Text className=" font-notoe text-[17px] ">รายการที่สั่ง 🧑‍🍳</Text> */}
         {data.map((item, i) => (
           <View key={i}>
             <Text className="font-notor text-[15px] ml-2 mt-3 mt-2 font-notom text-[16px]">
@@ -96,30 +96,46 @@ const CategoryScreen = ({ navigation, route }) => {
           </View>
         ))}
 
-        <View className="flex-row items-center w-full mt-10 justify-center space-x-[280px] ">
-          <Text className=" font-notoe text-[16px]">ราคา</Text>
-          <Text className=" font-notoe text-[16px] "> {totalAmount} บาท</Text>
-        </View>
-        <View className="flex items-center justify-center ">
-          <Button
-            title="ยืนยัน"
-            buttonStyle={{
-              backgroundColor: "#F6D544",
-              borderWidth: 2,
-              borderColor: "white",
-              borderRadius: 30,
-            }}
-            containerStyle={{
-              width: 200,
-              marginHorizontal: 50,
-              marginVertical: 10,
-            }}
-            titleStyle={{
-              fontWeight: "bold",
-              color: "black",
-            }}
-          />
-        </View>
+        {cart.length > 0 ? ( // Check if cart is not empty
+          <>
+            <View className="flex-row items-center w-full mt-10 justify-center space-x-[280px] ">
+              <Text className=" font-notoe text-[16px]">ราคา</Text>
+              <Text className=" font-notoe text-[16px] ">
+                {" "}
+                {totalAmount} บาท
+              </Text>
+            </View>
+            <View className="flex items-center justify-center ">
+              <Button
+                title="ยืนยัน"
+                buttonStyle={{
+                  backgroundColor: "#F6D544",
+                  borderWidth: 2,
+                  borderColor: "white",
+                  borderRadius: 30,
+                }}
+                containerStyle={{
+                  width: 200,
+                  marginHorizontal: 50,
+                  marginVertical: 10,
+                }}
+                titleStyle={{
+                  fontWeight: "bold",
+                  color: "black",
+                }}
+              />
+            </View>
+          </>
+        ) : (
+          <View className="flex items-center justify-center content-center h-full pt-[50%]">
+            <Text className="font-notor text-[20px] color-[#A3A3A3]">
+              ยังไม่มีสินค้าในตะกร้า
+            </Text>
+            <Text className="font-notor text-[20px] color-[#A3A3A3]">
+              เพิ่มเลย 🛒
+            </Text>
+          </View>
+        )}
       </ScrollView>
     </SafeAreaView>
   );
