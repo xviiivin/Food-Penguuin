@@ -47,8 +47,6 @@ export default function App() {
       <GestureHandlerRootView style={{ flex: 1 }}>
         <NavigationContainer>
           <Stack.Navigator>
-
-
             <Stack.Screen
               name="Login"
               component={Login}
@@ -59,11 +57,9 @@ export default function App() {
               }}
             />
 
-
             <Stack.Screen
               name="RegisterRes"
               component={RegisterRes}
-
               options={{
                 headerShown: false,
                 headerTitle: "สมัครสมาชิกของร้านอาหาร",
@@ -79,7 +75,6 @@ export default function App() {
                 headerTitleAlign: "center",
               }}
             />
-
 
             <Stack.Screen
               name="BottomTabbb"
@@ -180,7 +175,14 @@ export default function App() {
                 ),
               }}
             />
-            <Stack.Screen name="EditRes" component={EditRes} />
+            <Stack.Screen
+              name="EditRes"
+              options={{
+                headerLeft: null,
+                headerBackVisible: false,
+              }}
+              component={EditRes}
+            />
             <Stack.Screen name="CreateRes" component={CreateRes} />
             <Stack.Screen name="Restaurant" component={Restaurant} />
             <Stack.Screen name="Contact" component={Contact} />
