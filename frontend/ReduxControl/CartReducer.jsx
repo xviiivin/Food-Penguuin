@@ -12,6 +12,8 @@ export const cartSlice = createSlice({
       );
       console.log(itemInCart);
       if (itemInCart) {
+        itemInCart.description = action.payload.description
+        itemInCart.container = action.payload.container
         itemInCart.amount += action.payload.amount;
       } else {
         state.cart.push({

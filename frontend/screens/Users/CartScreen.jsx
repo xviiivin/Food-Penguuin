@@ -102,7 +102,7 @@ const CategoryScreen = ({ navigation, route }) => {
         </View>
         <View className="flex items-center justify-center ">
           <Button
-            title="ยืนยันออเดอร์"
+            title="ยืนยัน"
             buttonStyle={{
               backgroundColor: "#F6D544",
               borderWidth: 2,
