@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View, TextInput, Image, ScrollView, Pressable, Button } from 'react-native';
 import React, { useState } from 'react';
+import * as ImagePicker from 'expo-image-picker';
 
 import SelectDropdown from 'react-native-select-dropdown';
 import { SelectList } from 'react-native-dropdown-select-list'
@@ -15,7 +16,21 @@ const EditRes = () => {
   const [phoneres, setPhoneres] = useState("");
   const [selectedres, setSelectedres] = React.useState("");
   const [selectedcate, setSelectedcate] = React.useState("");
+  const [image, setImage] = useState(null);
+  const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
 
+    console.log(result);
+
+    if (!result.canceled) {
+      setImage(result.assets[0].uri);
+    }
+  };
   const res = [
     { key: '1', value: 'โรงอาหาร A ส่วนที่ 2 (บริเวณด้านบนฝั่งตึก A)' },
     { key: '2', value: 'โรงอาหาร C ชั้น 1' },
@@ -83,6 +98,10 @@ const EditRes = () => {
               className="w-full p-2 px-4 bg-[#F3F3F3] rounded-lg"
               maxLength={30}
             />
+          </View>
+          <View>
+            <Text className='font-notoe color-[#8C8C8C]'>รูปภาพ</Text>
+            <Button title="Pick an image from camera roll" onPress={pickImage} />
           </View>
 
           <View className='flex flex-row w-full items-center justify-center gap-4'>
