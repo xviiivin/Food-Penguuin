@@ -64,7 +64,7 @@ const CategoryScreen = ({ navigation, route }) => {
 
     data.forEach(async (item) => {
 
-
+      console.log(item);
       const totalAmount = item.list.reduce((total, item) => {
         const totalPrice = (item.price * item.amount) + (item.container === "ใส่กล่อง" ? 5 * item.amount : 0);
         return total + totalPrice;
@@ -103,8 +103,8 @@ const CategoryScreen = ({ navigation, route }) => {
             </Text>
 
             {item.list.map((item1, i1) => (
-              <View style={styles.cartContainer}>
-                <View key={i1} style={styles.gridItem1}>
+              <View key={i1} style={styles.cartContainer}>
+                <View  style={styles.gridItem1}>
                   <Image
                     style={styles.picCover1}
                     source={{
