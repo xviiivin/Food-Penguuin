@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   SafeAreaView,
   View,
@@ -13,8 +13,26 @@ import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { SimpleLineIcons } from '@expo/vector-icons';
+
+
+import firebase from '../../database/firebase';
+
 const SettingsScreen = () => {
   const navigation = useNavigation();
+
+  const [data, setData] = useState({});
+
+  useEffect(() => {
+    test()
+  }, []);
+
+  const test = async () => {
+    const unsubscribe = await firebase.auth().onAuthStateChanged((authenticatedUser) => {
+      setData(authenticatedUser);
+    });
+    console.log(unsubscribe);
+    console.log(data);
+  }
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -32,7 +50,7 @@ const SettingsScreen = () => {
             </Pressable>
           </View>
         </View>
-        <TouchableOpacity style={{ margin: 30 }} onPress={() => {  navigation.navigate("Contact")}}>
+        <TouchableOpacity style={{ margin: 30 }} onPress={() => { navigation.navigate("Contact") }}>
           <View style={styles.dis1}>
             <View style={styles.dis2}>
               <AntDesign name="customerservice" size={24} color="black" />

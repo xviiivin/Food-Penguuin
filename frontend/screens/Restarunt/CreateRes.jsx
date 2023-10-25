@@ -1,12 +1,32 @@
 // สร้างร้านอาหาร
 import { StyleSheet, Text, View, TextInput, ScrollView, Pressable, Button } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import SelectDropdown from 'react-native-select-dropdown';
 import { SelectList } from 'react-native-dropdown-select-list'
 import CatData from "../../data/CatData.json"
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { getUser } from '../../database/user';
 const CreateRes = () => {
+
+  const [data1, setData] = useState(null)
+
+  useEffect(() => {
+    getdata()
+  }, [])
+
+  const getdata = async () => {
+    const data = await getUser()
+    setData(data)
+  }
+
+  const addres = async () => {
+    console.log(nameres);
+    console.log(phoneres);
+    console.log(selectedres);
+    console.log(selectedcate);
+  }
+
   const [nameres, setNameres] = useState("");
   const [phoneres, setPhoneres] = useState("");
   const [selectedres, setSelectedres] = React.useState("");
@@ -71,7 +91,7 @@ const CreateRes = () => {
         </View>
         <View>
           <Text className='font-notoe color-[#8C8C8C]'>อีเมล</Text>
-          <Text className='font-notob text-lg mt-2'>getค่ามา</Text>
+          <Text className='font-notob text-lg mt-2'>{data1 && (data1.email)}</Text>
           <Text className='font-notob text-xl  color-[#FA1717] mt-12'>!! โปรดอ่าน !!</Text>
           <Text className='font-notob text-md mt-2'>หลังจากทำการกดยืนยันตันทางเจ้าของร้านอาหาร</Text>
           <Text className='font-notob text-md'>ต้องมายื่นเอกสารรายละเอียดทั้งหมด</Text>
@@ -82,7 +102,7 @@ const CreateRes = () => {
           <Pressable className='border border-[#F3F3F3] w-1/3 bg-[#F3F3F3] px-4 py-2 rounded-lg justify-center items-center '>
             <Text className='font-notob'>ยกเลิก</Text>
           </Pressable>
-          <Pressable className='border border-[#F6D544] w-1/3 bg-[#F6D544] px-4 py-2 rounded-lg justify-center items-center'>
+          <Pressable onPress={() => addres()} className='border border-[#F6D544] w-1/3 bg-[#F6D544] px-4 py-2 rounded-lg justify-center items-center'>
             <Text className='font-notob'>ยืนยัน</Text>
           </Pressable>
         </View>

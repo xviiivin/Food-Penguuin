@@ -1,12 +1,19 @@
-import { StyleSheet, View, Text, Image, Pressable, TouchableOpacity, Platform, TextInput } from 'react-native';
-import React from 'react';
+import { StyleSheet, View, Text, Image, Pressable, TouchableOpacity, Platform, TextInput, Alert } from 'react-native';
+import React, { useEffect, useState } from 'react';
 import SwitchSelector from 'react-native-switch-selector';
 import { SimpleLineIcons, MaterialCommunityIcons, AntDesign, Ionicons } from '@expo/vector-icons';
 import { signInWithGoogleAsync } from '../database/google';
 import { useNavigation } from "@react-navigation/native";
+import firebase from '../database/firebase';
+
+import { getUser, getUserInfo } from '../database/user';
 
 const Login = () => {
   const navigation = useNavigation();
+
+  const [role, setRole] = useState("");
+  const [email, setEmail] = useState("few@gmail.com");
+  const [password, setPassword] = useState("11501150");
 
   const options = [
     {
@@ -19,30 +26,54 @@ const Login = () => {
     },
   ];
 
+  useEffect(() => {
+    getData()
+  }, [])
+
+
+  const getData =  async () => {
+    const data = await getUser()
+    console.log(data);
+  }
+
+  const handleLogin = async () => {
+    try {
+      const test = await firebase.auth().signInWithEmailAndPassword(email, password);
+
+      const data = await getUserInfo(test.user.uid);
+
+
+      if (data.role === "restarunt") {
+        navigation.navigate("CreateRes");
+      } else {
+        navigation.navigate("BottomTabbb");
+      }
+
+      
+    } catch (error) {
+      Alert.alert('แจ้งเตือน', error.message, [
+        { text: 'ตกลง', onPress: () => console.log('ตกลง') },
+      ]);
+    }
+  };
+
   return (
     <View className="p-10 bg-white" style={styles.container}>
       <Image source={require('../assets/Logo.png')} className='w-3/4 h-[40px]' />
-      <SwitchSelector
-        selectedTextStyle={{ fontFamily: 'NotoSansThai_500Medium' }}
-        textStyle={{ fontFamily: 'NotoSansThai_500Medium' }}
-        className="mt-10 font-notom"
-        options={options}
-        selectedColor="#202020"
-        buttonColor="#F6D33C"
-        borderColor="#202020"
-        borderWidth={2}
-        initial={0}
-        onPress={(value) => console.log(`Call onPress with value: ${value}`)}
-      />
+      
       <TextInput
         className='border border-[#A1A1A1] mt-12 rounded-lg w-full h-12 items-center justify-center p-4' placeholder='email'
+        value={email}
+        onChangeText={(e) => setEmail(e)}
       />
       <TextInput
         className='border border-[#A1A1A1] mt-4 rounded-lg w-full h-12 items-center justify-center p-4' placeholder='password'
+        value={password}
+        onChangeText={(e) => setPassword(e)}
       />
 
       <TouchableOpacity onPress={() => {
-        navigation.navigate("BottomTabbb");
+        handleLogin()
       }} className=' bg-[#F6D33C] p-2 w-3/4 rounded-lg mt-12 flex justify-center items-center'>
         <Text>Login</Text>
       </TouchableOpacity>

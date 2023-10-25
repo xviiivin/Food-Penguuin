@@ -29,6 +29,7 @@ import Contact from "./screens/Users/Contact";
 import Store from "./ReduxControl/Store";
 import RegisterRes from "./screens/RegisterRes";
 import RegisterUser from "./screens/RegisterUser";
+import CreateRes from "./screens/Restarunt/CreateRes";
 export default function App() {
   const [fontsLoaded] = useFonts({
     NotoSansThai_500Medium,
@@ -46,6 +47,18 @@ export default function App() {
       <GestureHandlerRootView style={{ flex: 1 }}>
         <NavigationContainer>
           <Stack.Navigator>
+
+
+            <Stack.Screen
+              name="Login"
+              component={Login}
+              options={{
+                headerShown: false,
+                headerTitle: () => <Header />,
+                headerTitleAlign: "center",
+              }}
+            />
+
 
             <Stack.Screen
               name="RegisterRes"
@@ -67,22 +80,13 @@ export default function App() {
               }}
             />
 
-            <Stack.Screen
-              name="Login"
-              component={Login}
-              options={{
-                headerShown: false,
-                headerTitle: () => <Header />,
-                headerTitleAlign: "center",
-              }}
-            />
 
             <Stack.Screen
-              name=" "
+              name="BottomTabbb"
               component={BottomTab}
               options={{
                 headerLeft: null,
-               headerBackVisible: false,
+                headerBackVisible: false,
                 headerTitle: () => <Header />,
                 headerTitleAlign: "center",
               }}
@@ -177,6 +181,7 @@ export default function App() {
               }}
             />
             <Stack.Screen name="EditRes" component={EditRes} />
+            <Stack.Screen name="CreateRes" component={CreateRes} />
             <Stack.Screen name="Restaurant" component={Restaurant} />
             <Stack.Screen name="Contact" component={Contact} />
             <Stack.Screen
