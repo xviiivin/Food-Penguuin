@@ -28,12 +28,26 @@ export const cartSlice = createSlice({
       }
     },
     removeFromCart: (state, action) => {
-      const removeFromCart = state.cart.filter(
-        (data) => data.id != action.payload.id
+      const removeFromCartIndex = state.cart.findIndex(
+        (item) => item.id === action.payload.id
       );
-      state.cart = removeFromCart;
+      const updatedCart = [...state.cart];
+      if (removeFromCartIndex !== -1) {
+        updatedCart.splice(removeFromCartIndex, 1);
+        return {
+          ...state,
+          cart: updatedCart,
+        };
+      } else {
+        console.warn('Item not found in the cart.'); // Handle the case where the item is not found
+      }
     },
-
+    removeAllFromCart: (state, action) => {
+      return {
+        ...state,
+        cart: [],
+      };
+    },
     incrementQuantity: (state, action) => {
       const itemInCart = state.cart.find(
         (data) => data.id == action.payload.id
@@ -59,6 +73,7 @@ export const cartSlice = createSlice({
 export const {
   addToCart,
   removeFromCart,
+  removeAllFromCart,
   incrementQuantity,
   decrementQuantity,
 } = cartSlice.actions;

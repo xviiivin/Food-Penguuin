@@ -8,17 +8,21 @@ import {
   Image,
   TouchableOpacity,
   Pressable,
+  Alert
 } from "react-native";
 import { Button, ButtonGroup, withTheme } from "@rneui/themed";
 import { useDispatch, useSelector } from "react-redux";
 import { Ionicons } from "@expo/vector-icons";
 
-import { removeFromCart } from "../../ReduxControl/CartReducer";
+import { removeFromCart, removeAllFromCart } from "../../ReduxControl/CartReducer";
 
+import firebase from "../../database/firebase";
+import { getUser } from "../../database/user";
 const CategoryScreen = ({ navigation, route }) => {
   const cart = useSelector((state) => state.cart.cart);
   const [data, setData] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
+  const [data1, setData1] = useState(null)
   useEffect(() => {
     const groupedData = {};
 
@@ -43,12 +47,51 @@ const CategoryScreen = ({ navigation, route }) => {
     }, 0);
 
     setTotalAmount(totalAmount);
-  }, []);
+    getdata()
+  }, [cart]);
 
   const dispatch = useDispatch();
   const removeItemFromcart = (item) => {
     dispatch(removeFromCart(item));
   };
+
+  const getdata = async () => {
+    const data = await getUser()
+    setData1(data)
+  }
+
+  const addres = async () => {
+
+    data.forEach(async (item) => {
+
+
+      const totalAmount = item.list.reduce((total, item) => {
+        const totalPrice = (item.price * item.amount) + (item.container === "ใส่กล่อง" ? 5 * item.amount : 0);
+        return total + totalPrice;
+      }, 0);
+
+      await firebase
+        .firestore()
+        .collection("history")
+        .add({
+          useruid: data1.uid,
+          nameres: item.restaurantName,
+          menu: item.list,
+          totalPrice: totalAmount,
+          status: false,
+          created_at: new Date()
+        });
+    });
+
+    Alert.alert('แจ้งเตือน', "ยืนยันสินค้าเรียบร้อย", [
+      { text: 'ตกลง', onPress: () => console.log('ตกลง') },
+    ]);
+    dispatch(removeAllFromCart());
+
+    navigation.navigate("UserHistory")
+
+
+  }
 
   return (
     <SafeAreaView style={styles.container1}>
@@ -84,7 +127,7 @@ const CategoryScreen = ({ navigation, route }) => {
                         name="trash-bin-outline"
                         size={18}
                         color="red"
-                        onPress={() => removeItemFromcart(item)}
+                        onPress={() => removeItemFromcart(item1)}
                       />
                     </Pressable>
                   </View>
@@ -106,6 +149,7 @@ const CategoryScreen = ({ navigation, route }) => {
             </View>
             <View className="flex items-center justify-center ">
               <Button
+                onPress={() => addres()}
                 title="ยืนยัน"
                 buttonStyle={{
                   backgroundColor: "#F6D544",
