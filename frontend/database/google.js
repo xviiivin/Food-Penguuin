@@ -1,22 +1,9 @@
-import * as Google from 'expo-google-app-auth'
+import * as AuthSession from 'expo-auth-session';
 import firebase from './firebase';
 
 async function signInWithGoogleAsync() {
     try {
-        const { idToken, refreshToken, clientId } = await Google.logInAsync({
-            androidClientId: "762845299162-d7dd4aom0if43al8mio6rj0djqa6ljo8.apps.googleusercontent.com",
-            scopes: ['profile', 'email'],
-        });
-        console.log("resulfewt");
-
-        console.log(idToken);
-
-        if (result.type === 'success') {
-            onSignIn(result);
-            return result.accessToken;
-        } else {
-            return { cancelled: true };
-        }
+        
     } catch (e) {
         console.log(e);
         return { error: true };

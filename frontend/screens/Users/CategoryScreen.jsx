@@ -13,6 +13,7 @@ import { useState } from "react";
 import CategoryGrid from "../../components/Category/CategoryGrid";
 import RestaurantData from "../../data/RestaurantData.json";
 import { useRoute } from "@react-navigation/native";
+import firebase from "../../database/firebase";
 
 const CategoryScreen = ({ navigation, route }) => {
   const [data, setData] = useState([]);
@@ -22,13 +23,35 @@ const CategoryScreen = ({ navigation, route }) => {
   };
 
   useEffect(() => {
-    const result = RestaurantData.filter(
-      (item) => route.params.type === item.type
-    );
-    setData(result);
+    getAllUsers()
   }, []);
 
-  console.log(data);
+
+  const getAllUsers = async () => {
+    try {
+      const usersRef = firebase.firestore().collection('restaurant');
+      const snapshot = await usersRef.get();
+      const allUsers = [];
+
+      snapshot.forEach((doc) => {
+        if (doc.data().type === route.params.type) {
+
+          allUsers.push({
+            id: doc.id,
+            ...doc.data(),
+          });
+        }
+      });
+      
+      setData(allUsers);
+
+    } catch (error) {
+      console.error('Error getting documents: ', error);
+      return [];
+    }
+  };
+
+
 
   return (
     <SafeAreaView className="bg-white w-full flex-1">
@@ -52,7 +75,7 @@ const CategoryScreen = ({ navigation, route }) => {
                     {item.name}
                   </Text>
                   <Text className="font-notor">
-                    {item.type} • {item.queue}
+                    {item.type} • 100 คิว
                   </Text>
                 </View>
               </TouchableOpacity>

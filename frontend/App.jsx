@@ -46,8 +46,8 @@ export default function App() {
       <GestureHandlerRootView style={{ flex: 1 }}>
         <NavigationContainer>
           <Stack.Navigator>
-
-            {/* <Stack.Screen
+            {/* 
+            <Stack.Screen
               name="Login"
               component={Login}
               options={{
@@ -75,19 +75,21 @@ export default function App() {
                   fontFamily: "NotoSansThai_500Medium",
                   fontSize: 20,
                 },
-
                 headerTitleAlign: "center",
-                headerRight: () => (
-                  <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
-                    <Item
-                      title="Categ"
-                      iconName="cart"
-                      onPress={() => {
-                        useNavigation().navigate("CartScreen");
-                      }}
-                    />
-                  </HeaderButtons>
-                ),
+                headerRight: () => {
+                  const navigation = useNavigation();
+                  return (
+                    <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+                      <Item
+                        title="Categ"
+                        iconName="cart"
+                        onPress={() => {
+                          navigation.navigate("CartScreen");
+                        }}
+                      />
+                    </HeaderButtons>
+                  );
+                },
               })}
             />
             <Stack.Screen

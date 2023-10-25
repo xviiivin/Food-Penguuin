@@ -13,7 +13,7 @@ import {
 import { ScrollView } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 import RestaurantData from '../../data/RestaurantData.json';
-
+import firebase from '../../database/firebase';
 const AllRestaurant = ({ route, searchText }) => {
   const navigation = useNavigation();
   const onPressDetail = (
@@ -39,16 +39,42 @@ const AllRestaurant = ({ route, searchText }) => {
     console.log(food_court); // Log the menu array
   };
   
-  
-  const [filteredData, setFilteredData] = useState(RestaurantData);
+  const [data, setData] = useState([])
+  const [filteredData, setFilteredData] = useState([]);
 
   const handleSearch = () => {
   
   };
 
   useEffect(() => {
+    getAllData()
+  }, [])
+
+  const getAllData = async () => {
+    try {
+      const usersRef = firebase.firestore().collection('restaurant');
+      const snapshot = await usersRef.get();
+      const allUsers = [];
+
+      snapshot.forEach((doc) => {
+        allUsers.push({
+          id: doc.id,
+          ...doc.data(),
+        });
+      });
+
+      setData(allUsers);
+      setFilteredData(allUsers);
+
+    } catch (error) {
+      console.error('Error getting documents: ', error);
+      return [];
+    }
+  };
+
+  useEffect(() => {
     console.log(searchText);
-    const filteredItems = filteredData.filter(item => item.name.includes(searchText));
+    const filteredItems = data.filter(item => item.name.includes(searchText));
     setFilteredData(filteredItems);
   }, [searchText])
 

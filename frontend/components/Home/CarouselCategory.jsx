@@ -10,16 +10,45 @@ import {
 import { ScrollView } from "react-native-gesture-handler";
 import CarouselCatCard from "./CarouselCatCard";
 import CatData from "../../data/CatData.json";
+import firebase from "./../../database/firebase";
 
 const CarouselCategory = () => {
+
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    getAllUsers()
+  }, [])
+
+  const getAllUsers = async () => {
+    try {
+      const usersRef = firebase.firestore().collection('category');
+      const snapshot = await usersRef.get();
+      const allUsers = [];
+
+      snapshot.forEach((doc) => {
+        allUsers.push({
+          id: doc.id,
+          ...doc.data(),
+        });
+      });
+
+      setData(allUsers);
+
+    } catch (error) {
+      console.error('Error getting documents: ', error);
+      return [];
+    }
+  };
+
   return (
     <ScrollView
       contentContainerStyle={styles.contentContainer}
       horizontal
       showsHorizontalScrollIndicator={false}
     >
-      {CatData.map((item, index) => (
-        <CarouselCatCard key={index} imgUrl={item.imgURL} type={item.type} />
+      {data.map((item, index) => (
+        <CarouselCatCard key={index} imgUrl={item.image} type={item.name} />
       ))}
     </ScrollView>
   );

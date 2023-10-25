@@ -18,11 +18,14 @@ import firebase from "./../../database/firebase";
 const HomeScreen = ({ navigation }) => {
   const greetings = ['สวัสดี,', 'สั่งอาหารโปรดของคุณที่นี่ !'];
   const [searchText, setSearchText] = useState('');
+
+  const [test, setTest] = useState([])
+
   useEffect(() => {
-    getAllUsers()
+    getAllData()
   }, [])
 
-  const getAllUsers = async () => {
+  const getAllData = async () => {
     try {
       const usersRef = firebase.firestore().collection('restaurant');
       const snapshot = await usersRef.get();
@@ -35,13 +38,14 @@ const HomeScreen = ({ navigation }) => {
         });
       });
 
-      console.log(allUsers);
+      setTest(allUsers);
 
     } catch (error) {
       console.error('Error getting documents: ', error);
       return [];
     }
   };
+
   return (
     <SafeAreaView>
       <ScrollView>
@@ -58,7 +62,7 @@ const HomeScreen = ({ navigation }) => {
             <Text className="font-notom" style={styles.textcat}>
               ร้านมาใหม่ 🔥
             </Text>
-            <Carousel data={dummyData} />
+            <Carousel data={test} />
             <Text style={styles.textcat} className="font-notom my-3">
               ร้านอาหารทั้งหมด
             </Text>
