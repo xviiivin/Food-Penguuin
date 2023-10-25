@@ -8,7 +8,7 @@ export const cartSlice = createSlice({
   reducers: {
     addToCart: (state, action) => {
       const itemInCart = state.cart.find(
-        (data) => data.id === action.payload.id
+        (data) => data.id === action.payload.id && data.restaurantName === action.payload.restaurantName
       );
       console.log(itemInCart);
       if (itemInCart) {

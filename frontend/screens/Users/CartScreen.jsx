@@ -21,7 +21,34 @@ import { removeFromCart } from "../../ReduxControl/CartReducer";
 
 const CategoryScreen = ({ navigation, route }) => {
   const cart = useSelector((state) => state.cart.cart);
-  console.log(cart);
+  const [data, setData] = useState([])
+  const [totalAmount, setTotalAmount] = useState(0)
+  useEffect(() => {
+    const groupedData = {};
+
+    cart.forEach(item => {
+      const { restaurantName } = item;
+      if (!groupedData[restaurantName]) {
+        groupedData[restaurantName] = [];
+      }
+      groupedData[restaurantName].push(item);
+    });
+
+    const restaurantArray = Object.keys(groupedData).map(restaurantName => ({
+      restaurantName,
+      list: groupedData[restaurantName],
+    }));
+
+    setData(restaurantArray);
+
+    const totalAmount = cart.reduce((total, item) => {
+      const totalPrice = item.price * item.amount;
+      return total + totalPrice;
+    }, 0);
+
+    setTotalAmount(totalAmount);
+
+  }, [])
 
   const dispatch = useDispatch();
   const removeItemFromcart = (item) => {
@@ -32,8 +59,50 @@ const CategoryScreen = ({ navigation, route }) => {
     <SafeAreaView style={styles.container}>
       <ScrollView>
         <Text className="font-notom text-[16px] mb-3">รายการที่สั่ง 🧑‍🍳</Text>
+        {data.map((item, i) => (
+          <View key={i}>
+            <Text className="font-notor text-[15px]">
+              {item.restaurantName}
+            </Text>
 
-        {cart.map((item) => (
+            {item.list.map((item1, i1) => (
+              <View style={styles.cartContainer}>
+                <View key={i1} style={styles.gridItem1}>
+                  <Image
+                    style={styles.picCover1}
+                    source={{
+                      uri: item1.menu_pic,
+                    }}
+                  />
+                  <View className="ml-3 space-y-1 mt-3">
+                    <Text className="font-notoe text-[15px]">
+                      {item1.name} x{item1.amount}
+                    </Text>
+                    <Text className="font-notom color-[#A3A3A3]">
+                      {item1.description}
+                    </Text>
+                  </View>
+
+                  <View className="top-0 right-0 mt-3 absolute mb-5 mr-3  h-full ">
+                    <Text className="font-notom ">{item1.price}</Text>
+                    <Pressable className="absolute bottom-5 ">
+                      <Ionicons
+                        name="trash-bin-outline"
+                        size={18}
+                        color="red"
+                        onPress={() => removeItemFromcart(item)}
+                      />
+                    </Pressable>
+                  </View>
+                  <View style={styles.line} />
+                </View>
+              </View>
+            ))}
+
+
+          </View>
+        ))}
+        {/* {cart.map((item) => (
           <View key={item.id}>
             <Text className="font-notor text-[15px]">
               {item.restaurantName}
@@ -71,11 +140,11 @@ const CategoryScreen = ({ navigation, route }) => {
               </View>
             </View>
           </View>
-        ))}
+        ))} */}
 
         <View className="flex-row items-center w-full mt-10 justify-center space-x-[280px] ">
           <Text className="font-notom ">ราคา</Text>
-          <Text className="font-notom ">บาท</Text>
+          <Text className="font-notom "> {totalAmount} บาท</Text>
         </View>
         <View className="flex items-center justify-center">
           <Button
@@ -95,7 +164,7 @@ const CategoryScreen = ({ navigation, route }) => {
               fontWeight: "bold",
               color: "black",
             }}
-            // onPress={() => }
+          // onPress={() => }
           />
         </View>
       </ScrollView>
