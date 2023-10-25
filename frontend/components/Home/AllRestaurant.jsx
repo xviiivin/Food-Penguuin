@@ -78,7 +78,7 @@ const AllRestaurant = ({ route, searchText }) => {
     setFilteredData(filteredItems);
   }, [searchText])
 
-  return (
+  return data && (
     <View style={styles.gridContainer}>
       {filteredData.map((item, index) => (
         <TouchableOpacity

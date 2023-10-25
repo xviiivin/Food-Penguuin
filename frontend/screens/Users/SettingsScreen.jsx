@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   SafeAreaView,
   View,
@@ -16,7 +16,7 @@ import { SimpleLineIcons } from '@expo/vector-icons';
 
 
 import firebase from '../../database/firebase';
-import { getUser, getUserInfo } from '../../database/user';
+import { getUser, getUserInfo, logout } from '../../database/user';
 
 const SettingsScreen = () => {
   const navigation = useNavigation();
@@ -41,7 +41,7 @@ const SettingsScreen = () => {
         <View className="flex flex-row justify-center items-center gap-4">
           <Image style={styles.profileImage} className='' source={{ uri: 'https://img.freepik.com/free-vector/big-win-surprise-banner-comic-style_1017-17792.jpg' }} />
           <View className='gap-y-1 w-1/2'>
-            <Text className='font-notob text-lg'>{info && info.firstname + " " + info.lastname }</Text>
+            <Text className='font-notob text-lg'>{info && info.firstname + " " + info.lastname}</Text>
             <Text className='font-notom color-[#A6A6A6] text-md'>{data && data.email}</Text>
             <Pressable onPress={() => {
               navigation.navigate("EditScreen");
@@ -63,10 +63,13 @@ const SettingsScreen = () => {
 
         <TouchableOpacity style={{ marginHorizontal: 30 }} onPress={() => { }}>
           <View style={styles.dis1}>
-            <View style={styles.dis2}>
-              <AntDesign name="logout" size={20} color="#B11E1E" />
-              <Text style={{ marginLeft: 10 }}>ออกจากระบบ</Text>
-            </View>
+            <Pressable onPress={() => { logout(); navigation.navigate("Login")}}>
+
+              <View style={styles.dis2}>
+                <AntDesign name="logout" size={20} color="#B11E1E" />
+                <Text style={{ marginLeft: 10 }}>ออกจากระบบ</Text>
+              </View>
+            </Pressable>
             <AntDesign name="right" size={20} color="black" />
           </View>
         </TouchableOpacity>

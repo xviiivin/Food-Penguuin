@@ -46,7 +46,7 @@ const HomeScreen = ({ navigation }) => {
     }
   };
 
-  return (
+  return test && (
     <SafeAreaView>
       <ScrollView>
         <View style={styles.container}>

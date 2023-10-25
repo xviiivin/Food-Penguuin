@@ -41,7 +41,7 @@ const CarouselCategory = () => {
     }
   };
 
-  return (
+  return data && (
     <ScrollView
       contentContainerStyle={styles.contentContainer}
       horizontal

@@ -1,10 +1,11 @@
 // หน้าหลัก
-import { StyleSheet, Text, View, ScrollView } from 'react-native'
+import { StyleSheet, Text, View, ScrollView, Pressable, Alert } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import Queue from '../../data/Queue.json'
 import { getHistoryRes } from '../../database/history'
-import { getUser } from '../../database/user'
+import { getUser, getUserInfo } from '../../database/user'
 import { getResWithUID } from '../../database/restaurant'
+import firebase from '../../database/firebase'
 const HomeScreen = () => {
   const queue = []
   const [data, setData] = useState()
@@ -15,9 +16,27 @@ const HomeScreen = () => {
     const data1 = await getUser()
     const test = await getResWithUID(data1.uid)
     const data = await getHistoryRes(test[0].name)
+
     setData(data);
-    console.log(data);
   }
+
+  const updateStatus = async (id) => {
+    try {
+      firebase.firestore().collection('history').doc(id).update({
+        status: true
+      });
+      fetch()
+
+      Alert.alert('แจ้งเตือน', "เปลี่ยนสถานะสำเร็จ", [
+        { text: 'ตกลง', onPress: () => console.log('ตกลง') },
+      ]);
+    } catch (err) {
+      Alert.alert('แจ้งเตือน', error.message, [
+        { text: 'ตกลง', onPress: () => console.log('ตกลง') },
+      ]);
+    }
+  }
+
   return data && (
     <ScrollView className='bg-white'>
       <View className='px-10 pt-5 '>
@@ -39,16 +58,18 @@ const HomeScreen = () => {
             <View className=''>
               <Text className='font-notoe color-[#F63C3C] mt-7'>ผู้สั่ง</Text>
               <View className='flex gap-1 mt-2'>
-                <Text className='font-notom'>ชื่อ: {item.Username}</Text>
-                <Text className='font-notom'>อีเมล: {item.Email}</Text>
-                <Text className='font-notom'>เบอร์: {item.phone}</Text>
-                <Text className='font-notom'>ราคา: {item.totalPrice}</Text>
+                <Text className='font-notom'>ชื่อ: {item["tt"]["firstname"] + " " + item["tt"]["lastname"]}</Text>
+                <Text className='font-notom'>ราคา: {item.totalPrice.toLocaleString()}</Text>
               </View>
             </View>
           </View>
-          <View className='bg-[#F6D33C] h-16 justify-center flex items-center rounded-b-xl mb-5'>
-            <Text className='font-notoe text-lg'>สำเร็จ</Text>
-          </View>
+
+          <Pressable onPress={() => updateStatus(item.id)}>
+            <View className='bg-[#F6D33C] h-16 justify-center flex items-center rounded-b-xl mb-5'>
+              <Text className='font-notoe text-lg'>สำเร็จ</Text>
+            </View>
+          </Pressable>
+
         </View>))}
 
 

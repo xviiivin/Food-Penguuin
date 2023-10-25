@@ -10,31 +10,57 @@ import {
   ImageBackground,
   TouchableOpacity,
 } from 'react-native';
+import { getUser } from '../../database/user';
+import { getResWithUIDTrue } from '../../database/history';
 
 const Order = () => {
-  return (
+
+  const [data, setData] = useState()
+
+  useEffect(() => {
+    fetchData()
+  }, [])
+
+  const fetchData = async () => {
+    const data = await getUser()
+    const data1 = await getResWithUIDTrue(data.uid)
+    console.log(data1);
+    setData(data1);
+  }
+  return data && (
     <ScrollView className="bg-white w-full flex-1 p-10">
-      <View className="border-b-[1px] border-[#D9D9D9] mb-2">
-        <TouchableOpacity style={styles.gridItem1}>
-          <View style={styles.picCover1}>
-            <Image
-              className="w-full h-[150px]"
-              source={{
-                uri: 'https://a.cdn-hotels.com/gdcs/production0/d1513/35c1c89e-408c-4449-9abe-f109068f40c0.jpg?impolicy=fcrop&w=800&h=533&q=medium',
-              }}
-            />
-          </View>
-          <View className="">
-            <View className="ml-3 space-y-1 mt-3">
-              <Text className="font-notoe text-[15px]">เบอร์เกอร์</Text>
-              <Text className="font-notom color-[#A3A3A3]">time</Text>
+
+      {data.map((item, i) => (
+        <View key={i}>
+
+          {item.menu.map((item1, i1) => (
+            <View className="border-b-[1px] border-[#D9D9D9] mb-2" key={i1}>
+              <TouchableOpacity style={styles.gridItem1}>
+                <View style={styles.picCover1}>
+                  <Image
+                    className="w-full h-[150px]"
+                    source={{
+                      uri: item1.menu_pic,
+                    }}
+                  />
+                </View>
+                <View className="">
+                  <View className="ml-3 space-y-1 mt-3">
+                    <Text className="font-notoe text-[15px]">{item1.name} x {item1.amount}</Text>
+                    <Text className="font-notom color-[#A3A3A3]">{item1.description}</Text>
+                  </View>
+                </View>
+                <View className="top-0 right-0 mt-1 absolute mb-5 ">
+                  <Text className="font-notom mt-2">{item1.amount * item1.price} ฿</Text>
+                </View>
+              </TouchableOpacity>
             </View>
-          </View>
-          <View className="top-0 right-0 mt-1 absolute mb-5 ">
-            <Text className="font-notom mt-2">2000 ฿</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
+          ))}
+
+        </View>
+      ))}
+
+
     </ScrollView>
   );
 };
