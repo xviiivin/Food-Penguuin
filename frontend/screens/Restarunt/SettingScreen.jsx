@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   SafeAreaView,
   View,
@@ -11,18 +11,33 @@ import {
 } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { getUser, getUserInfo } from '../../database/user';
 
 const SettingScreen = () => {
   const navigation = useNavigation();
+  const [data, setData] = useState(null);
+  const [info, setInfo] = useState(null);
 
-  return (
+  useEffect(() => {
+    test()
+  }, []);
+
+  const test = async () => {
+    const test = await getUser()
+    const test1 = await getUserInfo(test.uid);
+    setData(test)
+    setInfo(test1)
+  }
+
+
+  return info && (
     <ScrollView contentContainerStyle={styles.container}>
       <SafeAreaView>
         <View className="flex flex-row justify-center items-center gap-4">
           <Image style={styles.profileImage} className='' source={{ uri: 'https://img.freepik.com/free-vector/big-win-surprise-banner-comic-style_1017-17792.jpg' }} />
           <View className='gap-y-1 w-1/2'>
-            <Text className='font-notob text-lg'>วิวรรธน์ เหลียงกอบกิจ</Text>
-            <Text className='font-notom color-[#A6A6A6] text-md'>64070232@kmitl.ac.th</Text>
+            <Text className='font-notob text-lg'>{info.firstname + " " + info.lastname}</Text>
+            <Text className='font-notom color-[#A6A6A6] text-md'>{data.email}</Text>
           </View>
         </View>
         <TouchableOpacity style={{ margin: 30 }} onPress={() => { }}>

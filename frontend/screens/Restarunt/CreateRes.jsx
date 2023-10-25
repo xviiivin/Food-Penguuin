@@ -1,5 +1,5 @@
 // สร้างร้านอาหาร
-import { StyleSheet, Text, View, TextInput, ScrollView, Pressable, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput, ScrollView, Pressable, Button, Image, Alert } from 'react-native';
 import React, { useEffect, useState } from 'react';
 
 import SelectDropdown from 'react-native-select-dropdown';
@@ -8,8 +8,11 @@ import CatData from "../../data/CatData.json"
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { getUser } from '../../database/user';
 import * as ImagePicker from 'expo-image-picker';
-
+import firebase from '../../database/firebase';
+import { getResWithUID } from '../../database/restaurant';
+import { useNavigation } from "@react-navigation/native";
 const CreateRes = () => {
+  const navigation = useNavigation();
   const [image, setImage] = useState(null);
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -19,9 +22,10 @@ const CreateRes = () => {
       quality: 1,
     });
 
-    console.log(result);
+    console.log(result.assets[0].uri);
 
     if (!result.canceled) {
+      console.log(result.assets[0]);
       setImage(result.assets[0].uri);
     }
   };
@@ -30,11 +34,18 @@ const CreateRes = () => {
 
   useEffect(() => {
     getdata()
+
   }, [])
 
   const getdata = async () => {
     const data = await getUser()
     setData(data)
+
+
+    const test = await getResWithUID(data.uid)
+    if (test.length === 1) {
+      navigation.navigate("BottomTabbb");
+    }
   }
 
   const addres = async () => {
@@ -42,6 +53,32 @@ const CreateRes = () => {
     console.log(phoneres);
     console.log(selectedres);
     console.log(selectedcate);
+
+    const datexx = new Date().getTime().toString() + ".jpg";
+    const response = await fetch(image);
+    const blob = await response.blob();
+
+    await firebase.storage().ref(`${datexx}`).put(blob);
+
+    const test = await firebase
+      .firestore()
+      .collection("restaurant")
+      .add({
+        useruid: data1.uid,
+        name: nameres,
+        phone: phoneres,
+        food_court: selectedres,
+        type: selectedcate,
+        pic: `https://firebasestorage.googleapis.com/v0/b/fewlnwza007-92ae7.appspot.com/o/${datexx}?alt=media`
+      });
+
+    console.log(test);
+
+    Alert.alert('แจ้งเตือน', "เพิ่มร้านค้าเรียบร้อย", [
+      { text: 'ตกลง', onPress: () => console.log('ตกลง') },
+    ]);
+
+    navigation.navigate("BottomTabbb");
   }
 
   const [nameres, setNameres] = useState("");
@@ -109,7 +146,10 @@ const CreateRes = () => {
         <View>
           <Text className='font-notoe color-[#8C8C8C]'>เลือกรูปร้านค้า</Text>
           <Button title="Pick an image from camera roll" onPress={pickImage} />
+          <View className="mx-auto mt-12">
 
+            {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
+          </View>
         </View>
         <View>
           <Text className='font-notoe color-[#8C8C8C]'>อีเมล</Text>

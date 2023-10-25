@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, TextInput, Image, ScrollView, Pressable, Button } from 'react-native';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as ImagePicker from 'expo-image-picker';
 
 import SelectDropdown from 'react-native-select-dropdown';
@@ -10,6 +10,8 @@ import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { useNavigation } from '@react-navigation/native';
+import { getUser } from '../../database/user';
+import { getResWithUID } from '../../database/restaurant';
 const EditRes = () => {
   const navigation = useNavigation();
   const [nameres, setNameres] = useState("");
@@ -17,6 +19,28 @@ const EditRes = () => {
   const [selectedres, setSelectedres] = React.useState("");
   const [selectedcate, setSelectedcate] = React.useState("");
   const [image, setImage] = useState(null);
+  const [data1, setData1] = useState(null)
+
+  useEffect(() => {
+    getdata()
+
+  }, [])
+
+  const getdata = async () => {
+    const data = await getUser()
+    setData1(data)
+
+    const test = await getResWithUID(data.uid)
+    let da1 = test[0];
+
+    console.log(da1);
+
+    setNameres(da1["name"])
+    setPhoneres(da1["phone"])
+    setSelectedres(da1["food_court"])
+    setSelectedcate(da1["type"])
+  }
+
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -66,6 +90,7 @@ const EditRes = () => {
               onChangeText={((text) => setNameres(text))}
               className="w-full p-2 px-4 bg-[#F3F3F3] rounded-lg"
               maxLength={30}
+              value={nameres}
             />
           </View>
           <View>
@@ -85,6 +110,8 @@ const EditRes = () => {
                 placeholder=' '
                 setSelected={(val) => setSelectedcate(val)}
                 data={cat}
+                defaultValue='อาหารไทย'
+
                 save="value"
                 boxStyles={{ backgroundColor: '#F3F3F3', borderColor: '#F3F3F3' }}
               />
@@ -95,6 +122,7 @@ const EditRes = () => {
             <TextInput
               onChangeText={((text) => setPhoneres(text))}
               inputMode='numeric'
+              value={phoneres}
               className="w-full p-2 px-4 bg-[#F3F3F3] rounded-lg"
               maxLength={30}
             />

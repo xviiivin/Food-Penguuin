@@ -14,11 +14,29 @@ import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { useNavigation } from '@react-navigation/native';
-
+import { getUser } from '../../database/user';
+import { getResWithUID } from '../../database/restaurant';
 const Restarant = () => {
     const navigation = useNavigation();
 
-    return (
+    const [data1, setData1] = useState(null)
+
+    useEffect(() => {
+        getdata()
+
+    }, [])
+
+    const getdata = async () => {
+        const data = await getUser()
+
+        const test = await getResWithUID(data.uid)
+        let da1 = test[0];
+
+        setData1(da1)
+    }
+
+
+    return data1 && (
         <View className='flex-1 bg-white w-full'>
             <View className="flex items-end  p-5">
                 <Pressable onPress={() => {
@@ -29,20 +47,20 @@ const Restarant = () => {
                 </Pressable>
             </View>
             <View>
-                <Image className='w-full h-[150]' source={{ uri: 'https://img.freepik.com/free-vector/big-win-surprise-banner-comic-style_1017-17792.jpg' }} />
+                <Image className='w-full h-[150]' source={{ uri: data1.pic }} />
             </View>
             <View className="my-10 mx-5">
                 <View className="flex flex-row mb-2">
                     <Ionicons name="location" size={20} color="#F6D544" />
-                    <Text className="font-notom ml-2">โรงอาหารคณะเทคโนโลยีสารสนเทศ</Text>
+                    <Text className="font-notom ml-2">{data1.food_court}</Text>
                 </View>
                 <View className="flex flex-row mb-2">
                     <Ionicons name="restaurant" className='ml-2' size={20} color="#F6D544" />
-                    <Text className="font-notom ml-2">อาหารไทย</Text>
+                    <Text className="font-notom ml-2">{data1.type}</Text>
                 </View>
                 <View className="flex flex-row mb-2">
                     <FontAwesome5 name="phone-alt" className='' size={19} color='#F6D544' />
-                    <Text className="font-notom ml-2">0818262922</Text>
+                    <Text className="font-notom ml-2">{data1.phone}</Text>
                 </View>
             </View>
         </View>
@@ -52,5 +70,5 @@ const Restarant = () => {
 export default Restarant
 
 const styles = StyleSheet.create({
-    
+
 })
