@@ -6,27 +6,23 @@ import {
   StyleSheet,
   ScrollView,
   Image,
-  Touchable,
+  TouchableOpacity,
   Pressable,
 } from "react-native";
 import { Button, ButtonGroup, withTheme } from "@rneui/themed";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  PanGestureHandler,
-  TouchableOpacity,
-} from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
 
 import { removeFromCart } from "../../ReduxControl/CartReducer";
 
 const CategoryScreen = ({ navigation, route }) => {
   const cart = useSelector((state) => state.cart.cart);
-  const [data, setData] = useState([])
-  const [totalAmount, setTotalAmount] = useState(0)
+  const [data, setData] = useState([]);
+  const [totalAmount, setTotalAmount] = useState(0);
   useEffect(() => {
     const groupedData = {};
 
-    cart.forEach(item => {
+    cart.forEach((item) => {
       const { restaurantName } = item;
       if (!groupedData[restaurantName]) {
         groupedData[restaurantName] = [];
@@ -34,7 +30,7 @@ const CategoryScreen = ({ navigation, route }) => {
       groupedData[restaurantName].push(item);
     });
 
-    const restaurantArray = Object.keys(groupedData).map(restaurantName => ({
+    const restaurantArray = Object.keys(groupedData).map((restaurantName) => ({
       restaurantName,
       list: groupedData[restaurantName],
     }));
@@ -47,8 +43,7 @@ const CategoryScreen = ({ navigation, route }) => {
     }, 0);
 
     setTotalAmount(totalAmount);
-
-  }, [])
+  }, []);
 
   const dispatch = useDispatch();
   const removeItemFromcart = (item) => {
@@ -58,10 +53,10 @@ const CategoryScreen = ({ navigation, route }) => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
-        <Text className="font-notom text-[16px] mb-3">รายการที่สั่ง 🧑‍🍳</Text>
+        <Text className=" font-notoe text-[17px] ">รายการที่สั่ง 🧑‍🍳</Text>
         {data.map((item, i) => (
           <View key={i}>
-            <Text className="font-notor text-[15px]">
+            <Text className="font-notor text-[15px] ml-2 mt-3 mt-2 font-notom text-[16px]">
               {item.restaurantName}
             </Text>
 
@@ -94,61 +89,20 @@ const CategoryScreen = ({ navigation, route }) => {
                       />
                     </Pressable>
                   </View>
-                  <View style={styles.line} />
                 </View>
               </View>
             ))}
-
-
+            <View style={styles.line} />
           </View>
         ))}
-        {/* {cart.map((item) => (
-          <View key={item.id}>
-            <Text className="font-notor text-[15px]">
-              {item.restaurantName}
-            </Text>
-
-            <View style={styles.cartContainer}>
-              <View key={item.id} style={styles.gridItem1}>
-                <Image
-                  style={styles.picCover1}
-                  source={{
-                    uri: item.menu_pic,
-                  }}
-                />
-                <View className="ml-3 space-y-1 mt-3">
-                  <Text className="font-notoe text-[15px]">
-                    {item.name} x{item.amount}
-                  </Text>
-                  <Text className="font-notom color-[#A3A3A3]">
-                    {item.description}
-                  </Text>
-                </View>
-
-                <View className="top-0 right-0 mt-3 absolute mb-5 mr-3  h-full ">
-                  <Text className="font-notom ">{item.price}</Text>
-                  <Pressable className="absolute bottom-5 ">
-                    <Ionicons
-                      name="trash-bin-outline"
-                      size={18}
-                      color="red"
-                      onPress={() => removeItemFromcart(item)}
-                    />
-                  </Pressable>
-                </View>
-                <View style={styles.line} />
-              </View>
-            </View>
-          </View>
-        ))} */}
 
         <View className="flex-row items-center w-full mt-10 justify-center space-x-[280px] ">
-          <Text className="font-notom ">ราคา</Text>
-          <Text className="font-notom "> {totalAmount} บาท</Text>
+          <Text className=" font-notoe text-[16px]">ราคา</Text>
+          <Text className=" font-notoe text-[16px] "> {totalAmount} บาท</Text>
         </View>
-        <View className="flex items-center justify-center">
+        <View className="flex items-center justify-center ">
           <Button
-            title="เพิ่มลงตะกร้า"
+            title="ยืนยันออเดอร์"
             buttonStyle={{
               backgroundColor: "#F6D544",
               borderWidth: 2,
@@ -164,7 +118,6 @@ const CategoryScreen = ({ navigation, route }) => {
               fontWeight: "bold",
               color: "black",
             }}
-          // onPress={() => }
           />
         </View>
       </ScrollView>
@@ -176,7 +129,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    padding: 20,
+    padding: 10,
+    height: "100%",
   },
   cartContainer: {
     width: "100%",
@@ -208,7 +162,16 @@ const styles = StyleSheet.create({
   line: {
     borderBottomColor: "#E4E4E4",
     borderBottomWidth: 1,
-    marginHorizontal: 0,
+    marginHorizontal: 10,
+    marginVertical: 10,
+  },
+  buttonContainer: {
+    position: "absolute",
+    bottom: 0,
+    width: "100%",
+    alignItems: "center",
+    backgroundColor: "white", // Set the background color of the button container
+    paddingHorizontal: 10,
   },
 });
 

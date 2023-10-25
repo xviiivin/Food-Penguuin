@@ -96,23 +96,27 @@ export default function App() {
               name="RestaurantDetail"
               component={RestaurantDetail}
               options={({ route }) => ({
-                headerTitle: route.params?.name,
+                headerTitleAlign: "center",
+                headerTitle: route.params?.type,
                 headerTitleStyle: {
                   fontFamily: "NotoSansThai_500Medium",
                   fontSize: 20,
                 },
                 headerTitleAlign: "center",
-                headerRight: () => (
-                  <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
-                    <Item
-                      title="resDe"
-                      iconName="cart"
-                      onPress={() => {
-                        // useNavigation().navigate("CartScreen"); // Use useNavigation here
-                      }}
-                    />
-                  </HeaderButtons>
-                ),
+                headerRight: () => {
+                  const navigation = useNavigation();
+                  return (
+                    <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+                      <Item
+                        title="ResDe"
+                        iconName="cart"
+                        onPress={() => {
+                          navigation.navigate("CartScreen");
+                        }}
+                      />
+                    </HeaderButtons>
+                  );
+                },
               })}
             />
             <Stack.Screen
@@ -139,23 +143,26 @@ export default function App() {
               name="OrderScreen"
               component={OrderScreen}
               options={({ route }) => ({
+                headerTitleAlign: "center",
                 headerTitle: route.params?.name,
                 headerTitleStyle: {
                   fontFamily: "NotoSansThai_500Medium",
                   fontSize: 20,
                 },
                 headerTitleAlign: "center",
-                headerRight: () => (
-                  <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
-                    <Item
-                      title="OrScreen"
-                      iconName="cart"
-                      onPress={() => {
-                        // useNavigation().navigate("CartScreen"); // Use useNavigation here
-                      }}
-                    />
-                  </HeaderButtons>
-                ),
+                headerRight: () => {
+                  const navigation = useNavigation();
+                  return (
+                    <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+                      <Item
+                        iconName="cart"
+                        onPress={() => {
+                          navigation.navigate("CartScreen");
+                        }}
+                      />
+                    </HeaderButtons>
+                  );
+                },
               })}
             />
           </Stack.Navigator>
