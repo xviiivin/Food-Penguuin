@@ -7,7 +7,26 @@ import { SelectList } from 'react-native-dropdown-select-list'
 import CatData from "../../data/CatData.json"
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { getUser } from '../../database/user';
+import * as ImagePicker from 'expo-image-picker';
+
 const CreateRes = () => {
+  const [image, setImage] = useState(null);
+
+  const pickImage = async () => {
+    // No permissions request is necessary for launching the image library
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    console.log(result);
+
+    if (!result.canceled) {
+      setImage(result.assets[0].uri);
+    }
+  };
 
   const [data1, setData] = useState(null)
 
@@ -88,6 +107,11 @@ const CreateRes = () => {
             className="w-full p-2 px-4 bg-[#F3F3F3] rounded-lg"
             maxLength={30}
           />
+        </View>
+        <View>
+          <Text className='font-notoe color-[#8C8C8C]'>เลือกรูปร้านค้า</Text>
+          <Button title="Pick an image from camera roll" onPress={pickImage} />
+
         </View>
         <View>
           <Text className='font-notoe color-[#8C8C8C]'>อีเมล</Text>
