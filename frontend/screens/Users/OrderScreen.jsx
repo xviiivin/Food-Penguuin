@@ -34,6 +34,10 @@ const OrderScreen = ({ navigation, route }) => {
     menu_pic: route.params?.menu_pic || "",
     amount: 1,
   });
+  const [text, setText] = useState('');
+  const handleTextChange = (newText) => {
+    setText(newText);
+  };
 
   const cart = useSelector((state) => state.cart.cart);
 
@@ -132,6 +136,7 @@ const OrderScreen = ({ navigation, route }) => {
               <View style={styles.bar}>
                 <TextInput
                   placeholder="เช่น ไม่ใส่ผัก"
+                  onChangeText={handleTextChange} 
                   style={styles.font}
                   maxLength={30}
                   className="overflow-hidden font-notom text-ellipsis ml-5 "
@@ -173,7 +178,12 @@ const OrderScreen = ({ navigation, route }) => {
                 fontWeight: "bold",
                 color: "black",
               }}
-              onPress={() => addDataToCart(data)}
+              onPress={() => {
+                let datares = data;
+                datares["description"] = text;
+                datares["container"] = value;
+                addDataToCart(datares)
+              }}
             />
           </View>
         </View>
