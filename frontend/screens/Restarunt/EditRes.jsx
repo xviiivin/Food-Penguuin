@@ -94,7 +94,7 @@ const EditRes = () => {
       { text: 'ตกลง', onPress: () => console.log('ตกลง') },
     ]);
 
-    navigation.navigate("Restaurant");
+    navigation.goBack();
   }
 
   const res = [
