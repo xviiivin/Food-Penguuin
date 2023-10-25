@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, Image,TextInput } from 'react-native';
-import { ScrollView,  } from 'react-native-gesture-handler';
+import React, { useState, useEffect } from "react";
+import { View, StyleSheet, Image, TextInput } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 const SearchBar = (props) => {
-
   return (
     <View style={styles.container}>
       <View style={styles.bar}>
         <Image
-          source={require('../../assets/Search_alt.png')}
+          source={require("../../assets/Search_alt.png")}
           style={styles.image}
         />
         <TextInput
@@ -26,12 +25,12 @@ const SearchBar = (props) => {
 const styles = StyleSheet.create({
   bar: {
     height: 44,
-    width: 340,
+    width: "100%",
     borderRadius: 15,
-    backgroundColor: 'white',
-    borderColor: '#FEE57B',
+    backgroundColor: "white",
+    borderColor: "#FEE57B",
     borderWidth: 2,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: {
       width: 3,
       height: 5,
@@ -39,12 +38,12 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     elevation: 6,
     shadowRadius: 5,
-    flexDirection: 'row',
+    flexDirection: "row",
   },
   font: {
     fontSize: 14,
     paddingLeft: 10,
-    width: ' 300',
+    width: " 300",
     marginTop: 5,
   },
   container: { marginTop: 15, marginBottom: 15 },
