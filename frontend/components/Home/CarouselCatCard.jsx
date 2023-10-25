@@ -26,12 +26,13 @@ const CarouselCatCard = ({ imgUrl, type }) => {
       style={styles.touch}
       onPress={() => onPressDetail(type)}
       key={type}
+      className="items-center justify-center content-center "
     >
-      <View className="content-center text-center">
+      <View className="flex items-center justify-center content-center text-center">
         <View style={styles.circle}>
           <Image source={{ uri: imgUrl }} style={styles.image} />
         </View>
-        <View>
+        <View className="text-center">
           <Text className="font-notom mt-2 color-[#666666] text-[10]">
             {type}
           </Text>
@@ -46,24 +47,20 @@ const styles = StyleSheet.create({
   circle: {
     width: 62,
     height: 62,
-    marginRight: 25,
+    marginHorizontal: 12,
     borderRadius: 62 / 2,
     justifyContent: "center",
     backgroundColor: "white",
     alignItems: "center",
-    shadowColor: "#000",
+    shadowColor: "#333333",
     shadowOffset: {
-      width: 3,
-      height: 5,
+      width: 2,
+      height: 4,
     },
-    shadowRadius: 3,
-    elevation: 6,
+    shadowOpacity: 0.8,
+    shadowRadius: 4,
+    elevation: 8,
     overflow: "hidden",
-  },
-  touch: {
-    justifyContent: "center",
-    alignContent: "center",
-    alignItems: "center",
   },
 });
 

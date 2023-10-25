@@ -51,12 +51,11 @@ const CategoryScreen = ({ navigation, route }) => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView>
-        {/* <Text className=" font-notoe text-[17px] ">รายการที่สั่ง 🧑‍🍳</Text> */}
+    <SafeAreaView style={styles.container1}>
+      <ScrollView style={styles.container}>
         {data.map((item, i) => (
           <View key={i}>
-            <Text className="font-notor text-[15px] ml-2 mt-3 mt-2 font-notom text-[16px]">
+            <Text className="font-notor text-[15px] ml-2 my-2 font-notom text-[16px]">
               {item.restaurantName}
             </Text>
 
@@ -96,9 +95,9 @@ const CategoryScreen = ({ navigation, route }) => {
           </View>
         ))}
 
-        {cart.length > 0 ? ( // Check if cart is not empty
+        {cart.length > 0 ? (
           <>
-            <View className="flex-row items-center w-full mt-10 justify-center space-x-[280px] ">
+            <View className="flex-row items-center w-full mt-10 justify-between">
               <Text className=" font-notoe text-[16px]">ราคา</Text>
               <Text className=" font-notoe text-[16px] ">
                 {" "}
@@ -120,7 +119,7 @@ const CategoryScreen = ({ navigation, route }) => {
                   marginVertical: 10,
                 }}
                 titleStyle={{
-                  fontWeight: "bold",
+                  fontWeight: 700,
                   color: "black",
                 }}
               />
@@ -144,9 +143,16 @@ const CategoryScreen = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "white",
     padding: 10,
     height: "100%",
+    marginHorizontal: 10,
+  },
+  container1: {
+    flex: 1,
+    backgroundColor: "white",
+    height: "100%",
+    width: "100%",
   },
   cartContainer: {
     width: "100%",
@@ -161,13 +167,14 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 10,
     shadowColor: "#000",
-    shadowOpacity: 0.08,
     shadowOffset: {
       width: 0,
-      height: 20,
+      height: 5,
     },
-    shadowRadius: 10,
-    elevation: 5,
+    shadowOpacity: 0.34,
+    shadowRadius: 6.27,
+
+    elevation: 8,
   },
   picCover1: {
     width: 92,
@@ -186,7 +193,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     width: "100%",
     alignItems: "center",
-    backgroundColor: "white", // Set the background color of the button container
+    backgroundColor: "white",
     paddingHorizontal: 10,
   },
 });
