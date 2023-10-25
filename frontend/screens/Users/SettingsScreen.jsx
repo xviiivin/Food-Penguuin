@@ -16,22 +16,23 @@ import { SimpleLineIcons } from '@expo/vector-icons';
 
 
 import firebase from '../../database/firebase';
+import { getUser, getUserInfo } from '../../database/user';
 
 const SettingsScreen = () => {
   const navigation = useNavigation();
 
-  const [data, setData] = useState({});
+  const [data, setData] = useState(null);
+  const [info, setInfo] = useState(null);
 
   useEffect(() => {
     test()
   }, []);
 
   const test = async () => {
-    const unsubscribe = await firebase.auth().onAuthStateChanged((authenticatedUser) => {
-      setData(authenticatedUser);
-    });
-    console.log(unsubscribe);
-    console.log(data);
+    const test = await getUser()
+    const test1 = await getUserInfo(test.uid);
+    setData(test)
+    setInfo(test1)
   }
 
   return (
@@ -40,8 +41,8 @@ const SettingsScreen = () => {
         <View className="flex flex-row justify-center items-center gap-4">
           <Image style={styles.profileImage} className='' source={{ uri: 'https://img.freepik.com/free-vector/big-win-surprise-banner-comic-style_1017-17792.jpg' }} />
           <View className='gap-y-1 w-1/2'>
-            <Text className='font-notob text-lg'>วิวรรธน์ เหลียงกอบกิจ</Text>
-            <Text className='font-notom color-[#A6A6A6] text-md'>64070232@kmitl.ac.th</Text>
+            <Text className='font-notob text-lg'>{info && info.firstname + " " + info.lastname }</Text>
+            <Text className='font-notom color-[#A6A6A6] text-md'>{data && data.email}</Text>
             <Pressable onPress={() => {
               navigation.navigate("EditScreen");
             }} className='border border-black items-center justify-center flex flex-row bg-[#F6D544] rounded-lg p-2 w-fit '>

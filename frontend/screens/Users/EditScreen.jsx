@@ -1,12 +1,47 @@
-import { StyleSheet, Text, View, Image, TextInput, Button, Pressable } from 'react-native'
-import React, { useState } from 'react'
+import { StyleSheet, Text, View, Image, TextInput, Button, Pressable, Alert } from 'react-native'
+import React, { useState, useEffect } from 'react'
 import { useNavigation } from '@react-navigation/native';
-
+import { getUser, getUserInfo } from '../../database/user';
+import firebase from '../../database/firebase';
 const EditScreen = () => {
     const navigation = useNavigation();
 
-    const [name, setName] = useState('')
-    const [phone, setPhone] = useState('')
+    const [data, setData] = useState(null);
+    const [info, setInfo] = useState(null);
+
+    useEffect(() => {
+        test()
+    }, []);
+
+    const test = async () => {
+        const test = await getUser()
+        const test1 = await getUserInfo(test.uid);
+        setData(test)
+        setInfo(test1)
+        setFirstname(test1.firstname)
+        setLastname(test1.lastname)
+    }
+
+    const changedata = async () => {
+        try {
+            firebase.firestore().collection('users').doc(data.uid).set({
+                firstname: firstName,
+                lastname: lastName,
+                role: info.role
+            });
+
+            Alert.alert('แจ้งเตือน', "แก้ไขข้อมูลสำเร็จ", [
+                { text: 'ตกลง', onPress: () => console.log('ตกลง') },
+            ]);
+        } catch (err) {
+            Alert.alert('แจ้งเตือน', error.message, [
+                { text: 'ตกลง', onPress: () => console.log('ตกลง') },
+            ]);
+        }
+    }
+
+    const [firstName, setFirstname] = useState('')
+    const [lastName, setLastname] = useState('')
     return (
         <View className='flex-1 p-10 bg-white'>
             <View className='flex justify-center items-center'>
@@ -14,25 +49,27 @@ const EditScreen = () => {
             </View>
             <View className='gap-6 mt-2'>
                 <View>
-                    <Text className='font-notoe color-[#8C8C8C]'>ชื่อ-นามสกุล</Text>
+                    <Text className='font-notoe color-[#8C8C8C]'>ชื่อ</Text>
                     <TextInput
-                        onChangeText={((text) => setName(text))}
+                        value={firstName}
+                        onChangeText={((text) => setFirstname(text))}
                         className="w-full p-2 px-4 bg-[#F3F3F3] rounded-lg"
                         maxLength={30}
                     />
                 </View>
                 <View>
-                    <Text className='font-notoe color-[#8C8C8C]'>เบอร์ติดต่อ</Text>
+                    <Text className='font-notoe color-[#8C8C8C]'>นามสกุล</Text>
                     <TextInput
-                        onChangeText={((text) => setPhone(text))}
-                        inputMode='numeric'
+                        value={lastName}
+
+                        onChangeText={((text) => setLastname(text))}
                         className="w-full p-2 px-4 bg-[#F3F3F3] rounded-lg"
                         maxLength={30}
                     />
                 </View>
                 <View>
                     <Text className='font-notoe color-[#8C8C8C]'>อีเมล</Text>
-                    <Text className='font-notob text-lg mt-2'>getค่ามา</Text>
+                    <Text className='font-notob text-lg mt-2'>{data && data.email}</Text>
                 </View>
             </View>
             <View className='flex flex-row w-full items-center justify-center gap-4 mt-14'>
@@ -41,7 +78,9 @@ const EditScreen = () => {
                 }} className='border border-[#F3F3F3] w-1/3 bg-[#F3F3F3] px-4 py-2 rounded-lg justify-center items-center '>
                     <Text className='font-notob'>ยกเลิก</Text>
                 </Pressable>
-                <Pressable className='border border-[#F6D544] w-1/3 bg-[#F6D544] px-4 py-2 rounded-lg justify-center items-center'>
+                <Pressable onPress={() => {
+                    changedata()
+                }} className='border border-[#F6D544] w-1/3 bg-[#F6D544] px-4 py-2 rounded-lg justify-center items-center'>
                     <Text className='font-notob'>ยืนยัน</Text>
                 </Pressable>
             </View>
