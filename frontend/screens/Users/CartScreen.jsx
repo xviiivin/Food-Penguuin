@@ -38,7 +38,7 @@ const CategoryScreen = ({ navigation, route }) => {
     setData(restaurantArray);
 
     const totalAmount = cart.reduce((total, item) => {
-      const totalPrice = item.price * item.amount;
+      const totalPrice = (item.price * item.amount) + (item.container === "ใส่กล่อง" ? 5 * item.amount : 0);
       return total + totalPrice;
     }, 0);
 
