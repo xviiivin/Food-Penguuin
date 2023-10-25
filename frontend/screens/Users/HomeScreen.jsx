@@ -14,10 +14,34 @@ import CarouselCategory from '../../components/Home/CarouselCategory';
 import SearchBar from '../../components/Home/SearchBar';
 import AllRestaurant from '../../components/Home/AllRestaurant';
 import dummyData from '../../data/Data';
-
+import firebase from "./../../database/firebase";
 const HomeScreen = ({ navigation }) => {
   const greetings = ['สวัสดี,', 'สั่งอาหารโปรดของคุณที่นี่ !'];
   const [searchText, setSearchText] = useState('');
+  useEffect(() => {
+    getAllUsers()
+  }, [])
+
+  const getAllUsers = async () => {
+    try {
+      const usersRef = firebase.firestore().collection('restaurant');
+      const snapshot = await usersRef.get();
+      const allUsers = [];
+
+      snapshot.forEach((doc) => {
+        allUsers.push({
+          id: doc.id,
+          ...doc.data(),
+        });
+      });
+
+      console.log(allUsers);
+
+    } catch (error) {
+      console.error('Error getting documents: ', error);
+      return [];
+    }
+  };
   return (
     <SafeAreaView>
       <ScrollView>
@@ -38,7 +62,7 @@ const HomeScreen = ({ navigation }) => {
             <Text style={styles.textcat} className="font-notom my-3">
               ร้านอาหารทั้งหมด
             </Text>
-            <AllRestaurant  searchText={searchText} setSearchText={setSearchText}/>
+            <AllRestaurant searchText={searchText} setSearchText={setSearchText} />
           </View>
         </View>
       </ScrollView>

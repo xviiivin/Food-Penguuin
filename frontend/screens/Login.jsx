@@ -2,6 +2,7 @@ import { StyleSheet, View, Text, Image, Pressable, TouchableOpacity, Platform } 
 import React from 'react';
 import SwitchSelector from 'react-native-switch-selector';
 import { SimpleLineIcons, MaterialCommunityIcons, AntDesign, Ionicons } from '@expo/vector-icons';
+import { signInWithGoogleAsync } from '../database/google';
 
 const Login = () => {
   const options = [
@@ -16,7 +17,7 @@ const Login = () => {
   ];
 
   return (
-    <View className="p-10" style={styles.container}>
+    <View className="p-10 bg-white" style={styles.container}>
       <Image source={require('../assets/Logo.png')} className='w-3/4 h-[40px]' />
       <SwitchSelector
         selectedTextStyle={{ fontFamily: 'NotoSansThai_500Medium' }}
@@ -34,7 +35,7 @@ const Login = () => {
         <MaterialCommunityIcons name='penguin' size={24} color={"#A1A1A1"} />
         <Text className='font-notom color-[#A1A1A1]'>เข้าสู่ระบบด้วย อีเมลมหาลัยกันเลย !!!</Text>
       </View>
-      <TouchableOpacity className='border border-[#A1A1A1] rounded-lg w-3/4 h-12 mt-4 items-center justify-center'>
+      <TouchableOpacity onPress={() => signInWithGoogleAsync()} className='border border-[#A1A1A1] rounded-lg w-3/4 h-12 mt-4 items-center justify-center'>
         <View className='flex flex-row  items-center'>
           <Image
             style={styles.stretch}

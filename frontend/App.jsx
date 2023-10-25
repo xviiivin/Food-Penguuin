@@ -16,6 +16,8 @@ import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import CustomHeaderButton from "../frontend/navigation/CustomHeaderButton";
 import { useNavigation } from "@react-navigation/native";
 
+import Login from "./screens/Login";
+
 const Stack = createNativeStackNavigator();
 import {
   useFonts,
@@ -44,6 +46,16 @@ export default function App() {
       <GestureHandlerRootView style={{ flex: 1 }}>
         <NavigationContainer>
           <Stack.Navigator>
+
+            {/* <Stack.Screen
+              name="Login"
+              component={Login}
+              options={{
+                headerTitle: () => <Header />,
+                headerTitleAlign: "center",
+              }}
+            /> */}
+
             <Stack.Screen
               name="BottomTabbb"
               component={BottomTab}

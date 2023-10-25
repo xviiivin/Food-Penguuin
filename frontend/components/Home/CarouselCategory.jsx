@@ -18,9 +18,7 @@ const CarouselCategory = () => {
       horizontal
       showsHorizontalScrollIndicator={false}
     >
-      {CatData.map((item, index) => (
-        <CarouselCatCard key={index} imgUrl={item.imgURL} type={item.type} />
-      ))}
+    
     </ScrollView>
   );
 };
