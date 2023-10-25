@@ -1,10 +1,13 @@
-import { StyleSheet, View, Text, Image, Pressable, TouchableOpacity, Platform } from 'react-native';
+import { StyleSheet, View, Text, Image, Pressable, TouchableOpacity, Platform, TextInput } from 'react-native';
 import React from 'react';
 import SwitchSelector from 'react-native-switch-selector';
 import { SimpleLineIcons, MaterialCommunityIcons, AntDesign, Ionicons } from '@expo/vector-icons';
 import { signInWithGoogleAsync } from '../database/google';
+import { useNavigation } from "@react-navigation/native";
 
 const Login = () => {
+  const navigation = useNavigation();
+
   const options = [
     {
       label: 'สมาชิกทั่วไป',
@@ -31,19 +34,27 @@ const Login = () => {
         initial={0}
         onPress={(value) => console.log(`Call onPress with value: ${value}`)}
       />
-      <View className='flex flex-row  items-center mt-32'>
-        <MaterialCommunityIcons name='penguin' size={24} color={"#A1A1A1"} />
-        <Text className='font-notom color-[#A1A1A1]'>เข้าสู่ระบบด้วย อีเมลมหาลัยกันเลย !!!</Text>
-      </View>
-      <TouchableOpacity onPress={() => signInWithGoogleAsync()} className='border border-[#A1A1A1] rounded-lg w-3/4 h-12 mt-4 items-center justify-center'>
-        <View className='flex flex-row  items-center'>
-          <Image
-            style={styles.stretch}
-            source={require('../assets/google-icon-2048x2048-czn3g8x8.png')}
-          />
-          <Text className='font-notom color-[#A1A1A1]'> Continue with Google</Text>
-        </View>
+      <TextInput
+        className='border border-[#A1A1A1] mt-12 rounded-lg w-full h-12 items-center justify-center p-4' placeholder='email'
+      />
+      <TextInput
+        className='border border-[#A1A1A1] mt-4 rounded-lg w-full h-12 items-center justify-center p-4' placeholder='password'
+      />
+
+      <TouchableOpacity onPress={() => {
+        navigation.navigate("BottomTabbb");
+      }} className=' bg-[#F6D33C] p-2 w-3/4 rounded-lg mt-12 flex justify-center items-center'>
+        <Text>Login</Text>
       </TouchableOpacity>
+      <View className='flex flex-row  items-center mt-8'>
+        <MaterialCommunityIcons name='penguin' size={24} color={"#A1A1A1"} />
+        <Text className='font-notom color-[#A1A1A1]'>ยังไม่มีบัญชี </Text>
+
+        <TouchableOpacity onPress={() => {
+          navigation.navigate("RegisterRes");
+        }}>
+          <Text className='font-notom underline'>สมัครกันเลย !!!</Text></TouchableOpacity>
+      </View>
 
     </View>
   );

@@ -15,7 +15,6 @@ import { Provider } from "react-redux";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import CustomHeaderButton from "../frontend/navigation/CustomHeaderButton";
 import { useNavigation } from "@react-navigation/native";
-
 import Login from "./screens/Login";
 
 const Stack = createNativeStackNavigator();
@@ -28,7 +27,8 @@ import {
 } from "@expo-google-fonts/noto-sans-thai";
 import Contact from "./screens/Users/Contact";
 import Store from "./ReduxControl/Store";
-
+import RegisterRes from "./screens/RegisterRes";
+import RegisterUser from "./screens/RegisterUser";
 export default function App() {
   const [fontsLoaded] = useFonts({
     NotoSansThai_500Medium,
@@ -46,20 +46,43 @@ export default function App() {
       <GestureHandlerRootView style={{ flex: 1 }}>
         <NavigationContainer>
           <Stack.Navigator>
-            {/* 
+
+            <Stack.Screen
+              name="RegisterRes"
+              component={RegisterRes}
+
+              options={{
+                headerShown: false,
+                headerTitle: "สมัครสมาชิกของร้านอาหาร",
+                headerTitleAlign: "center",
+              }}
+            />
+            <Stack.Screen
+              name="RegisterUser"
+              component={RegisterUser}
+              options={{
+                headerShown: false,
+                headerTitle: "สมัครสมาชิก",
+                headerTitleAlign: "center",
+              }}
+            />
+
             <Stack.Screen
               name="Login"
               component={Login}
               options={{
+                headerShown: false,
                 headerTitle: () => <Header />,
                 headerTitleAlign: "center",
               }}
-            /> */}
+            />
 
             <Stack.Screen
               name="BottomTabbb"
               component={BottomTab}
               options={{
+                headerLeft: null,
+               headerBackVisible: false,
                 headerTitle: () => <Header />,
                 headerTitleAlign: "center",
               }}
