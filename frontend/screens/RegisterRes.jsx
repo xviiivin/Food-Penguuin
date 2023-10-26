@@ -44,6 +44,7 @@ const RegisterRes = () => {
                     firstname: firstName,
                     lastname: lastName,
                     role: role,
+                    pic: "https://img.freepik.com/free-vector/big-win-surprise-banner-comic-style_1017-17792.jpg"
                 });
 
                 Alert.alert('แจ้งเตือน', 'สมัครผู้ใช้สำเร็จ', [

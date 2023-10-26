@@ -48,7 +48,7 @@ const SettingsScreen = () => {
     <ScrollView contentContainerStyle={styles.container}>
       <SafeAreaView>
         <View className="flex flex-row justify-center items-center gap-4">
-          <Image style={styles.profileImage} className='' source={{ uri: 'https://img.freepik.com/free-vector/big-win-surprise-banner-comic-style_1017-17792.jpg' }} />
+          <Image style={styles.profileImage} className='' source={{ uri: info.pic }} />
           <View className='gap-y-1 w-1/2'>
             <Text className='font-notob text-lg'>{info && info.firstname + " " + info.lastname}</Text>
             <Text className='font-notom color-[#A6A6A6] text-md'>{data && data.email}</Text>

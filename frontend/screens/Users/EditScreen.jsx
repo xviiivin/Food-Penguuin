@@ -12,11 +12,13 @@ import React, { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { getUser, getUserInfo } from "../../database/user";
 import firebase from "../../database/firebase";
+import * as ImagePicker from 'expo-image-picker';
 const EditScreen = () => {
   const navigation = useNavigation();
 
   const [data, setData] = useState(null);
   const [info, setInfo] = useState(null);
+  const [image, setImage] = useState(null);
 
   useEffect(() => {
     test();
@@ -29,14 +31,41 @@ const EditScreen = () => {
     setInfo(test1);
     setFirstname(test1.firstname);
     setLastname(test1.lastname);
+    setImage(test1.pic)
+  };
+
+
+  const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    console.log(result);
+
+    if (!result.canceled) {
+      setImage(result.assets[0].uri);
+    }
   };
 
   const changedata = async () => {
     try {
+
+
+      const datexx = new Date().getTime().toString() + ".jpg";
+      const response = await fetch(image);
+      const blob = await response.blob();
+
+      await firebase.storage().ref(`${datexx}`).put(blob);
+
+
       firebase.firestore().collection("users").doc(data.uid).set({
         firstname: firstName,
         lastname: lastName,
         role: info.role,
+        pic: `https://firebasestorage.googleapis.com/v0/b/fewlnwza007-92ae7.appspot.com/o/${datexx}?alt=media`
       });
 
       Alert.alert("แจ้งเตือน", "แก้ไขข้อมูลสำเร็จ", [
@@ -58,7 +87,7 @@ const EditScreen = () => {
           style={styles.profileImage}
           className=""
           source={{
-            uri: "https://img.freepik.com/free-vector/big-win-surprise-banner-comic-style_1017-17792.jpg",
+            uri: image,
           }}
         />
       </View>
@@ -80,6 +109,10 @@ const EditScreen = () => {
             className="w-full p-2 px-4 bg-[#F3F3F3] rounded-lg"
             maxLength={30}
           />
+        </View>
+        <View>
+          <Text className='font-notoe color-[#8C8C8C]'>รูปภาพ</Text>
+          <Button title="Pick an image from camera roll" onPress={pickImage} />
         </View>
         <View>
           <Text className="font-notoe color-[#8C8C8C]">อีเมล</Text>
