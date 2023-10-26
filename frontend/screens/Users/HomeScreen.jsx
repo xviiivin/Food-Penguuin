@@ -27,7 +27,7 @@ const HomeScreen = ({ navigation }) => {
 
   const getAllData = async () => {
     try {
-      const usersRef = firebase.firestore().collection('restaurant');
+      const usersRef = firebase.firestore().collection('restaurant').where("status", '==', 1);
       const snapshot = await usersRef.get();
       const allUsers = [];
 
