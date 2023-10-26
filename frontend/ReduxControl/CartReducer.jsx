@@ -4,6 +4,7 @@ export const cartSlice = createSlice({
   name: "cart",
   initialState: {
     cart: [],
+    intervalid: null,
   },
   reducers: {
     addToCart: (state, action) => {
@@ -27,6 +28,12 @@ export const cartSlice = createSlice({
           amount: action.payload.amount,
         });
       }
+    },
+    intervalSet: (state, action) => {
+      return {
+        ...state,
+        intervalid: action.payload,
+      };
     },
     removeFromCart: (state, action) => {
       const removeFromCartIndex = state.cart.findIndex(
@@ -76,6 +83,7 @@ export const {
   removeFromCart,
   removeAllFromCart,
   incrementQuantity,
+  intervalSet,
   decrementQuantity,
 } = cartSlice.actions;
 

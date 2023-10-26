@@ -11,12 +11,13 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { SimpleLineIcons } from '@expo/vector-icons';
 
 
 import firebase from '../../database/firebase';
 import { getUser, getUserInfo, logout } from '../../database/user';
+import { useSelector } from 'react-redux';
 
 const SettingsScreen = () => {
   const navigation = useNavigation();
@@ -24,15 +25,23 @@ const SettingsScreen = () => {
   const [data, setData] = useState(null);
   const [info, setInfo] = useState(null);
 
-  useEffect(() => {
-    test()
-  }, []);
+  
+  useFocusEffect(
+    React.useCallback(() => {
+      test()
+
+      return () => console.log("unmou");
+    }, [])
+  );
+
 
   const test = async () => {
     const test = await getUser()
     const test1 = await getUserInfo(test.uid);
     setData(test)
     setInfo(test1)
+    console.log(test1);
+    console.log("fewtest");
   }
 
   return (
@@ -63,7 +72,7 @@ const SettingsScreen = () => {
 
         <TouchableOpacity style={{ marginHorizontal: 30 }} onPress={() => { }}>
           <View style={styles.dis1}>
-            <Pressable onPress={() => { logout(); navigation.navigate("Login")}}>
+            <Pressable onPress={() => { logout(); navigation.push("Login")}}>
 
               <View style={styles.dis2}>
                 <AntDesign name="logout" size={20} color="#B11E1E" />

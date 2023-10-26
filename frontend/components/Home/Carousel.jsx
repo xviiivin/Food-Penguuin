@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text, StyleSheet, Dimensions, FlatList, Animated } from 'react-native'
 import CarouselItem from './CarouselItem'
+import { useDispatch } from 'react-redux'
+import { intervalSet } from '../../ReduxControl/CartReducer'
 
 
 const { width, heigth } = Dimensions.get('window')
@@ -9,7 +11,7 @@ function infiniteScroll(dataList) {
     const numberOfData = dataList.length
     let scrollValue = 0, scrolled = 0
 
-    setInterval(function () {
+   const intervalid = setInterval(function () {
         scrolled++
         if (scrolled < numberOfData)
             scrollValue = scrollValue + width
@@ -18,10 +20,10 @@ function infiniteScroll(dataList) {
             scrollValue = 0
             scrolled = 0
         }
-
         this.flatList.scrollToOffset({ animated: true, offset: scrollValue })
-
     }, 3000)
+
+    return intervalid;
 }
 
 
@@ -29,10 +31,12 @@ const Carousel = ({ data }) => {
     const scrollX = new Animated.Value(0)
     let position = Animated.divide(scrollX, width)
     const [dataList, setDataList] = useState(data)
+    const dispatch = useDispatch();
 
     useEffect(() => {
         setDataList(data)
-        infiniteScroll(dataList)
+       const intervalid = infiniteScroll(dataList)
+       dispatch(intervalSet(intervalid))
     })
 
 

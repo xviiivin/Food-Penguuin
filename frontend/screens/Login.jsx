@@ -44,11 +44,10 @@ const Login = () => {
 
       const data = await getUserInfo(test.user.uid);
 
-
       if (data.role === "restarunt") {
         navigation.navigate("CreateRes");
       } else {
-        navigation.navigate("BottomTabbb");
+        navigation.push("BottomTabbb");
       }
 
       

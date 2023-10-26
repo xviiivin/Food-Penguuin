@@ -16,6 +16,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import Restaurant from "../screens/Restarunt/Restaurant";
 import EditRes from "../screens/Restarunt/EditRes";
 import { getUser, getUserInfo } from "../database/user";
+import { useFocusEffect } from "@react-navigation/native";
 const Tab = createBottomTabNavigator();
 const screenOption = {
   tabBarHideOnKeyboard: true,
@@ -38,9 +39,14 @@ const BottomTab = () => {
   const [data, setData] = useState(null);
   const [info, setInfo] = useState(null);
 
-  useEffect(() => {
-    test()
-  }, []);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      test()
+
+      return () => console.log("unmou");
+    }, [])
+  );
 
   const test = async () => {
     const test = await getUser()
@@ -135,60 +141,8 @@ const BottomTab = () => {
 
 
     // admin
-    // <Tab.Navigator screenOptions={screenOption}>
-    //   <Tab.Screen
-    //     name="AdminHome"
-    //     component={AdminHome}
-    //     options={{
-    //       tabBarLabel: ({ focused }) => (
-    //         <Text
-    //           style={[
-    //             tabLabelStyle,
-    //             { color: focused ? "#F6D33C" : "#202020" },
-    //           ]}
-    //         >
-    //           หน้าหลัก
-    //         </Text>
-    //       ),
-    //       tabBarIcon: ({ focused }) => {
-    //         return (
-    //           <Ionicons
-    //             name={"home"}
-    //             size={24}
-    //             color={focused ? "#F6D33C" : "#202020"}
-    //           />
-    //         );
-    //       },
-    //     }}
-    //   />
-    //   <Tab.Screen
-    //     name="UserSettings"
-    //     component={AdminSetting}
-    //     options={{
-    //       tabBarLabel: ({ focused }) => (
-    //         <Text
-    //           style={[
-    //             tabLabelStyle,
-    //             { color: focused ? "#F6D33C" : "#202020" },
-    //           ]}
-    //         >
-    //           ข้อมูลผู้ใช้
-    //         </Text>
-    //       ),
-    //       tabBarIcon: ({ focused }) => {
-    //         return (
-    //           <Ionicons
-    //             name={"person"}
-    //             size={24}
-    //             color={focused ? "#F6D33C" : "#202020"}
-    //           />
-    //         );
-    //       },
-    //     }}
-    //     s
-    //   />
-    // </Tab.Navigator>
-  ) : (
+
+  ) : info && info.role === "restarunt" ? (
 
     <Tab.Navigator screenOptions={screenOption}>
       <Tab.Screen
@@ -266,6 +220,60 @@ const BottomTab = () => {
             );
           },
         }}
+      />
+    </Tab.Navigator>
+  ) : (
+    <Tab.Navigator screenOptions={screenOption}>
+      <Tab.Screen
+        name="AdminHome"
+        component={AdminHome}
+        options={{
+          tabBarLabel: ({ focused }) => (
+            <Text
+              style={[
+                tabLabelStyle,
+                { color: focused ? "#F6D33C" : "#202020" },
+              ]}
+            >
+              หน้าหลัก
+            </Text>
+          ),
+          tabBarIcon: ({ focused }) => {
+            return (
+              <Ionicons
+                name={"home"}
+                size={24}
+                color={focused ? "#F6D33C" : "#202020"}
+              />
+            );
+          },
+        }}
+      />
+      <Tab.Screen
+        name="UserSettings"
+        component={AdminSetting}
+        options={{
+          tabBarLabel: ({ focused }) => (
+            <Text
+              style={[
+                tabLabelStyle,
+                { color: focused ? "#F6D33C" : "#202020" },
+              ]}
+            >
+              ข้อมูลผู้ใช้
+            </Text>
+          ),
+          tabBarIcon: ({ focused }) => {
+            return (
+              <Ionicons
+                name={"person"}
+                size={24}
+                color={focused ? "#F6D33C" : "#202020"}
+              />
+            );
+          },
+        }}
+        s
       />
     </Tab.Navigator>
   );
