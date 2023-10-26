@@ -90,7 +90,7 @@ const RestaurantDetail = ({ navigation, route }) => {
               <Text className="font-notoe ml-2">{route.params.phone}</Text>
             </View>
             <View className="px-4 justify-center rounded-lg  bg-[#F6D544]">
-              <Text className="font-notoe ">{route.params.queue}</Text>
+              <Text className="font-notoe ">ก่อนหน้า {route.params.queue} คิว</Text>
             </View>
           </View>
         </View>

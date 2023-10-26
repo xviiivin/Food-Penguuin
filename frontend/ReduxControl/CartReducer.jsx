@@ -23,6 +23,7 @@ export const cartSlice = createSlice({
           name: action.payload.name,
           description: action.payload.description,
           price: action.payload.price,
+          container: action.payload.container,
           menu_pic: action.payload.menu_pic,
           est_time: action.payload.est_time.split(" ")[0],
           amount: action.payload.amount,

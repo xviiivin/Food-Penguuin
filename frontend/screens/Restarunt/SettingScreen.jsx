@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { getUser, getUserInfo } from '../../database/user';
+import { getUser, getUserInfo, logout } from '../../database/user';
 
 const SettingScreen = () => {
   const navigation = useNavigation();
@@ -40,7 +40,7 @@ const SettingScreen = () => {
             <Text className='font-notom color-[#A6A6A6] text-md'>{data.email}</Text>
           </View>
         </View>
-        <TouchableOpacity style={{ margin: 30 }} onPress={() => { }}>
+        <TouchableOpacity style={{ margin: 30 }} onPress={() => { logout(); navigation.push("Login")}}>
           <View style={styles.dis1}>
             <View style={styles.dis2}>
               <AntDesign name="logout" size={20} color="#B11E1E" />

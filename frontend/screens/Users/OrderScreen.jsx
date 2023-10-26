@@ -27,7 +27,7 @@ const OrderScreen = ({ navigation, route }) => {
     restaurantName: route.params?.restaurantName || "",
     id: route.params?.id || "",
     name: route.params?.name || "",
-    description: route.params?.description || "",
+    description1: route.params?.description || "",
     price: route.params?.price || "",
     type: route.params?.type || "",
     est_time: route.params?.est_time || "",
@@ -78,7 +78,7 @@ const OrderScreen = ({ navigation, route }) => {
             <View className="space-y-2">
               <Text className="font-notob text-[16px]">{data.name}</Text>
               <Text className="font-notoe ml-3 text-[#A3A3A3]">
-                {data.description}
+                {data.description1}
               </Text>
             </View>
             <View className="justify-end space-y-2">

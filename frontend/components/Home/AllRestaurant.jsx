@@ -14,6 +14,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 import RestaurantData from '../../data/RestaurantData.json';
 import firebase from '../../database/firebase';
+import { getGetGet } from '../../database/history';
 const AllRestaurant = ({ route, searchText }) => {
   const navigation = useNavigation();
   const onPressDetail = (
@@ -38,12 +39,12 @@ const AllRestaurant = ({ route, searchText }) => {
     });
     console.log(food_court); // Log the menu array
   };
-  
+
   const [data, setData] = useState([])
   const [filteredData, setFilteredData] = useState([]);
 
   const handleSearch = () => {
-  
+
   };
 
   useEffect(() => {
@@ -56,16 +57,19 @@ const AllRestaurant = ({ route, searchText }) => {
       const snapshot = await usersRef.get();
       const allUsers = [];
 
-      snapshot.forEach((doc) => {
+      const promises = snapshot.docs.map(async (doc) => {
+        const datf = doc.data();
+        const test = await getGetGet(datf.name)
         allUsers.push({
           id: doc.id,
+          queue: test.length,
           ...doc.data(),
         });
       });
+      await Promise.all(promises);
 
       setData(allUsers);
       setFilteredData(allUsers);
-
     } catch (error) {
       console.error('Error getting documents: ', error);
       return [];
@@ -102,7 +106,7 @@ const AllRestaurant = ({ route, searchText }) => {
           </View>
           <Text className="font-notob  text-[16px]">{item.name}</Text>
           <Text className="font-notor color-[#A3A3A3]">
-            {item.type} • {item.queue}
+            {item.type} • {item.queue} คิว
           </Text>
         </TouchableOpacity>
       ))}

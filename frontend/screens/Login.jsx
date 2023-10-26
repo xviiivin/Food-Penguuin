@@ -45,7 +45,7 @@ const Login = () => {
       const data = await getUserInfo(test.user.uid);
 
       if (data.role === "restarunt") {
-        navigation.navigate("CreateRes");
+        navigation.push("CreateRes");
       } else {
         navigation.push("BottomTabbb");
       }

@@ -14,6 +14,7 @@ import CategoryGrid from "../../components/Category/CategoryGrid";
 import RestaurantData from "../../data/RestaurantData.json";
 import { useRoute } from "@react-navigation/native";
 import firebase from "../../database/firebase";
+import { getGetGet } from "../../database/history";
 
 const CategoryScreen = ({ navigation, route }) => {
   const [data, setData] = useState([]);
@@ -33,15 +34,18 @@ const CategoryScreen = ({ navigation, route }) => {
       const snapshot = await usersRef.get();
       const allUsers = [];
 
-      snapshot.forEach((doc) => {
+      const promises = snapshot.docs.map(async (doc) => {
         if (doc.data().type === route.params.type) {
-
+          const datf = doc.data();
+          const test = await getGetGet(datf.name)
           allUsers.push({
             id: doc.id,
+            queue: test.length,
             ...doc.data(),
           });
         }
       });
+      await Promise.all(promises);
       
       setData(allUsers);
 
@@ -75,7 +79,7 @@ const CategoryScreen = ({ navigation, route }) => {
                     {item.name}
                   </Text>
                   <Text className="font-notor">
-                    {item.type} • 100 คิว
+                    {item.type} • {item.queue} คิว
                   </Text>
                 </View>
               </TouchableOpacity>
