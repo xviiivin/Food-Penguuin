@@ -31,10 +31,10 @@ const Order = () => {
     <ScrollView className="bg-white w-full flex-1 p-10">
 
       {data.map((item, i) => (
-        <View key={i}>
+        <View key={item}>
 
           {item.menu.map((item1, i1) => (
-            <View className="border-b-[1px] border-[#D9D9D9] mb-2" key={i1}>
+            <View className="border-b-[1px] border-[#D9D9D9] mb-2" key={item1}>
               <TouchableOpacity style={styles.gridItem1}>
                 <View style={styles.picCover1}>
                   <Image

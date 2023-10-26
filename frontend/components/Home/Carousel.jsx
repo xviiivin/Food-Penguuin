@@ -11,7 +11,6 @@ function infiniteScroll(dataList) {
 
     const intervalid = setInterval(function () {
         if (this.flatList) {
-            console.log(this.flatList, "few");
             scrolled++
             if (scrolled < numberOfData)
                 scrollValue = scrollValue + width
@@ -20,7 +19,6 @@ function infiniteScroll(dataList) {
                 scrollValue = 0
                 scrolled = 0
             }
-            console.log("test");
             this.flatList.scrollToOffset({ animated: true, offset: scrollValue })
         }
     }, 3000)
