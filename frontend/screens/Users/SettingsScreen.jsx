@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from "react";
 import {
   SafeAreaView,
   View,
@@ -7,17 +7,17 @@ import {
   ScrollView,
   Image,
   Button,
-  TouchableOpacity, Pressable
-} from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { AntDesign } from '@expo/vector-icons';
-import { useFocusEffect, useNavigation } from '@react-navigation/native';
-import { SimpleLineIcons } from '@expo/vector-icons';
+  TouchableOpacity,
+  Pressable,
+} from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import { SimpleLineIcons } from "@expo/vector-icons";
 
-
-import firebase from '../../database/firebase';
-import { getUser, getUserInfo, logout } from '../../database/user';
-import { useSelector } from 'react-redux';
+import firebase from "../../database/firebase";
+import { getUser, getUserInfo, logout } from "../../database/user";
+import { useSelector } from "react-redux";
 
 const SettingsScreen = () => {
   const navigation = useNavigation();
@@ -25,42 +25,61 @@ const SettingsScreen = () => {
   const [data, setData] = useState(null);
   const [info, setInfo] = useState(null);
 
-  
   useFocusEffect(
-    React.useCallback(() => {
-      test()
+    useCallback(() => {
+      test();
 
       return () => console.log("unmou");
     }, [])
   );
 
-
   const test = async () => {
-    const test = await getUser()
+    const test = await getUser();
     const test1 = await getUserInfo(test.uid);
-    setData(test)
-    setInfo(test1)
+    setData(test);
+    setInfo(test1);
     console.log(test1);
     console.log("fewtest");
-  }
+  };
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <SafeAreaView>
         <View className="flex flex-row justify-center items-center gap-4">
-          <Image style={styles.profileImage} className='' source={{ uri: info.pic }} />
-          <View className='gap-y-1 w-1/2'>
-            <Text className='font-notob text-lg'>{info && info.firstname + " " + info.lastname}</Text>
-            <Text className='font-notom color-[#A6A6A6] text-md'>{data && data.email}</Text>
-            <Pressable onPress={() => {
-              navigation.navigate("EditScreen");
-            }} className='border border-black items-center justify-center flex flex-row bg-[#F6D544] rounded-lg p-2 w-fit '>
-              <Text className='font-notom'>เเก้ไขบัญชี</Text>
+          <Text>
+            {info && (
+              <Image
+                style={styles.profileImage}
+                className=""
+                source={{ uri: info.pic }}
+              />
+            )}
+          </Text>
+          {/*  */}
+          <View className="gap-y-1 w-1/2">
+            <Text className="font-notob text-lg">
+              {info && info.firstname + " " + info.lastname}
+            </Text>
+            <Text className="font-notom color-[#A6A6A6] text-md">
+              {data && data.email}
+            </Text>
+            <Pressable
+              onPress={() => {
+                navigation.navigate("EditScreen");
+              }}
+              className="border border-black items-center justify-center flex flex-row bg-[#F6D544] rounded-lg p-2 w-fit "
+            >
+              <Text className="font-notom">เเก้ไขบัญชี</Text>
               <AntDesign name="edit" size={20} color="black" />
             </Pressable>
           </View>
         </View>
-        <TouchableOpacity style={{ margin: 30 }} onPress={() => { navigation.navigate("Contact") }}>
+        <TouchableOpacity
+          style={{ margin: 30 }}
+          onPress={() => {
+            navigation.navigate("Contact");
+          }}
+        >
           <View style={styles.dis1}>
             <View style={styles.dis2}>
               <AntDesign name="customerservice" size={24} color="black" />
@@ -70,10 +89,14 @@ const SettingsScreen = () => {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity style={{ marginHorizontal: 30 }} onPress={() => { }}>
+        <TouchableOpacity style={{ marginHorizontal: 30 }} onPress={() => {}}>
           <View style={styles.dis1}>
-            <Pressable onPress={() => { logout(); navigation.push("Login")}}>
-
+            <Pressable
+              onPress={() => {
+                logout();
+                navigation.push("Login");
+              }}
+            >
               <View style={styles.dis2}>
                 <AntDesign name="logout" size={20} color="#B11E1E" />
                 <Text style={{ marginLeft: 10 }}>ออกจากระบบ</Text>
@@ -90,33 +113,38 @@ const SettingsScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     padding: 20,
   },
   dis: {
-    flexDirection: 'row',
+    flexDirection: "row",
     marginTop: 30,
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    alignItems: "center",
+    justifyContent: "space-between",
     marginBottom: 20,
   },
   dis1: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
   },
   dis2: {
-    flexDirection: 'row',
+    flexDirection: "row",
   },
   logo: {
-    alignSelf: 'center',
+    alignSelf: "center",
     marginLeft: 100,
   },
   icon: {
     marginRight: 10,
   },
-  profileImage:
-    { width: 100, height: 100, backgroundColor: "#ED8085", borderRadius: 50, marginBottom: 10, },
+  profileImage: {
+    width: 100,
+    height: 100,
+    backgroundColor: "#ED8085",
+    borderRadius: 50,
+    marginBottom: 10,
+  },
 });
 
 export default SettingsScreen;

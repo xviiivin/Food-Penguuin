@@ -12,7 +12,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { getUser, getUserInfo } from "../../database/user";
 import firebase from "../../database/firebase";
-import * as ImagePicker from 'expo-image-picker';
+import * as ImagePicker from "expo-image-picker";
 const EditScreen = () => {
   const navigation = useNavigation();
 
@@ -31,9 +31,8 @@ const EditScreen = () => {
     setInfo(test1);
     setFirstname(test1.firstname);
     setLastname(test1.lastname);
-    setImage(test1.pic)
+    setImage(test1.pic);
   };
-
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -52,21 +51,22 @@ const EditScreen = () => {
 
   const changedata = async () => {
     try {
-
-
       const datexx = new Date().getTime().toString() + ".jpg";
       const response = await fetch(image);
       const blob = await response.blob();
 
       await firebase.storage().ref(`${datexx}`).put(blob);
 
-
-      firebase.firestore().collection("users").doc(data.uid).set({
-        firstname: firstName,
-        lastname: lastName,
-        role: info.role,
-        pic: `https://firebasestorage.googleapis.com/v0/b/fewlnwza007-92ae7.appspot.com/o/${datexx}?alt=media`
-      });
+      firebase
+        .firestore()
+        .collection("users")
+        .doc(data.uid)
+        .set({
+          firstname: firstName,
+          lastname: lastName,
+          role: info.role,
+          pic: `https://firebasestorage.googleapis.com/v0/b/fewlnwza007-92ae7.appspot.com/o/${datexx}?alt=media`,
+        });
 
       Alert.alert("แจ้งเตือน", "แก้ไขข้อมูลสำเร็จ", [
         { text: "ตกลง", onPress: () => console.log("ตกลง") },
@@ -111,8 +111,12 @@ const EditScreen = () => {
           />
         </View>
         <View>
-          <Text className='font-notoe color-[#8C8C8C]'>รูปภาพ</Text>
-          <Button title="Pick an image from camera roll" onPress={pickImage} />
+          <Text className="font-notoe color-[#8C8C8C]">รูปภาพ</Text>
+          <Button
+            title="Pick an image from camera roll"
+            color="#F6D544"
+            onPress={pickImage}
+          />
         </View>
         <View>
           <Text className="font-notoe color-[#8C8C8C]">อีเมล</Text>

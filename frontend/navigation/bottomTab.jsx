@@ -1,11 +1,11 @@
 import { View, Text } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../screens/Users/HomeScreen";
 import SettingsScreen from "../screens/Users/SettingsScreen";
 import SettingsScreenRes from "../screens/Restarunt/SettingScreen";
-import AdminHome from "../screens/Admin/HomeScreen"
-import AdminSetting from "../screens/Admin/SettingScreen"
+import AdminHome from "../screens/Admin/HomeScreen";
+import AdminSetting from "../screens/Admin/SettingScreen";
 
 import CreateRes from "../screens/Restarunt/CreateRes";
 import ResHomeScreen from "../screens/Restarunt/HomeScreen";
@@ -35,25 +35,23 @@ const tabLabelStyle = {
 };
 
 const BottomTab = () => {
-
   const [data, setData] = useState(null);
   const [info, setInfo] = useState(null);
 
-
   useFocusEffect(
-    React.useCallback(() => {
-      test()
+    useCallback(() => {
+      test();
 
       return () => console.log("unmou");
     }, [])
   );
 
   const test = async () => {
-    const test = await getUser()
+    const test = await getUser();
     const test1 = await getUserInfo(test.uid);
-    setData(test)
-    setInfo(test1)
-  }
+    setData(test);
+    setInfo(test1);
+  };
 
   return info && info.role === "user" ? (
     // user
@@ -136,14 +134,11 @@ const BottomTab = () => {
         s
       />
     </Tab.Navigator>
+  ) : // restarunt
 
-    // restarunt
+  // admin
 
-
-    // admin
-
-  ) : info && info.role === "restarunt" ? (
-
+  info && info.role === "restarunt" ? (
     <Tab.Navigator screenOptions={screenOption}>
       <Tab.Screen
         name="ResHome"
