@@ -61,7 +61,6 @@ export const getResStatusFalse = async () => {
     }
 }
 
-
 export const updateStatus = async (id, status) => {
     try {
 

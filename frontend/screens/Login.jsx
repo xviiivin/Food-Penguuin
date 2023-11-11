@@ -27,8 +27,10 @@ const Login = () => {
   const navigation = useNavigation();
 
   const [role, setRole] = useState("");
-  const [email, setEmail] = useState("few@gmail.com");
+  // const [email, setEmail] = useState("few@gmail.com");
+  // const [email, setEmail] = useState("fewfewfew@gmail.com");
   // const [email, setEmail] = useState("few@kmitl.ac.th");
+  const [email, setEmail] = useState("fewuser@kmitl.ac.th");
 
   const [password, setPassword] = useState("11501150");
 

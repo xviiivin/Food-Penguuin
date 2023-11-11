@@ -60,17 +60,6 @@ const Receive = () => {
     const data1 = await getResWithUID(data.uid);
     console.log(data1);
     setData(data1);
-    data1.forEach((item) => {
-      if (item.queue === 3) {
-        Alert.alert(item.nameres, "คุณเหลือ 3 คิวก่อนหน้า");
-      } else if (item.queue === 2) {
-        Alert.alert(item.nameres, "คุณเหลือ 2 คิวก่อนหน้า");
-      } else if (item.queue === 1) {
-        Alert.alert(item.nameres, "คุณเหลือ 1 คิวก่อนหน้า");
-      } else if (item.queue === 0) {
-        Alert.alert(item.nameres, "ถึงคิวของคุณแล้ว");
-      }
-    });
   };
 
   return (

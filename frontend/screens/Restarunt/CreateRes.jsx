@@ -78,7 +78,7 @@ const CreateRes = () => {
         food_court: selectedres,
         type: selectedcate,
         menu: [],
-        status: false,
+        status: 0,
         pic: `https://firebasestorage.googleapis.com/v0/b/fewlnwza007-92ae7.appspot.com/o/${datexx}?alt=media`,
       });
 

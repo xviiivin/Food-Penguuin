@@ -36,7 +36,8 @@ const HomeScreen = () => {
     data1 && (
       <ScrollView>
         <View className="p-10 bg-white w-full flex-1 gap-4">
-          {data1.map((value, index) => (
+    
+          {data1 && data1.map((value, index) => (
             <View
               className="border border-[#F6D544] rounded-md p-4"
               key={index}

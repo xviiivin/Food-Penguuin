@@ -44,7 +44,7 @@ export const getResWithUID = async (uid) => {
         });
         await Promise.all(promises);
         console.log(allUsers);
-        return await allUsers;
+        return await allUsers.reverse();
     } catch (error) {
         console.error("Error fetching user data:", error);
     }
@@ -57,6 +57,25 @@ export const getGetGet = async (name) => {
         const snapshot = await usersRef.get();
         const allUsers = [];
 
+        snapshot.forEach((doc) => {
+            allUsers.push({
+                id: doc.id,
+                ...doc.data(),
+            });
+        });
+
+        return await allUsers;
+
+    } catch (error) {
+        console.error("Error fetching user data:", error);
+    }
+}
+
+export const getTime = async (id) => {
+    try {
+        const usersRef = firebase.firestore().collection('restaurant').where("status", '==', 0);
+        const snapshot = await usersRef.get();
+        const allUsers = [];
         snapshot.forEach((doc) => {
             allUsers.push({
                 id: doc.id,
@@ -84,7 +103,7 @@ export const getResWithUIDTrue = async (uid) => {
             });
         });
 
-        return await allUsers;
+        return await allUsers.reverse();
 
     } catch (error) {
         console.error("Error fetching user data:", error);

@@ -22,6 +22,8 @@ const CategoryScreen = ({ navigation, route }) => {
   const cart = useSelector((state) => state.cart.cart);
   const [data, setData] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
+  const [totalAmountNoBox, setTotalAmountNoBox] = useState(0);
+  const [totalAmountBox, setTotalAmountBox] = useState(0);
   const [data1, setData1] = useState(null)
   useEffect(() => {
     const groupedData = {};
@@ -46,7 +48,20 @@ const CategoryScreen = ({ navigation, route }) => {
       return total + totalPrice;
     }, 0);
 
+    const totalAmountNoBox = cart.reduce((total, item) => {
+      const totalPrice = (item.price * item.amount);
+      return total + totalPrice;
+    }, 0);
+
+    const totalAmountBox = cart.reduce((total, item) => {
+      const totalPrice = (item.container === "ใส่กล่อง" ? 5 * item.amount : 0);
+      return total + totalPrice;
+    }, 0);
+
+
     setTotalAmount(totalAmount);
+    setTotalAmountNoBox(totalAmountNoBox);
+    setTotalAmountBox(totalAmountBox);
     getdata()
   }, [cart]);
 
@@ -104,7 +119,7 @@ const CategoryScreen = ({ navigation, route }) => {
 
             {item.list.map((item1, i1) => (
               <View key={i1} style={styles.cartContainer}>
-                <View  style={styles.gridItem1}>
+                <View style={styles.gridItem1}>
                   <Image
                     style={styles.picCover1}
                     source={{
@@ -141,12 +156,27 @@ const CategoryScreen = ({ navigation, route }) => {
         {cart.length > 0 ? (
           <>
             <View className="flex-row items-center w-full mt-10 justify-between">
-              <Text className=" font-notoe text-[16px]">ราคา</Text>
+              <Text className=" font-notoe  text-[16px]">ราคาอาหาร</Text>
+              <Text className=" font-notoe  text-[16px] ">
+                {" "}
+                {totalAmountNoBox} บาท
+              </Text>
+            </View>
+            <View className="flex-row items-center w-full mt-4 justify-between">
+              <Text className=" font-notoe text-[16px]">ราคากล่อง</Text>
+              <Text className=" font-notoe text-[16px] ">
+                {" "}
+                {totalAmountBox} บาท
+              </Text>
+            </View>
+            <View className="flex-row items-center w-full mt-4 justify-between">
+              <Text className=" font-notoe text-[16px]">ราคารวม</Text>
               <Text className=" font-notoe text-[16px] ">
                 {" "}
                 {totalAmount} บาท
               </Text>
             </View>
+
             <View className="flex items-center justify-center ">
               <Button
                 onPress={() => addres()}
