@@ -26,7 +26,7 @@ export const getUser = () => {
             if (authenticatedUser) {
                 resolve(authenticatedUser);
             } else {
-                reject("User is not authenticated.");
+                
             }
         });
     });

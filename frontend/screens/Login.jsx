@@ -45,14 +45,14 @@ const Login = () => {
     },
   ];
 
-  useEffect(() => {
-    getData();
-  }, []);
+  // useEffect(() => {
+  //   getData();
+  // }, []);
 
-  const getData = async () => {
-    const data = await getUser();
-    console.log(data);
-  };
+  // const getData = async () => {
+  //   const data = await getUser();
+  //   console.log(data);
+  // };
 
   const handleLogin = async () => {
     try {

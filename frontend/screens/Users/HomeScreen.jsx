@@ -7,6 +7,7 @@ import {
   ScrollView,
   FlatList,
   Image,
+  Alert
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import Carousel from '../../components/Home/Carousel';
@@ -15,6 +16,8 @@ import SearchBar from '../../components/Home/SearchBar';
 import AllRestaurant from '../../components/Home/AllRestaurant';
 import dummyData from '../../data/Data';
 import firebase from "./../../database/firebase";
+import { getUser } from '../../database/user';
+import { getResWithUID } from '../../database/history';
 const HomeScreen = ({ navigation }) => {
   const greetings = ['สวัสดี,', 'สั่งอาหารโปรดของคุณที่นี่ !'];
   const [searchText, setSearchText] = useState('');
@@ -23,7 +26,25 @@ const HomeScreen = ({ navigation }) => {
 
   useEffect(() => {
     getAllData()
+    fetchData()
   }, [])
+
+  const fetchData = async () => {
+    const data = await getUser();
+    const data1 = await getResWithUID(data.uid);
+
+    data1.forEach((item) => {
+      if (item.queue === 3) {
+        Alert.alert(item.nameres, "คุณเหลือ 3 คิวก่อนหน้า");
+      } else if (item.queue === 2) {
+        Alert.alert(item.nameres, "คุณเหลือ 2 คิวก่อนหน้า");
+      } else if (item.queue === 1) {
+        Alert.alert(item.nameres, "คุณเหลือ 1 คิวก่อนหน้า");
+      } else if (item.queue === 0) {
+        Alert.alert(item.nameres, "ถึงคิวของคุณแล้ว");
+      }
+    });
+  }
 
   const getAllData = async () => {
     try {
