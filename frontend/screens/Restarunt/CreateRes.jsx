@@ -150,7 +150,7 @@ const CreateRes = () => {
             onChangeText={(text) => setPhoneres(text)}
             inputMode="numeric"
             className="w-full p-2 px-4 bg-[#F3F3F3] rounded-lg"
-            maxLength={30}
+            maxLength={10}
           />
         </View>
         <View>

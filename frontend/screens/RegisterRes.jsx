@@ -7,14 +7,14 @@ import SwitchSelector from 'react-native-switch-selector';
 import firebase from '../database/firebase';
 const RegisterRes = () => {
     const navigation = useNavigation();
-
-
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirm, setConfirm] = useState("");
     const [role, setRole] = useState("");
     const [firstName, setFirstname] = useState("");
     const [lastName, setLastname] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
+    const [showPassword1, setShowPassword1] = useState(false);
 
 
     const options = [
@@ -104,14 +104,41 @@ const RegisterRes = () => {
             <TextInput
                 className='border border-[#A1A1A1]  rounded-lg w-full h-12 items-center justify-center p-4' value={email} onChangeText={(e) => setEmail(e)} placeholder='อีเมล'
             />
-            <TextInput
-                className='border border-[#A1A1A1] mt-4 rounded-lg w-full h-12 items-center justify-center p-4' value={password} onChangeText={(e) => setPassword(e)} placeholder='รหัสผ่าน'
-            />
-            <TextInput
-                className=' mb-8 border border-[#A1A1A1] mt-4 rounded-lg w-full h-12 items-center justify-center p-4' value={confirm} onChangeText={(e) => setConfirm(e)} placeholder='ยืนยันรหัสผ่าน'
-            />
 
-            <View >
+            <View className='flex-row border border-[#A1A1A1] mt-4 rounded-lg w-full h-12  px-4 justify-between'>
+                <TextInput
+                    className=""
+                    placeholder="รหัสผ่าน"
+                    value={password}
+                    secureTextEntry={!showPassword}
+                    onChangeText={(e) => setPassword(e)}
+                />
+
+                <TouchableOpacity
+                    onPress={() => setShowPassword(!showPassword)}
+                    className='justify-center'
+                >
+                    <Ionicons name={showPassword ? "eye-sharp" : "eye-off-sharp"} size={20} color="black" />
+                </TouchableOpacity>
+            </View>
+
+
+            <View className='flex-row border border-[#A1A1A1] mt-4 rounded-lg w-full h-12  px-4 justify-between'>
+                <TextInput
+                    placeholder="ยืนยันรหัสผ่าน"
+                    secureTextEntry={!showPassword1}
+                    value={confirm} onChangeText={(e) => setConfirm(e)}
+                />
+
+                <TouchableOpacity
+                    onPress={() => setShowPassword1(!showPassword1)}
+                    className='justify-center'
+                >
+                    <Ionicons name={showPassword1 ? "eye-sharp" : "eye-off-sharp"} size={20} color="black" />
+                </TouchableOpacity>
+            </View>
+
+            <View className='mt-8'>
                 <Text className='flex items-start justify-start float-left font-notoe'>ข้อมูลส่วนตัว</Text>
             </View>
             <TextInput
