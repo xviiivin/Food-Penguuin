@@ -68,7 +68,7 @@ const Order = () => {
       <ScrollView className="p-10 bg-white">
         <View className="flex gap-6">
           {data.map((item, i) => (
-            <View>
+            <View key={i}>
               <View className="flex flex-row justify-between items-center">
                 <View>
                   <Text className="font-notom text-[20px]">{item.nameres}</Text>

@@ -73,7 +73,7 @@ export const getGetGet = async (name) => {
 
 export const getTime = async (id) => {
     try {
-        const usersRef = firebase.firestore().collection('restaurant').where("status", '==', 0);
+        const usersRef = firebase.firestore().collection('history').where("useruid", '==', 0);
         const snapshot = await usersRef.get();
         const allUsers = [];
         snapshot.forEach((doc) => {
@@ -93,7 +93,7 @@ export const getTime = async (id) => {
 export const getResWithUIDTrue = async (uid) => {
     try {
         const usersRef = firebase.firestore().collection('history').where("useruid", '==', uid).where("status", "==", true);
-        const snapshot = await usersRef.get();
+        const snapshot = await usersRef.orderBy('created_at').get();
         const allUsers = [];
 
         snapshot.forEach((doc) => {
