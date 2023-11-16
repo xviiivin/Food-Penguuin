@@ -37,7 +37,7 @@ const AllRestaurant = ({ route, searchText }) => {
       menu: menu,
       phone: phone,
     });
-    console.log(food_court); // Log the menu array
+    console.log(food_court);
   };
 
   const [data, setData] = useState([])

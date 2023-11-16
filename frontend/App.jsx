@@ -136,7 +136,7 @@ export default function App() {
               component={RestaurantDetail}
               options={({ route }) => ({
                 headerTitleAlign: "center",
-                headerTitle: route.params?.type,
+                headerTitle: route.params?.name,
                 headerTitleStyle: {
                   fontFamily: "NotoSansThai_500Medium",
                   fontSize: 20,
@@ -180,10 +180,33 @@ export default function App() {
               options={{
                 headerLeft: null,
                 headerBackVisible: false,
+                headerTitle: () => (
+                  <Text
+                    style={{
+                      flex: 1,
+                      fontFamily: "NotoSansThai_500Medium",
+                      fontSize: 20,
+                    }}
+                  >
+                    แก้ไขร้านค้า
+                  </Text>
+                ),
               }}
               component={EditRes}
             />
-            <Stack.Screen name="CreateRes" component={CreateRes} />
+            <Stack.Screen name="CreateRes" component={CreateRes} options={{
+              headerTitle: () => (
+                <Text
+                  style={{
+                    flex: 1,
+                    fontFamily: "NotoSansThai_500Medium",
+                    fontSize: 20,
+                  }}
+                >
+                  สร้างร้านอาหาร
+                </Text>
+              ),
+            }} />
             <Stack.Screen name="Restaurant" component={Restaurant} />
             <Stack.Screen name="Contact" component={Contact} />
             <Stack.Screen

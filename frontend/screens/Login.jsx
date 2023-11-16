@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import SwitchSelector from "react-native-switch-selector";
+
 import {
   SimpleLineIcons,
   MaterialCommunityIcons,
@@ -31,6 +32,7 @@ const Login = () => {
   // const [email, setEmail] = useState("fewfewfew@gmail.com");
   // const [email, setEmail] = useState("few@kmitl.ac.th");
   const [email, setEmail] = useState("fewuser@kmitl.ac.th");
+  const [showPassword, setShowPassword] = useState(false);
 
   const [password, setPassword] = useState("11501150");
 
@@ -87,12 +89,27 @@ const Login = () => {
         value={email}
         onChangeText={(e) => setEmail(e)}
       />
-      <TextInput
-        className="border border-[#A1A1A1] mt-4 rounded-lg w-full h-12 items-center justify-center p-4"
-        placeholder="password"
-        value={password}
-        onChangeText={(e) => setPassword(e)}
-      />
+
+
+
+      <View className='flex-row border border-[#A1A1A1] mt-4 rounded-lg w-full h-12  px-4 justify-between'>
+        <TextInput
+          className=""
+          placeholder="password"
+          value={password}
+          secureTextEntry={!showPassword}
+          onChangeText={(e) => setPassword(e)}
+        />
+
+        <TouchableOpacity
+          onPress={() => setShowPassword(!showPassword)}
+          className='justify-center'
+        >
+          <Ionicons name={showPassword ? "eye-sharp" : "eye-off-sharp"} size={20} color="black" />
+        </TouchableOpacity>
+      </View>
+
+
 
       <TouchableOpacity
         onPress={() => {

@@ -36,21 +36,26 @@ const Restarant = () => {
         setData1(da1)
     }
 
-
     return data1 && (
         <View className='flex-1 bg-white w-full'>
-            <View className="flex items-end  p-5">
-                <Pressable onPress={() => {
-                    navigation.navigate("EditRes");
-                }} className='items-center justify-center flex flex-row  '>
-                    <Text className='font-notom color-[#989696] underlinen mt-1'>เเก้ไขบัญชี</Text>
-                    <AntDesign name="edit" size={20} color="#989696" />
-                </Pressable>
+            <View className='flex justify-between'>
+                <View className="flex items-end  p-5">
+                    <Pressable onPress={() => {
+                        navigation.navigate("EditRes");
+                    }} className='items-center justify-center flex flex-row  '>
+                        <Text className='font-notom color-[#989696] underlinen mt-1'>เเก้ไขบัญชี</Text>
+                        <AntDesign name="edit" size={20} color="#989696" />
+                    </Pressable>
+                </View>
             </View>
             <View>
                 <Image className='w-full h-[150]' source={{ uri: data1.pic }} />
             </View>
             <View className="my-10 mx-5">
+                <View className="flex flex-row mb-2">
+                    <Ionicons name="fast-food-sharp" size={20} color="#F6D544" />
+                    <Text className="font-notom ml-2">{data1.name}</Text>
+                </View>
                 <View className="flex flex-row mb-2">
                     <Ionicons name="location" size={20} color="#F6D544" />
                     <Text className="font-notom ml-2">{data1.food_court}</Text>
