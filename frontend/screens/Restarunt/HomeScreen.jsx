@@ -98,6 +98,7 @@ const HomeScreen = () => {
                         <Text className="font-notom">
                           ราคา: {item.totalPrice.toLocaleString()}
                         </Text>
+                  
                       </View>
                     </View>
                   </View>

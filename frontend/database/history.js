@@ -4,7 +4,7 @@ import { getUserInfo } from "./user";
 export const getHistoryRes = async (res) => {
     try {
         const usersRef = firebase.firestore().collection('history').where("nameres", '==', res).where('status', '==', false);
-        const snapshot = await usersRef.get();
+        const snapshot = await usersRef.orderBy('created_at').get();
         const allUsers = [];
 
         const promises = snapshot.docs.map(async (doc) => {
@@ -29,7 +29,7 @@ export const getResWithUID = async (uid) => {
     try {
 
         const usersRef = firebase.firestore().collection('history').where("useruid", '==', uid).where('status', '==', false);
-        const snapshot = await usersRef.get();
+        const snapshot = await usersRef.orderBy('created_at').get();
         const allUsers = [];
 
         const promises = snapshot.docs.map(async (doc) => {
@@ -44,7 +44,7 @@ export const getResWithUID = async (uid) => {
         });
         await Promise.all(promises);
         console.log(allUsers);
-        return await allUsers.reverse();
+        return await allUsers
     } catch (error) {
         console.error("Error fetching user data:", error);
     }

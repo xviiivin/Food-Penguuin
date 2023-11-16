@@ -46,15 +46,14 @@ const SettingsScreen = () => {
     <ScrollView contentContainerStyle={styles.container}>
       <SafeAreaView>
         <View className="flex flex-row justify-center items-center gap-4">
-          <Text>
-            {info && (
-              <Image
-                style={styles.profileImage}
-                className=""
-                source={{ uri: info.pic }}
-              />
-            )}
-          </Text>
+
+          {info && (
+            <Image
+              style={styles.profileImage}
+              source={{ uri: info.pic }}
+            />
+          )}
+
           {/*  */}
           <View className="gap-y-1 w-1/2">
             <Text className="font-notob text-lg">
@@ -89,7 +88,7 @@ const SettingsScreen = () => {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity style={{ marginHorizontal: 30 }} onPress={() => {}}>
+        <TouchableOpacity style={{ marginHorizontal: 30 }} onPress={() => { }}>
           <View style={styles.dis1}>
             <Pressable
               onPress={() => {

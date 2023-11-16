@@ -65,8 +65,8 @@ const Order = () => {
 
   return (
     data && (
-      <ScrollView className="p-10 bg-white">
-        <View className="flex gap-6">
+      <ScrollView className="p-10 bg-white w-full">
+        <View className="flex gap-6 mb-20">
           {data.map((item, i) => (
             <View key={i}>
               <View className="flex flex-row justify-between items-center">
