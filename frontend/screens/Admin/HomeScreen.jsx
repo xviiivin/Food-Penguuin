@@ -28,9 +28,13 @@ const HomeScreen = () => {
 
   const getdata = async () => {
     const data = await getResStatusFalse();
-    console.log(data);
     setData(data);
   };
+
+  const test = async (id, status) => {
+    await updateStatus(id, status);
+    await getdata()
+  }
 
   return (
     data1 && (
@@ -54,8 +58,7 @@ const HomeScreen = () => {
                   <View className="flex flex-row w-full items-center justify-center gap-4">
                     <Pressable
                       onPress={() => {
-                        updateStatus(value.id, 2);
-                        getdata();
+                        test(value.id, 2)
                       }}
                       className="border border-[#F3F3F3] w-1/3 bg-[#F3F3F3] px-4 py-2 rounded-lg justify-center items-center "
                     >
@@ -63,8 +66,8 @@ const HomeScreen = () => {
                     </Pressable>
                     <Pressable
                       onPress={() => {
-                        updateStatus(value.id, 1);
-                        getdata();
+                        test(value.id, 1)
+                        
                       }}
                       className="border border-[#F6D544] w-1/3 bg-[#F6D544] px-4 py-2 rounded-lg justify-center items-center"
                     >

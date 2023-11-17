@@ -37,7 +37,6 @@ const AllRestaurant = ({ route, searchText }) => {
       menu: menu,
       phone: phone,
     });
-    console.log(food_court);
   };
 
   const [data, setData] = useState([])
@@ -78,7 +77,6 @@ const AllRestaurant = ({ route, searchText }) => {
 
 
   const caltime = (item) => {
-  console.log(item);
     const totalAmount = item.menu.reduce((total, item1) => {
       return total + ~~item1.est_time.split(" ")[0];
     }, 0);
@@ -87,7 +85,6 @@ const AllRestaurant = ({ route, searchText }) => {
   }
 
   useEffect(() => {
-    console.log(searchText);
     const filteredItems = data.filter(item => item.name.includes(searchText));
     setFilteredData(filteredItems);
   }, [searchText])

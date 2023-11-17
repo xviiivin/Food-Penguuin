@@ -49,12 +49,10 @@ const OrderScreen = ({ navigation, route }) => {
 
   const handleIncrement = () => {
     setData({ ...data, amount: data.amount + 1 });
-    console.log(data.amount);
   };
 
   const handleDecrement = () => {
     setData({ ...data, amount: data.amount > 0 ? data.amount - 1 : 0 });
-    console.log(data.amount);
   };
 
   const [value, setValue] = React.useState("plate");

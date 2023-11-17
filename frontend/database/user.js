@@ -10,7 +10,6 @@ export const getUserInfo = async (uid) => {
 
         let data = await userDocument.data();
 
-        console.log(data.firstname);
         return await data;
     } catch (error) {
         console.error("Error fetching user data:", error);

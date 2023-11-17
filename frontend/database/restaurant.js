@@ -44,8 +44,8 @@ export const getResWithUID = async (uid) => {
 
 export const getResStatusFalse = async () => {
     try {
-        const usersRef = firebase.firestore().collection('restaurant').where("status", '==', 0);
-        const snapshot = await usersRef.get();
+        const usersRefewf = firebase.firestore().collection('restaurant').where("status", '==', 0);
+        const snapshot = await usersRefewf.get();
         const allUsers = [];
         snapshot.forEach((doc) => {
             allUsers.push({
@@ -64,19 +64,10 @@ export const getResStatusFalse = async () => {
 export const updateStatus = async (id, status) => {
     try {
 
-        const usersRef = firebase.firestore().collection('restaurant').doc(id).update({
+         firebase.firestore().collection('restaurant').doc(id).update({
             status: status
         });
-        const snapshot = await usersRef.get();
-        const allUsers = [];
-        snapshot.forEach((doc) => {
-            allUsers.push({
-                id: doc.id,
-                ...doc.data(),
-            });
-        });
-
-        return await allUsers;
+        return true;
 
     } catch (error) {
         console.error("Error fetching user data:", error);

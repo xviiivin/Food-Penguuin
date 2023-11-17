@@ -63,7 +63,6 @@ const RegisterRes = () => {
                     { text: 'ตกลง', onPress: () => console.log('ตกลง') },
                 ]);
             } else {
-                console.log(email.split("@")[1]);
                 Alert.alert('แจ้งเตือน', 'อีเมลต้องเป็น kmitl.ac.th', [
                     { text: 'ตกลง', onPress: () => console.log('ตกลง') },
                 ]);

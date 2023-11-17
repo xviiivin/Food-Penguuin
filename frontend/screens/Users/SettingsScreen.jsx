@@ -38,8 +38,6 @@ const SettingsScreen = () => {
     const test1 = await getUserInfo(test.uid);
     setData(test);
     setInfo(test1);
-    console.log(test1);
-    console.log("fewtest");
   };
 
   return (

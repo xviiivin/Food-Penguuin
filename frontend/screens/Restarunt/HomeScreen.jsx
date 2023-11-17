@@ -25,7 +25,7 @@ const HomeScreen = () => {
       const intervalid = setInterval(function () {
         fetch();
       }, 2000);
-      return () => console.log("unmou");
+      return () => clearInterval(intervalid);
     }, [])
   );
 
@@ -34,7 +34,6 @@ const HomeScreen = () => {
     const test = await getResWithUID(data1.uid);
 
     const data = await getHistoryRes(test[0].name);
-    console.log(test);
     setRes(test);
     setData(data);
   };

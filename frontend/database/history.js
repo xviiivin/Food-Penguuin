@@ -17,7 +17,6 @@ export const getHistoryRes = async (res) => {
             });
         });
         await Promise.all(promises); // Wait for all promises to resolve
-        console.log(allUsers);
         return allUsers;
 
     } catch (error) {
@@ -36,14 +35,29 @@ export const getResWithUID = async (uid) => {
             const datf = doc.data();
             const test = await getGetGet(datf.nameres)
             const currentIndex = test.findIndex(user => user.id === doc.id);
+            let sumtotal = 0;
+
+            for (let i = 0; i < test.length; i++) {
+
+                if (i > currentIndex) {
+                    break;
+                }
+
+                const sumxxx = test[i]["menu"].reduce((accumulator, currentValue) => {
+                    return accumulator + (~~currentValue.est_time * ~~currentValue.amount);
+                }, 0)
+
+                sumtotal += sumxxx
+            }
+
             allUsers.push({
                 id: doc.id,
-                queue: currentIndex, 
+                queue: currentIndex,
+                sums: sumtotal,
                 ...doc.data(),
             });
         });
         await Promise.all(promises);
-        console.log(allUsers);
         return await allUsers
     } catch (error) {
         console.error("Error fetching user data:", error);
@@ -54,7 +68,7 @@ export const getGetGet = async (name) => {
     try {
 
         const usersRef = firebase.firestore().collection('history').where("nameres", '==', name).where("status", "==", false);
-        const snapshot = await usersRef.get();
+        const snapshot = await usersRef.orderBy('created_at').get();
         const allUsers = [];
 
         snapshot.forEach((doc) => {

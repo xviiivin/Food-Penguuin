@@ -58,7 +58,6 @@ const Receive = () => {
   const fetchData = async () => {
     const data = await getUser();
     const data1 = await getResWithUID(data.uid);
-    console.log(data1);
     setData(data1);
   };
 
@@ -67,7 +66,7 @@ const Receive = () => {
       <ScrollView className="p-10 bg-white">
         <View className="flex gap-6">
           {data.map((item, i) => (
-            <View>
+            <View key={i}>
               <View className="flex flex-row justify-between items-center">
                 <View>
                   <Text className="font-notom text-[20px]">{item.nameres}</Text>
@@ -78,9 +77,7 @@ const Receive = () => {
                 <View>
                   <Text className="font-notoe bg-[#F6D544] p-2 rounded-xl">
                     ระยะเวลา ~{" "}
-                    {item.menu.reduce((accumulator, currentValue) => {
-                      return accumulator + ~~currentValue.est_time;
-                    }, 0)}{" "}
+                    {item.sums}{" "}
                     นาที
                   </Text>
                 </View>

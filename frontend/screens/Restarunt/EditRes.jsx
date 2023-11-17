@@ -44,7 +44,6 @@ const EditRes = () => {
     const test = await getResWithUID(data.uid);
     let da1 = test[0];
     setData2(da1);
-    console.log(da1);
 
     setNameres(da1["name"]);
     setPhoneres(da1["phone"]);
@@ -61,7 +60,6 @@ const EditRes = () => {
       quality: 1,
     });
 
-    console.log(result);
 
     if (!result.canceled) {
       setImage(result.assets[0].uri);
@@ -69,10 +67,7 @@ const EditRes = () => {
   };
 
   const changeres = async () => {
-    console.log(nameres);
-    console.log(phoneres);
-    console.log(selectedres);
-    console.log(selectedcate);
+
 
     const datexx = new Date().getTime().toString() + ".jpg";
     const response = await fetch(image);

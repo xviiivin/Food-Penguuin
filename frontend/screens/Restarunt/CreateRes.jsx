@@ -32,10 +32,8 @@ const CreateRes = () => {
       quality: 1,
     });
 
-    console.log(result.assets[0].uri);
 
     if (!result.canceled) {
-      console.log(result.assets[0]);
       setImage(result.assets[0].uri);
     }
   };
@@ -57,10 +55,7 @@ const CreateRes = () => {
   };
 
   const addres = async () => {
-    console.log(nameres);
-    console.log(phoneres);
-    console.log(selectedres);
-    console.log(selectedcate);
+ 
 
     const datexx = new Date().getTime().toString() + ".jpg";
     const response = await fetch(image);
@@ -82,7 +77,6 @@ const CreateRes = () => {
         pic: `https://firebasestorage.googleapis.com/v0/b/fewlnwza007-92ae7.appspot.com/o/${datexx}?alt=media`,
       });
 
-    console.log(test);
 
     Alert.alert("แจ้งเตือน", "เพิ่มร้านค้าเรียบร้อย", [
       { text: "ตกลง", onPress: () => console.log("ตกลง") },

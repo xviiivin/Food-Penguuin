@@ -59,7 +59,6 @@ const Order = () => {
   const fetchData = async () => {
     const data = await getUser();
     const data1 = await getResWithUIDTrue(data.uid);
-    console.log(data1);
     setData(data1);
   };
 

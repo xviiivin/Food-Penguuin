@@ -11,7 +11,6 @@ export const cartSlice = createSlice({
       const itemInCart = state.cart.find(
         (data) => data.id === action.payload.id && data.restaurantName === action.payload.restaurantName
       );
-      console.log(itemInCart);
       if (itemInCart) {
         itemInCart.description = action.payload.description
         itemInCart.container = action.payload.container
